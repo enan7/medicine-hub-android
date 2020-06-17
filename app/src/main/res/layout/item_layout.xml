@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+   <RelativeLayout
+
+       android:id="@+id/item"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:scaleType="fitCenter"
+       android:padding="5dp">
+
+       <de.hdodenhof.circleimageview.CircleImageView
+           android:id="@+id/item_image"
+           android:layout_width="75dp"
+           android:layout_height="75dp"
+           android:layout_centerInParent="true"
+           android:layout_alignParentLeft="true"
+           android:src="@drawable/medic_logo"/>
+
+       <LinearLayout
+           android:id="@+id/item_detail"
+           android:layout_width="140dp"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:orientation="vertical"
+           android:layout_marginLeft="10dp"
+           android:layout_toRightOf="@+id/item_image">
+
+       <TextView
+           android:id="@+id/item_title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Title"
+           android:textSize="15sp"
+           android:textColor="@color/colorPrimaryDark"
+           android:textStyle="bold"
+           />
+
+       <LinearLayout
+           android:id="@+id/price_detail"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:orientation="horizontal"
+           android:layout_toRightOf="@+id/item_image">
+
+
+           <TextView
+               android:id="@+id/item_discount"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="10sp"
+               android:text="0%"
+               />
+
+
+           <TextView
+           android:id="@+id/item_oldprice"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+               android:layout_marginLeft="2dp"
+               android:textSize="10sp"
+               android:text="@string/line"
+           />
+
+
+
+
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:id="@+id/item_price"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:orientation="horizontal"
+           android:layout_toRightOf="@+id/item_image">
+
+           <TextView
+
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="15sp"
+               android:textColor="@color/colorPrimaryDark"
+               android:text="Rs."
+               />
+
+           <TextView
+               android:id="@+id/item_newprice"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="2dp"
+               android:textSize="15sp"
+               android:textColor="@color/colorPrimaryDark"
+               android:text="New Price"
+               />
+       </LinearLayout>
+
+
+       </LinearLayout>
+
+
+
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentEnd="true"
+           android:background="@drawable/input_design"
+           android:layout_centerInParent="true"
+           android:gravity="center"
+           android:layout_marginLeft="10dp"
+           android:text="Add To Cart"
+           android:textColor="@color/colorPrimaryDark"
+           android:textSize="14sp"
+           android:padding="5dp"
+           android:textAllCaps="false"></Button>
+
+
+   </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
