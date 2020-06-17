@@ -137,6 +137,7 @@ public class SignIn extends AppCompatActivity {
         retrofitClient = RetrofitClient.getInstance();
         userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
         Call<LoginUserResponse> call = userInterface.loginUser(request);
+        System.out.println("Hello");
 
         call.enqueue(new Callback<LoginUserResponse>() {
             @Override
