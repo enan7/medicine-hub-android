@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.medic.Api_Interfaces.UserInterface;
 import com.example.medic.R;
+import com.example.medic.Requests.LoginUserRequest;
 import com.example.medic.Requests.RegisterUserRequest;
 import com.example.medic.Responses.LoginUserResponse;
 import com.example.medic.Responses.RegisterUserResponse;
@@ -48,6 +49,8 @@ public class SignIn extends AppCompatActivity {
         regBtn = findViewById(R.id.signup_btn);
         LoginBtn = findViewById(R.id.login_btn);
         ccp = findViewById(R.id.ccp_login);
+
+
 
         loadingBar = new ProgressDialog(SignIn.this);
 
@@ -130,42 +133,43 @@ public class SignIn extends AppCompatActivity {
         String password = LoginPassword.getEditText().getText().toString().trim();
 
 
-        final RegisterUserRequest request = new RegisterUserRequest();
+        final LoginUserRequest request = new LoginUserRequest();
         request.setPassword(password);
-        request.setPhoneNumber(fullPhoneNo);
+        request.setUserName(fullPhoneNo);
+        try {
+            retrofitClient = RetrofitClient.getInstance();
+            userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
+            Call<LoginUserResponse> call = userInterface.loginUser(request);
 
-        retrofitClient = RetrofitClient.getInstance();
-        userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
-        Call<LoginUserResponse> call = userInterface.loginUser(request);
-        System.out.println("Hello");
-
-        call.enqueue(new Callback<LoginUserResponse>() {
-            @Override
-            public void onResponse(Call<LoginUserResponse> call, Response<LoginUserResponse> response) {
-                // loadingBar.dismiss();
-                LoginUserResponse loginUserResponse = response.body();
-                //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
-                System.out.println(loginUserResponse.getResponseCode());
-
+            call.enqueue(new Callback<LoginUserResponse>() {
+                @Override
+                public void onResponse(Call<LoginUserResponse> call, Response<LoginUserResponse> response) {
+                    // loadingBar.dismiss();
+                    LoginUserResponse loginUserResponse = response.body();
+                    //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
+                    System.out.println(loginUserResponse.getResponseCode());
 
 
-                if(loginUserResponse.getResponseCode().equals("00"))
-                {
+                    if (loginUserResponse.getResponseCode().equals("00")) {
 
 
-                    loadingBar.dismiss();
-                    Intent intent = new Intent(getApplicationContext(), Home.class);
-                    startActivity(intent);
-                    finish();                }
+                        loadingBar.dismiss();
+                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
-            }
+                }
 
-            @Override
-            public void onFailure(Call<LoginUserResponse> call, Throwable t) {
-                // loadingBar.dismiss();
-                System.out.println("Failed");
-            }
-        });
+                @Override
+                public void onFailure(Call<LoginUserResponse> call, Throwable t) {
+                    // loadingBar.dismiss();
+                    System.out.println("Failed");
+                }
+            });
+        } catch (Exception e){
+            System.out.println(e);
+        }
 //                            Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
 
         //Perform Your required action here to either let the user sign In or do something required
