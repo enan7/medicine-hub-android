@@ -24,7 +24,7 @@ public class RetrofitClient {
     }
 
     public void setJwtToken(String jwtToken) {
-        this.jwtToken = jwtToken;
+        this.jwtToken = "Bearer "+ jwtToken;
     }
 
     private RetrofitClient()

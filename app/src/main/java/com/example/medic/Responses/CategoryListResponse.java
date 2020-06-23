@@ -1,22 +1,12 @@
 package com.example.medic.Responses;
 
-public class LoginUserResponse {
+import java.util.List;
+
+public class CategoryListResponse {
 
     private String responseCode;
     private String responseMessage;
-    private String jwtToken;
-
-
-
-    public String getJwtToken() {
-        return jwtToken;
-    }
-
-    public void setJwtToken(String jwtToken) {
-        this.jwtToken = jwtToken;
-    }
-
-
+    private List <CategoryResponse> categories;
 
     public String getResponseCode() {
         return responseCode;
@@ -32,7 +22,13 @@ public class LoginUserResponse {
 
     public void setResponseMessage(String responseMessage) {
         this.responseMessage = responseMessage;
+    }
 
+    public List<CategoryResponse> getCategories() {
+        return categories;
+    }
 
+    public void setCategories(List<CategoryResponse> categories) {
+        this.categories = categories;
     }
 }

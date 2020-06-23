@@ -5,9 +5,11 @@ import com.example.medic.Requests.RegisterUserRequest;
 import com.example.medic.Responses.LoginUserResponse;
 import com.example.medic.Responses.RegisterUserResponse;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface UserInterface {
@@ -15,4 +17,7 @@ public interface UserInterface {
     Call<RegisterUserResponse> registerUser(@Body RegisterUserRequest request);
     @POST("auth/login")
     Call<LoginUserResponse> loginUser(@Body LoginUserRequest request);
+
+   /* @GET("secretinfo")
+    Call<ResponseBody> getSecret (@Header("Authorization")String authToken);*/
 }

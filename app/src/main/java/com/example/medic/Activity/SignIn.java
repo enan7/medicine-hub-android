@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.medic.Api_Interfaces.UserInterface;
+import com.example.medic.Prevalent.Prevalent;
 import com.example.medic.R;
 import com.example.medic.Requests.LoginUserRequest;
 import com.example.medic.Requests.RegisterUserRequest;
@@ -31,12 +33,13 @@ public class SignIn extends AppCompatActivity {
     TextView ForgetPassword;
     Button regBtn, LoginBtn;
     private RetrofitClient retrofitClient;
-    RegisterUserRequest request;
     private UserInterface userInterface;
 
     private ProgressDialog loadingBar;
     CountryCodePicker ccp;
 
+    String UserPhoneKey,UserPasswordKey;
+    final LoginUserRequest request = new LoginUserRequest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,8 @@ public class SignIn extends AppCompatActivity {
         regBtn = findViewById(R.id.signup_btn);
         LoginBtn = findViewById(R.id.login_btn);
         ccp = findViewById(R.id.ccp_login);
+
+        Paper.init(this);
 
 
 
@@ -76,9 +81,29 @@ public class SignIn extends AppCompatActivity {
                     return;
                 }
 
-                VerifyQRcODE();
+                LoginUser();
             }
         });
+
+
+        UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
+        UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
+        if (UserPhoneKey != "" && UserPasswordKey != "")
+        {
+
+
+            if (!TextUtils.isEmpty(UserPhoneKey)  &&  !TextUtils.isEmpty(UserPasswordKey))
+            {
+                request.setUserName(UserPhoneKey);
+                request.setPassword(UserPasswordKey);
+                AllowAccess(request);
+
+                loadingBar.setTitle("Already Logged in");
+                loadingBar.setMessage("Please wait.....");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+            }
+        }
     }
 
     private Boolean validatePhoneNo() {
@@ -119,7 +144,9 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
-    public void VerifyQRcODE() {
+    public void LoginUser() {
+
+
 
         loadingBar.setTitle("Register");
         loadingBar.setMessage("Please wait for a while...");
@@ -132,10 +159,31 @@ public class SignIn extends AppCompatActivity {
         final String fullPhoneNo = ccp.getFullNumber()+ phoneNumber ;
         String password = LoginPassword.getEditText().getText().toString().trim();
 
+        Paper.book().write(Prevalent.UserPhoneKey, fullPhoneNo);
+        Paper.book().write(Prevalent.UserPasswordKey, password);
 
-        final LoginUserRequest request = new LoginUserRequest();
+
         request.setPassword(password);
         request.setUserName(fullPhoneNo);
+
+        AllowAccess(request);
+//                            Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
+
+        //Perform Your required action here to either let the user sign In or do something required
+
+
+    /*} else {
+        Toast.makeText(SignIn.this, LoginUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
+    }*/
+
+
+
+    }
+
+    private void AllowAccess(final LoginUserRequest request)
+    {
+        request.setPassword(request.getPassword());
+        request.setUserName(request.getUserName());
         try {
             retrofitClient = RetrofitClient.getInstance();
             userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
@@ -151,12 +199,18 @@ public class SignIn extends AppCompatActivity {
 
 
                     if (loginUserResponse.getResponseCode().equals("00")) {
+                        Toast.makeText(SignIn.this, "Login successfully!", Toast.LENGTH_SHORT).show();
 
-
+                        retrofitClient.setJwtToken(loginUserResponse.getJwtToken());
                         loadingBar.dismiss();
                         Intent intent = new Intent(getApplicationContext(), Home.class);
                         startActivity(intent);
                         finish();
+                    }
+
+                    else {
+                        loadingBar.dismiss();
+                        Toast.makeText(SignIn.this, loginUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -170,16 +224,8 @@ public class SignIn extends AppCompatActivity {
         } catch (Exception e){
             System.out.println(e);
         }
-//                            Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
-
-        //Perform Your required action here to either let the user sign In or do something required
-
-
-    /*} else {
-        Toast.makeText(SignIn.this, LoginUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
-    }*/
-
 
 
     }
+
 }
