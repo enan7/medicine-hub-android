@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,22 +46,27 @@ public class Home extends AppCompatActivity
     TextView CartCountTv;
     private RetrofitClient retrofitClient;
     private CategoryInterface categoryInterface;
-    private  CategoryListResponse categoryListResponse;
+    private CategoryListResponse categoryListResponse;
     private CategoryAdapter categoryAdapter;
     RecyclerView categoryRecyclerView;
+    private ArrayList<CategoryListResponse> data;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        categoryRecyclerView = findViewById(R.id.cat_recyclerview);
-        categoryRecyclerView.setAdapter(categoryAdapter);
+        Paper.init(Home.this);
+/*
+
+        categoryRecyclerView = findViewById(R.id.);
+
+        categoryListResponse=new CategoryListResponse();
 
 
         getCategoryList();
-
-
+*/
+        initViews();
     }
 
 
@@ -69,7 +75,7 @@ public class Home extends AppCompatActivity
 
         getMenuInflater().inflate(R.menu.cart, menu);
 
-        MenuItem mCartIconMenuItem=menu.findItem(R.id.cart_count_menu_item);
+        MenuItem mCartIconMenuItem = menu.findItem(R.id.cart_count_menu_item);
         View actionView = mCartIconMenuItem.getActionView();
         /*if (actionView!=null)
         {
@@ -88,37 +94,36 @@ public class Home extends AppCompatActivity
 
         return super.onCreateOptionsMenu(menu);
     }
+
+    private void initViews(){
+        categoryRecyclerView = (RecyclerView)findViewById(R.id.cat_recyclerview);
+        categoryRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        categoryRecyclerView.setLayoutManager(layoutManager);
+        getCategoryList();
+    }
+
     @Override
-    public boolean onNavigationItemSelected(MenuItem item)
-    {
+    public boolean onNavigationItemSelected(MenuItem item) {
         //Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_item_one)
-        {
+        if (id == R.id.nav_item_one) {
 
-        }
-        else if (id == R.id.nav_item_two)
-        {
+        } else if (id == R.id.nav_item_two) {
 
-        }
-        else if (id == R.id.nav_item_three)
-        {
+        } else if (id == R.id.nav_item_three) {
 
-        }
-        else if (id == R.id.group_menu)
-        {
+        } else if (id == R.id.group_menu) {
 
-        }
-        else if (id == R.id.logout_btn)
-        {
+        } else if (id == R.id.logout_btn) {
 
-                Paper.book().destroy();
+            Paper.book().destroy();
 
-                Intent intent = new Intent(Home.this, SignIn.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+            Intent intent = new Intent(Home.this, SignIn.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
 
         }
 
@@ -137,11 +142,21 @@ public class Home extends AppCompatActivity
             call.enqueue(new Callback<CategoryListResponse>() {
                 @Override
                 public void onResponse(Call<CategoryListResponse> call, Response<CategoryListResponse> response) {
-                    // loadingBar.dismiss();
-                     categoryListResponse = response.body();
-                    categoryAdapter = new CategoryAdapter(Home.this, (ArrayList<CategoryResponse>) categoryListResponse.getCategories());
-                    Paper.init(Home.this);
 
+                    // loadingBar.dismiss();
+
+                    categoryListResponse = response.body();
+                    categoryAdapter = new CategoryAdapter(Home.this, (ArrayList<CategoryResponse>) categoryListResponse.getCategories());
+
+
+                  //  categoryAdapter = new CategoryAdapter(data);
+
+                    categoryRecyclerView.setAdapter(categoryAdapter);
+                    Log.v("ayaz","ayaz"+response);
+
+
+
+                  /**//*  //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
 
                     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                     toolbar.setLogo(R.drawable.icon);
@@ -155,9 +170,8 @@ public class Home extends AppCompatActivity
                     toggle.syncState();
 
                     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                    navigationView.setNavigationItemSelectedListener(Home.this);
-                    //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
-
+                    navigationView.setNavigationItemSelectedListener(Home.this);*/
+                    categoryAdapter.notifyDataSetChanged();
                 }
 
                 @Override
@@ -166,13 +180,11 @@ public class Home extends AppCompatActivity
                     System.out.println("Failed");
                 }
             });
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
     }
-
-
 
 
 }

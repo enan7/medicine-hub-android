@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +19,20 @@ import com.example.medic.R;
 import com.example.medic.Responses.CategoryListResponse;
 import com.example.medic.Responses.CategoryResponse;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
     Context c;
-
+    Bitmap decodedByte;
     ArrayList<CategoryResponse> categories;
 
     public CategoryAdapter(Context c, ArrayList<CategoryResponse> categories) {
         this.c = c;
         this.categories = categories;
+        Log.v("ayaz1","ayaz1");
+
     }
 
 
@@ -45,10 +49,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public void onBindViewHolder(@NonNull CategoryHolder categoryHolder, int i) {
 
         categoryHolder.getCatTitle().setText(categories.get(i).getCategoryName());
+        Log.v("ayaz1","ayaz1"+categories.get(i).getCategoryName());
 
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(categories.get(i).getCategoryIcon(), 0, categories.get(i).getCategoryIcon().length);
-        categoryHolder.getCatImageView().setImageBitmap(decodedByte);
-
+/*
+         decodedByte = BitmapFactory.decodeByteArray(categories.get(i).getCategoryIcon(), 0, categories.get(i).getCategoryIcon().length);
+        categoryHolder.getCatImageView().setImageBitmap(decodedByte);*/
     }
 
 
