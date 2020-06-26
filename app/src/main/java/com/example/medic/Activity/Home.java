@@ -78,20 +78,20 @@ public class Home extends AppCompatActivity
 
         MenuItem mCartIconMenuItem = menu.findItem(R.id.cart_count_menu_item);
         View actionView = mCartIconMenuItem.getActionView();
-        /*if (actionView!=null)
+        if (actionView!=null)
         {
             CartImageBtn = actionView.findViewById(R.id.cart_image_button);
             CartCountTv = actionView.findViewById(R.id.count_tv_layout);
-        }*/
+        }
 
 
         //Cart toolbar image view
-        /*CartImageBtn.setOnClickListener(new View.OnClickListener() {
+        CartImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });*/
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -157,7 +157,7 @@ public class Home extends AppCompatActivity
 
 
 
-                  /**//*  //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
+                    //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
 
                     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                     toolbar.setLogo(R.drawable.icon);
@@ -171,7 +171,7 @@ public class Home extends AppCompatActivity
                     toggle.syncState();
 
                     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                    navigationView.setNavigationItemSelectedListener(Home.this);*/
+                    navigationView.setNavigationItemSelectedListener(Home.this);
                     categoryAdapter.notifyDataSetChanged();
                 }
 
