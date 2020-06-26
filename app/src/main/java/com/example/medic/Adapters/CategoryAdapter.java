@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
     Context c;
+    byte[] decodedString;
     Bitmap decodedByte;
     ArrayList<CategoryResponse> categories;
 
@@ -51,9 +52,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
         categoryHolder.getCatTitle().setText(categories.get(i).getCategoryName());
         Log.v("ayaz1","ayaz1"+categories.get(i).getCategoryName());
 
-/*
-         decodedByte = BitmapFactory.decodeByteArray(categories.get(i).getCategoryIcon(), 0, categories.get(i).getCategoryIcon().length);
-        categoryHolder.getCatImageView().setImageBitmap(decodedByte);*/
+
+
+
+        String base64String = "data:image/png;base64,"+categories.get(i).getCategoryIcon();
+        Log.v("ayaz1","ayaz1"+categories.get(i).getCategoryIcon());
+        String base64Image = base64String.split(",")[1];byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        categoryHolder.getCatImageView().setImageBitmap(decodedByte);
     }
 
 
@@ -61,4 +67,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public int getItemCount() {
         return categories.size();
     }
+
+
+
+
+
+
+
+
+
 }

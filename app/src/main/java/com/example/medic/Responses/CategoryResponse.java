@@ -1,10 +1,15 @@
 package com.example.medic.Responses;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
 public class CategoryResponse {
 
     private String categoryName;
     private String  categoryIcon;
     private Long id;
+
 
     public String getCategoryName() {
         return categoryName;
@@ -14,9 +19,18 @@ public class CategoryResponse {
         this.categoryName = categoryName;
     }
 
-    public byte[] getCategoryIcon() {
-        return categoryIcon.getBytes();
+    public String getCategoryIcon() {
+        return categoryIcon;
     }
+
+    private Bitmap convertBase64ToBitmap(String b64) {
+        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+    }
+
+
+
+
 
     public void setCategoryIcon(String categoryIcon) {
         this.categoryIcon = categoryIcon;
