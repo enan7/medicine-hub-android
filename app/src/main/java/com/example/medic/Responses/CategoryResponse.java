@@ -5,13 +5,14 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class CategoryResponse {
 
     private String categoryName;
     private String categoryIcon;
     private Long id;
-
+    private List<MedicineResponse> medicines;
 
     public String getCategoryName() {
         return categoryName;
@@ -42,5 +43,13 @@ public class CategoryResponse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<MedicineResponse> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(List<MedicineResponse> medicines) {
+        this.medicines = medicines;
     }
 }
