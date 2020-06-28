@@ -78,8 +78,7 @@ public class Home extends AppCompatActivity
 
         MenuItem mCartIconMenuItem = menu.findItem(R.id.cart_count_menu_item);
         View actionView = mCartIconMenuItem.getActionView();
-        if (actionView!=null)
-        {
+        if (actionView != null) {
             CartImageBtn = actionView.findViewById(R.id.cart_image_button);
             CartCountTv = actionView.findViewById(R.id.count_tv_layout);
         }
@@ -96,10 +95,10 @@ public class Home extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void initViews(){
-        categoryRecyclerView = (RecyclerView)findViewById(R.id.cat_recyclerview);
+    private void initViews() {
+        categoryRecyclerView = (RecyclerView) findViewById(R.id.cat_recyclerview);
         categoryRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2,GridLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
         categoryRecyclerView.setLayoutManager(layoutManager);
         getCategoryList();
     }
@@ -150,11 +149,9 @@ public class Home extends AppCompatActivity
                     categoryAdapter = new CategoryAdapter(Home.this, (ArrayList<CategoryResponse>) categoryListResponse.getCategories());
 
 
-                  //  categoryAdapter = new CategoryAdapter(data);
+                    //  categoryAdapter = new CategoryAdapter(data);
 
                     categoryRecyclerView.setAdapter(categoryAdapter);
-                    Log.v("ayaz","ayaz"+response);
-
 
 
                     //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();

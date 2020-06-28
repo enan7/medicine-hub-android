@@ -20,6 +20,7 @@ import com.example.medic.Responses.CategoryListResponse;
 import com.example.medic.Responses.CategoryResponse;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
@@ -32,7 +33,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public CategoryAdapter(Context c, ArrayList<CategoryResponse> categories) {
         this.c = c;
         this.categories = categories;
-        Log.v("ayaz1","ayaz1");
+
 
     }
 
@@ -50,16 +51,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public void onBindViewHolder(@NonNull CategoryHolder categoryHolder, int i) {
 
         categoryHolder.getCatTitle().setText(categories.get(i).getCategoryName());
-        Log.v("ayaz1","ayaz1"+categories.get(i).getCategoryName());
 
 
-
-
-        String base64String = "data:image/png;base64,"+categories.get(i).getCategoryIcon();
-        Log.v("ayaz1","ayaz1"+categories.get(i).getCategoryIcon());
-        String base64Image = base64String.split(",")[1];byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        categoryHolder.getCatImageView().setImageBitmap(decodedByte);
+        if (categories.get(i).getCategoryIcon() != null) {
+            byte[] decodedImageUri = Base64.decode(categories.get(i).getCategoryIcon(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedImageUri, 0, decodedImageUri.length);
+            categoryHolder.getCatImageView().setImageBitmap(decodedByte);
+        }
     }
 
 
@@ -67,13 +65,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public int getItemCount() {
         return categories.size();
     }
-
-
-
-
-
-
-
 
 
 }

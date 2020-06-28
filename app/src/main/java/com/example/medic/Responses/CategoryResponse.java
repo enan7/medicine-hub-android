@@ -4,10 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import java.nio.charset.StandardCharsets;
+
 public class CategoryResponse {
 
     private String categoryName;
-    private String  categoryIcon;
+    private String categoryIcon;
     private Long id;
 
 
@@ -20,16 +22,14 @@ public class CategoryResponse {
     }
 
     public String getCategoryIcon() {
-        return categoryIcon;
+        if (categoryIcon != null) {
+            byte[] decodedString = Base64.decode(categoryIcon, Base64.DEFAULT);
+            String newDecodedImageUri = new String(decodedString, StandardCharsets.UTF_8);
+            String base64Image = newDecodedImageUri.split(",")[1];
+            return base64Image;
+        }
+        return null;
     }
-
-    private Bitmap convertBase64ToBitmap(String b64) {
-        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-    }
-
-
-
 
 
     public void setCategoryIcon(String categoryIcon) {
