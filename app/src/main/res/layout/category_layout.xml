@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/colorPrimaryDark">
+            android:background="@drawable/color_cursor_white">
 
         <ImageView
             android:id="@+id/cat_img"
@@ -35,7 +35,9 @@
             android:id="@+id/cat_name"
             android:textSize="14sp"
             android:text="abcdef"
-            android:textColor="#ffff"
+            android:textColor="#000"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
