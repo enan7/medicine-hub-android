@@ -1,5 +1,9 @@
 package com.example.medic.Responses;
 
+import android.util.Base64;
+
+import java.nio.charset.StandardCharsets;
+
 public class MedicineResponse {
     private Long medicineId;
     private String medicineName;
@@ -85,7 +89,13 @@ public class MedicineResponse {
     }
 
     public String getImage() {
-        return image;
+        if (image != null) {
+            byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+            String newDecodedImageUri = new String(decodedString, StandardCharsets.UTF_8);
+            String base64Image = newDecodedImageUri.split(",")[1];
+            return base64Image;
+        }
+        return null;
     }
 
     public void setImage(String image) {

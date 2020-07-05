@@ -1,6 +1,7 @@
 package com.example.medic.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -12,9 +13,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medic.Activity.Home;
+import com.example.medic.Activity.Medicine;
 import com.example.medic.Holders.CategoryHolder;
-import com.example.medic.Model.Items;
-import com.example.medic.MyHolder;
 import com.example.medic.R;
 import com.example.medic.Responses.CategoryListResponse;
 import com.example.medic.Responses.CategoryResponse;
@@ -48,7 +49,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryHolder categoryHolder, int i) {
+    public void onBindViewHolder(@NonNull CategoryHolder categoryHolder, final int i) {
 
         categoryHolder.getCatTitle().setText(categories.get(i).getCategoryName());
 
@@ -58,8 +59,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedImageUri, 0, decodedImageUri.length);
             categoryHolder.getCatImageView().setImageBitmap(decodedByte);
         }
-    }
 
+        categoryHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(c, Medicine.class);
+                intent.putExtra("CatID",categories.get(i).getId());
+
+                c.startActivity(intent);
+            }
+        });
+
+    }
 
     @Override
     public int getItemCount() {

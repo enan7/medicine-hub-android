@@ -13,7 +13,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CategoryHolder extends RecyclerView.ViewHolder {
 
-    public CircleImageView getCatImageView;
+
     private ImageView catImageView;
     private TextView catTitle;
 

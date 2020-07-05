@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.medic.Adapters.CategoryAdapter;
 import com.example.medic.Api_Interfaces.CategoryInterface;
 import com.example.medic.Api_Interfaces.UserInterface;
+import com.example.medic.Holders.CategoryHolder;
 import com.example.medic.R;
 import com.example.medic.Responses.CategoryListResponse;
 import com.example.medic.Responses.CategoryResponse;

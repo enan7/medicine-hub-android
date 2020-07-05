@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.ItemDetail"></activity>
         <activity
-            android:name=".Activity.Items"
+            android:name=".Activity.Medicine"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
