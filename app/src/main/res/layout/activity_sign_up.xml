@@ -1,10 +1,10 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff"
+    android:background="@color/colorPrimary"
     android:layout_centerVertical="true"
     tools:context=".Activity.SignUp">
 
@@ -13,17 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:background="#fff"
+        android:background="@color/colorPrimary"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/medic_logo"/>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -38,6 +34,7 @@
         android:layout_height="wrap_content"
         android:text="SignUp to get medic"
         android:textSize="16sp"
+        android:textColor="@color/black_color"
         android:transitionName="logo_desc"/>
 
     <LinearLayout
@@ -53,6 +50,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2"
+            android:layout_marginBottom="10dp"
             android:gravity="center">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -93,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:layout_marginBottom="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -105,6 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             android:weightSum="4">
 
             <com.hbb20.CountryCodePicker
@@ -154,6 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:layout_marginBottom="10dp"
             app:passwordToggleEnabled="true"
             android:transitionName="password_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -203,4 +204,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

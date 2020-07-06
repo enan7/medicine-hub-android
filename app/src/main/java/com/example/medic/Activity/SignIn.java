@@ -98,10 +98,7 @@ public class SignIn extends AppCompatActivity {
                 request.setPassword(UserPasswordKey);
                 AllowAccess(request);
 
-                loadingBar.setTitle("Already Logged in");
-                loadingBar.setMessage("Please wait.....");
-                loadingBar.setCanceledOnTouchOutside(false);
-                loadingBar.show();
+
             }
         }
     }
@@ -148,7 +145,7 @@ public class SignIn extends AppCompatActivity {
 
 
 
-        loadingBar.setTitle("Register");
+        loadingBar.setTitle("Login");
         loadingBar.setMessage("Please wait for a while...");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
@@ -182,6 +179,12 @@ public class SignIn extends AppCompatActivity {
 
     private void AllowAccess(final LoginUserRequest request)
     {
+
+        loadingBar.setTitle("Already Logged in");
+        loadingBar.setMessage("Please wait.....");
+        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.show();
+
         request.setPassword(request.getPassword());
         request.setUserName(request.getUserName());
         try {

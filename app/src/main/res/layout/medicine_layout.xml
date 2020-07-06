@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
@@ -13,12 +13,12 @@
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
        android:scaleType="fitCenter"
-       android:padding="5dp">
+       android:padding="10dp">
 
        <ImageView
            android:id="@+id/item_image"
-           android:layout_width="75dp"
-           android:layout_height="75dp"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
            android:layout_centerInParent="true"
            android:layout_alignParentLeft="true"
            android:src="@drawable/medic_logo"/>
@@ -38,8 +38,9 @@
            android:layout_height="wrap_content"
            android:text="Title"
            android:textSize="15sp"
-           android:textColor="@color/colorPrimaryDark"
+           android:textColor="@color/black_color"
            android:textStyle="bold"
+           android:textAllCaps="true"
            />
 
        <LinearLayout
@@ -48,6 +49,7 @@
            android:layout_height="wrap_content"
            android:layout_centerInParent="true"
            android:orientation="horizontal"
+           android:layout_marginTop="20dp"
            android:layout_toRightOf="@+id/item_image">
 
 
@@ -55,7 +57,7 @@
                android:id="@+id/item_discount"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textSize="10sp"
+               android:textSize="14sp"
                android:text="0%"
                />
 
@@ -65,7 +67,8 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
                android:layout_marginLeft="2dp"
-               android:textSize="10sp"
+               android:textSize="14sp"
+               android:textColor="@color/orange_color"
                android:text="@string/line"
            />
 
@@ -75,52 +78,26 @@
 
        </LinearLayout>
 
-       <LinearLayout
-           android:id="@+id/item_price"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_centerInParent="true"
-           android:orientation="horizontal"
-           android:layout_toRightOf="@+id/item_image">
 
-           <TextView
-
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="15sp"
-               android:textColor="@color/colorPrimaryDark"
-               android:text="Rs."
-               />
-
-           <TextView
-               android:id="@+id/item_newprice"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="2dp"
-               android:textSize="15sp"
-               android:textColor="@color/colorPrimaryDark"
-               android:text="New Price"
-               />
-       </LinearLayout>
 
 
        </LinearLayout>
 
 
 
-       <Button
+       <TextView
+           android:id="@+id/item_newprice"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentEnd="true"
-           android:background="@drawable/input_design"
            android:layout_centerInParent="true"
            android:gravity="center"
            android:layout_marginLeft="10dp"
-           android:text="Add To Cart"
+           android:text="New Price"
            android:textColor="@color/colorPrimaryDark"
-           android:textSize="14sp"
+           android:textSize="20sp"
            android:padding="5dp"
-           android:textAllCaps="false"></Button>
+           android:textAllCaps="false"></TextView>
 
 
    </RelativeLayout>
