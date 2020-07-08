@@ -9,4 +9,7 @@
     <color name="black_color">#000000</color>
     <color name="red_color">#FF0000</color>
     <color name="maroon">#3F0D12</color>
+    <color name="blue">#0CBABA</color>
+    <color name="perpal">#380036</color>
+
 </resources>

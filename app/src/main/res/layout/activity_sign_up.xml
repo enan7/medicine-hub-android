@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:layout_centerVertical="true"
+    android:background="@drawable/gradient"
     tools:context=".Activity.SignUp">
 
 
@@ -26,13 +28,13 @@
         android:layout_marginTop="10dp"
         android:textSize="30sp"
         android:transitionName="logo_text"
-        android:textColor="@color/maroon"/>
+        android:textColor="@color/perpal"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SignUp to get medic"
         android:textSize="16sp"
-        android:textColor="@color/black_color"
+        android:textColor="@color/perpal"
         android:transitionName="logo_desc"/>
 
     <LinearLayout
@@ -62,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:textColor="@color/title_color"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:textColor="@color/title_color"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:textColor="@color/title_color"
                 android:inputType="textEmailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,6 +115,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:textColor="@color/title_color"
                 android:gravity="center"
                 android:textSize="10sp"
                 app:ccp_autoDetectCountry="true"
@@ -127,6 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
+                    android:textColor="@color/title_color"
                     android:inputType="number"/>
 
 
@@ -160,6 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:textColor="@color/title_color"
                 android:inputType="textPassword">
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -176,6 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:textColor="@color/title_color"
                 android:inputType="textPassword">
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -187,7 +196,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GO"
-        android:background="@drawable/gradient"
+        android:background="@color/blue"
         android:textSize="16sp"
         android:textColor="#fff"
         android:transitionName="button_tran"/>
@@ -197,6 +206,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="Already have an account? LogIn"
+        android:textColor="#ffff"
         android:background="#00000000"
         />
 

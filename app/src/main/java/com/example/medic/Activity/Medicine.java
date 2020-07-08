@@ -35,6 +35,7 @@ public class Medicine extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_items);
 
         Long categoryId = (getIntent().getExtras().getLong("CatID"));

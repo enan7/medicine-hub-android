@@ -11,20 +11,21 @@
     android:paddingTop="20dp"
     android:paddingRight="40dp"
     android:paddingBottom="20dp"
+    android:background="@drawable/gradient"
     tools:context=".Activity.SignIn">
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/medic_logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="MEDIC"
-        android:textColor="@color/maroon"
+        android:textColor="@color/perpal"
         android:textSize="30sp"
         android:textStyle="bold"
         android:transitionName="logo_text" />
@@ -34,8 +35,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Sign In to get medic"
-        android:textColor="@color/maroon"
+        android:textColor="@color/blue"
         android:textSize="16sp"
+        android:layout_marginBottom="10dp"
         android:transitionName="logo_desc" />
 
     <LinearLayout
@@ -58,6 +60,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center"
+                app:ccpDialog_searchEditTextTint="@color/perpal"
+               app:ccpDialog_backgroundColor="@color/blue"
+                app:ccpDialog_textColor="@color/perpal"
                 android:textSize="10sp"
                 app:ccp_autoDetectCountry="true"
                 app:ccp_showNameCode="true" />
@@ -74,7 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textColor="@color/title_color"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -92,7 +98,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:textSize="14sp"></com.google.android.material.textfield.TextInputEditText>
+                android:textSize="14sp"
+                android:textColor="@color/title_color"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -100,8 +107,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Forget Password"
-            android:textColor="@color/maroon"
-            android:textSize="14sp"></TextView>
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            ></TextView>
 
     </LinearLayout>
 
@@ -110,7 +118,7 @@
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient"
+        android:background="@color/blue"
         android:text="Sign In"
         android:textColor="#fff"
         android:textSize="16sp"
@@ -122,7 +130,7 @@
         android:layout_height="wrap_content"
         android:text="Don't have an account? Sign up"
         android:textAlignment="center"
-        android:textColor="@color/maroon"
+        android:textColor="#ffff"
         android:textSize="16sp" />
 
 </LinearLayout>

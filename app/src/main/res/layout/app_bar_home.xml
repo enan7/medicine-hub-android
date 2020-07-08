@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/gradient"
+            android:background="@color/blue"
             android:theme="@style/AppTheme.PopupOverlay"
             />
 
@@ -28,6 +28,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:tint="#ffffff"
+        android:backgroundTint="@color/blue"
         app:srcCompat="@drawable/cart" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

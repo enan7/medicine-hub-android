@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#fff"
+    android:background="@drawable/gradient"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activity.Home"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@drawable/gradient"
+                android:background="@color/perpal"
                 >
 
                 <TextView
@@ -57,11 +57,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Search"
-                    android:textColor="@color/black_color"
+                    android:textColor="#fff"
                     android:textSize="14dp"
                     android:padding="5dp"
                     android:layout_centerInParent="true"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/perpal"
                     android:layout_toRightOf="@+id/search_product_name"
                     />
 

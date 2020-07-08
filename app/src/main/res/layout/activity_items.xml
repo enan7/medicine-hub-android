@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     tools:context=".Activity.Medicine">
 
 
@@ -12,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/gradient"
+            android:background="@color/blue"
             android:theme="@style/AppTheme.PopupOverlay">
 
             <ImageView
@@ -23,8 +24,8 @@
                 android:tint="@color/title_color"></ImageView>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:src="@drawable/icon"></ImageView>
 
@@ -50,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@drawable/gradient"
+                android:background="@color/perpal"
                 >
 
                 <TextView
@@ -70,11 +71,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Search"
-                    android:textColor="@color/black_color"
+                    android:textColor="@color/title_color"
                     android:textSize="14dp"
                     android:padding="5dp"
                     android:layout_centerInParent="true"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/perpal"
                     android:layout_toRightOf="@+id/search_product_name"
                     />
 
