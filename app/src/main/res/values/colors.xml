@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="colorPrimary">#FABD02</color>
     <color name="colorPrimaryDark">#FABD02</color>
     <color name="colorAccent">#FF0000</color>
     <color name="title_color">#ffff</color>
+    <color name="whitebutton">#66FF0000 </color>
     <color name="orange_color">#ff8c00</color>
     <color name="black_color">#000000</color>
     <color name="red_color">#FF0000</color>
+    <color name="maroon">#3F0D12</color>
 </resources>

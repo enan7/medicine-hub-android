@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
     android:layout_centerVertical="true"
     tools:context=".Activity.SignUp">
 
@@ -13,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/colorPrimary"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="20dp"
@@ -28,7 +26,7 @@
         android:layout_marginTop="10dp"
         android:textSize="30sp"
         android:transitionName="logo_text"
-        android:textColor="#dc0000"/>
+        android:textColor="@color/maroon"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -189,7 +187,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GO"
-        android:background="#dc0000"
+        android:background="@drawable/gradient"
         android:textSize="16sp"
         android:textColor="#fff"
         android:transitionName="button_tran"/>

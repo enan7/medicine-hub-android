@@ -4,52 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
     android:layout_centerVertical="true"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingLeft="40dp"
+    android:paddingTop="20dp"
     android:paddingRight="40dp"
+    android:paddingBottom="20dp"
     tools:context=".Activity.SignIn">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/medic_logo"/>
+        android:layout_height="150dp"
+        android:src="@drawable/medic_logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MEDIC"
         android:layout_marginTop="20dp"
-        android:textSize="30sp"
         android:gravity="center"
+        android:text="MEDIC"
+        android:textColor="@color/maroon"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:transitionName="logo_text"
-        android:textColor="#dc0000"/>
+        android:transitionName="logo_text" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In to get medic"
-        android:textSize="16sp"
-        android:textColor="@color/black_color"
         android:gravity="center"
-        android:transitionName="logo_desc"/>
+        android:text="Sign In to get medic"
+        android:textColor="@color/maroon"
+        android:textSize="16sp"
+        android:transitionName="logo_desc" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
             android:weightSum="4">
 
             <com.hbb20.CountryCodePicker
@@ -60,38 +60,39 @@
                 android:gravity="center"
                 android:textSize="10sp"
                 app:ccp_autoDetectCountry="true"
-                app:ccp_showNameCode="true"/>
+                app:ccp_showNameCode="true" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Phone No"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_phone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:inputType="textEmailAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="2"
+                android:hint="Phone No">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            app:passwordToggleEnabled="true"
             android:transitionName="password_tran"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:passwordToggleEnabled="true">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:inputType="textPassword">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:inputType="textPassword"
+                android:textSize="14sp"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -99,29 +100,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Forget Password"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryDark"></TextView>
+            android:textColor="@color/maroon"
+            android:textSize="14sp"></TextView>
 
     </LinearLayout>
-    
 
 
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradient"
         android:text="Sign In"
-        android:background="#dc0000"
-        android:textSize="16sp"
         android:textColor="#fff"
-        android:transitionName="button_tran"/>
-    <Button
+        android:textSize="16sp"
+        android:transitionName="button_tran" />
+
+    <TextView
         android:id="@+id/signup_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         android:text="Don't have an account? Sign up"
-        android:background="#00000000"
-        />
+        android:textAlignment="center"
+        android:textColor="@color/maroon"
+        android:textSize="16sp" />
 
 </LinearLayout>

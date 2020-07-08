@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medic.Activity.ItemDetail;
 import com.example.medic.Activity.Medicine;
 import com.example.medic.Holders.MedicineHolder;
 import com.example.medic.R;
@@ -45,8 +47,13 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
 
         medicineHolder.getMedicineTitle().setText(medicines.get(i).getMedicineName());
 
-        medicineHolder.getMedicinePrice().setText(medicines.get(i).getPrice().toString());
-        medicineHolder.getMedicineDicount().setText(medicines.get(i).getPrice().toString());
+        medicineHolder.getMedicinePrice().setText(medicines.get(i).getPrice().toString() + " Rs");
+        medicineHolder.getMedicineOldprice().setText(medicines.get(i).getPrice().toString());
+        medicineHolder.getMedicineOldprice().setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+
+
+       /* medicineHolder.getMedicineDicount().setText(medicines.get(i).getDiscount());*/
+
 
 
         if (medicines.get(i).getImage() != null) {
@@ -55,14 +62,14 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
             medicineHolder.getMedicineImage().setImageBitmap(decodedByte);
         }
 
-       /* MedicineHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        medicineHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(c, Medicine.class);
-                intent.putExtra("CatID",medicines.get(i).getId());
+                Intent intent = new Intent(c, ItemDetail.class);
+                intent.putExtra("MedID",medicines.get(i).getMedicineId());
                 c.startActivity(intent);
             }
-        });*/
+        });
 
     }
 

@@ -44,7 +44,6 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView CartImageBtn;
-    LinearLayout CategoryBtn;
     TextView CartCountTv;
     private RetrofitClient retrofitClient;
     private CategoryInterface categoryInterface;

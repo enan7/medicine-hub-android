@@ -86,13 +86,13 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/colorPrimaryDark"></TextView>
 
-        <Button
+       <!-- <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add To Cart"
             android:textSize="20sp"
-            android:background="@drawable/buttons"
-            android:textColor="@drawable/color_cursor_white"></Button>
+            android:background="@drawable/gradient"
+            android:textColor="@drawable/color_cursor_white"></Button>-->
 
 </LinearLayout>
 </ScrollView>

@@ -30,8 +30,8 @@ import retrofit2.Response;
 public class SignIn extends AppCompatActivity {
 
     TextInputLayout  LoginPhone, LoginPassword;
-    TextView ForgetPassword;
-    Button regBtn, LoginBtn;
+    TextView regBtn, ForgetPassword;
+    Button  LoginBtn;
     private RetrofitClient retrofitClient;
     private UserInterface userInterface;
 
