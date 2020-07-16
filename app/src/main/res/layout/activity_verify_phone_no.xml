@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
     tools:context=".Activity.VerifyPhoneNo">
 
 
@@ -19,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Verify Phone No"
-        android:textColor="@color/black_color"
+        android:textColor="@color/perpal"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -45,15 +44,15 @@
         android:hint="Enter OTP"
         android:id="@+id/verification_code_entered_by_user"
         android:layout_height="wrap_content"
-        android:textColor="@color/black_color"
+        android:textColor="@color/perpal"
         android:layout_width="match_parent" />
 
     <Button
-        android:background="@color/red_color"
+        android:background="@color/blue"
         android:id="@+id/verify_btn"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textColor="#fff"
+        android:textColor="@color/title_color"
         android:layout_width="match_parent"
         android:text="Verify" />
 

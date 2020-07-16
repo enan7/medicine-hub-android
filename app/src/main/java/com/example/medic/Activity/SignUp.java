@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.example.medic.R;
@@ -21,7 +22,8 @@ public class SignUp extends AppCompatActivity {
 
     //Variables
     TextInputLayout regFirstName, regLastName, regConfirmPassword, regEmail, regPhoneNo, regPassword;
-    Button regBtn, regToLoginBtn;
+    TextView regToLoginBtn;
+    Button regBtn;
     private ProgressDialog loadingBar;
     CountryCodePicker ccp;
 

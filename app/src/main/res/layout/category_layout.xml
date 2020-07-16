@@ -22,11 +22,12 @@
 
             <ImageView
                 android:id="@+id/cat_img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/medic_icon_back"></ImageView>
+                android:tint="@color/blue"
+                ></ImageView>
 
             <TextView
                 android:id="@+id/cat_name"
@@ -38,7 +39,7 @@
                 android:paddingRight="2dp"
                 android:text="abcdef"
                 android:textAlignment="center"
-                android:textColor="#000"
+                android:textColor="@color/perpal"
                 android:textSize="12sp" />
 
         </LinearLayout>

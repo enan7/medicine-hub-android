@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_centerVertical="true"
-    android:background="@drawable/gradient"
     tools:context=".Activity.SignUp">
 
 
@@ -64,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/title_color"
+                android:textColor="@color/perpal"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/title_color"
+                android:textColor="@color/perpal"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -99,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/title_color"
+                android:textColor="@color/perpal"
                 android:inputType="textEmailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:textColor="@color/title_color"
+                    android:textColor="@color/perpal"
                     android:inputType="number"/>
 
 
@@ -167,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/title_color"
+                android:textColor="@color/perpal"
                 android:inputType="textPassword">
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -184,7 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/title_color"
+                android:textColor="@color/perpal"
                 android:inputType="textPassword">
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -200,15 +199,17 @@
         android:textSize="16sp"
         android:textColor="#fff"
         android:transitionName="button_tran"/>
-    <Button
-        android:id="@+id/reg_login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="Already have an account? LogIn"
-        android:textColor="#ffff"
-        android:background="#00000000"
-        />
+
+        <TextView
+            android:id="@+id/reg_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Already have an account? LogIn"
+            android:textAlignment="center"
+            android:textColor="@color/perpal"
+            android:textSize="16sp" />
+
 
     </LinearLayout>
 

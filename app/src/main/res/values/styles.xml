@@ -14,7 +14,7 @@
         <item name="android:windowFullscreen">false</item>
         <item name="colorPrimary">@color/perpal</item>
         <item name="colorPrimaryDark">@color/blue</item>
-        <item name="colorAccent">@color/title_color</item>
+        <item name="colorAccent">@color/blue</item>
         <item name="color">@color/perpal</item>
 
 

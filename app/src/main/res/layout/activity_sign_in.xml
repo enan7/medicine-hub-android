@@ -11,7 +11,6 @@
     android:paddingTop="20dp"
     android:paddingRight="40dp"
     android:paddingBottom="20dp"
-    android:background="@drawable/gradient"
     tools:context=".Activity.SignIn">
 
     <ImageView
@@ -61,7 +60,6 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 app:ccpDialog_searchEditTextTint="@color/perpal"
-               app:ccpDialog_backgroundColor="@color/blue"
                 app:ccpDialog_textColor="@color/perpal"
                 android:textSize="10sp"
                 app:ccp_autoDetectCountry="true"
@@ -80,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:textSize="14sp"
-                    android:textColor="@color/title_color"/>
+                    android:textColor="@color/perpal"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -99,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:textSize="14sp"
-                android:textColor="@color/title_color"></com.google.android.material.textfield.TextInputEditText>
+                android:textColor="@color/perpal"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -128,9 +126,10 @@
         android:id="@+id/signup_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Don't have an account? Sign up"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="@color/perpal"
         android:textSize="16sp" />
 
 </LinearLayout>
