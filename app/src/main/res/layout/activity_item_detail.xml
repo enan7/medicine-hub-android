@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:gravity="center"
+                android:padding="20dp"
                 android:src="@drawable/medic_logo"></ImageView>
 
         </androidx.cardview.widget.CardView>
@@ -113,13 +114,16 @@
             android:textColor="@color/perpal"
             android:textSize="14dp"></TextView>
 
-        <!-- <Button
+         <Button
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:text="Add To Cart"
-             android:textSize="20sp"
-             android:background="@drawable/gradient"
-             android:textColor="@drawable/color_cursor_white"></Button>-->
+             android:layout_marginTop="10dp"
+             android:textSize="18sp"
+             android:background="@color/blue"
+             android:textColor="@color/title_color">
+             </Button>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
