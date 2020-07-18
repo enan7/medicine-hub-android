@@ -144,12 +144,11 @@ public class SignIn extends AppCompatActivity {
     public void LoginUser() {
 
 
-
         loadingBar.setTitle("Login");
+        loadingBar.setIcon(R.drawable.medic_logo);
         loadingBar.setMessage("Please wait for a while...");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
-
 
 
         final String phoneNumber = LoginPhone.getEditText().getText().toString().trim();
@@ -158,7 +157,6 @@ public class SignIn extends AppCompatActivity {
 
         Paper.book().write(Prevalent.UserPhoneKey, fullPhoneNo);
         Paper.book().write(Prevalent.UserPasswordKey, password);
-
 
         request.setPassword(password);
         request.setUserName(fullPhoneNo);

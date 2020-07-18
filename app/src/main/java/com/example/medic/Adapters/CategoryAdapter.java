@@ -65,8 +65,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(c, Medicine.class);
                 intent.putExtra("CatID",categories.get(i).getId());
-
                 c.startActivity(intent);
+                ((Home)c).finish();
+
+
+
             }
         });
 

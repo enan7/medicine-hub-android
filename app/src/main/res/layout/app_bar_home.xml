@@ -14,8 +14,20 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blue"
-            android:theme="@style/AppTheme.PopupOverlay"
+            android:theme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon"></ImageView>
             />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

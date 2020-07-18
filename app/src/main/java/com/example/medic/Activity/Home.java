@@ -2,6 +2,7 @@ package com.example.medic.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,12 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -73,6 +76,8 @@ public class Home extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+
 
         getMenuInflater().inflate(R.menu.cart, menu);
 
@@ -157,8 +162,9 @@ public class Home extends AppCompatActivity
                     //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
 
                     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                    toolbar.setLogo(R.drawable.icon);
+                    /*toolbar.setLogo(R.drawable.icon);*/
                     setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle(null);
 
 
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -182,6 +188,26 @@ public class Home extends AppCompatActivity
             System.out.println(e);
         }
 
+    }
+
+    @Override
+
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.medic_logo)
+                .setTitle("Closing Medic")
+                .setMessage("Are you sure you want to close medic?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
 

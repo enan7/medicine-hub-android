@@ -5,10 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.medic.Adapters.MedicinesAdapter;
 import com.example.medic.Api_Interfaces.MedicinesInterface;
@@ -26,6 +28,7 @@ import retrofit2.Response;
 public class Medicine extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
+    private ImageView homeButton;
     private MedicinesAdapter medicinesAdapter;
     private RetrofitClient retrofitClient;
     private int pageNumber = 0;
@@ -36,17 +39,30 @@ public class Medicine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide();
-        setContentView(R.layout.activity_items);
+        setContentView(R.layout.activity_medicine);
+
+        homeButton = findViewById(R.id.home_btn);
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Medicine.this, Home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         Long categoryId = (getIntent().getExtras().getLong("CatID"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
 
         mRecyclerView = findViewById(R.id.item_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        renderMedicineList(pageNumber,categoryId,null);
+        renderMedicineList(pageNumber, categoryId, null);
 
     }
 
@@ -56,7 +72,7 @@ public class Medicine extends AppCompatActivity {
         try {
             retrofitClient = RetrofitClient.getInstance();
             medicineInterface = retrofitClient.getRetrofit().create(MedicinesInterface.class);
-            Call<MedicineListResponse> call = medicineInterface.getMedicineList(retrofitClient.getJwtToken(), pageNumber, categoryId,medicineName);
+            Call<MedicineListResponse> call = medicineInterface.getMedicineList(retrofitClient.getJwtToken(), pageNumber, categoryId, medicineName);
 
             call.enqueue(new Callback<MedicineListResponse>() {
                 @Override
@@ -95,7 +111,7 @@ public class Medicine extends AppCompatActivity {
 
         getMenuInflater().inflate(R.menu.cart, menu);
 
-        MenuItem mCartIconMenuItem=menu.findItem(R.id.cart_count_menu_item);
+        MenuItem mCartIconMenuItem = menu.findItem(R.id.cart_count_menu_item);
         View actionView = mCartIconMenuItem.getActionView();
         /*if (actionView!=null)
         {
@@ -114,4 +130,6 @@ public class Medicine extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
+
 }
