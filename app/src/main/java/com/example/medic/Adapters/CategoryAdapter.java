@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medic.Activity.Home;
@@ -57,6 +58,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
         if (categories.get(i).getCategoryIcon() != null) {
             byte[] decodedImageUri = Base64.decode(categories.get(i).getCategoryIcon(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedImageUri, 0, decodedImageUri.length);
+/*
+            categoryHolder.getCatImageView().setColorFilter(ContextCompat.getColor(c, R.color.red_color), android.graphics.PorterDuff.Mode.MULTIPLY);
+*/
+
             categoryHolder.getCatImageView().setImageBitmap(decodedByte);
         }
 

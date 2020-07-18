@@ -1,10 +1,13 @@
 package com.example.medic.Responses;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
-public class MedicineResponse {
+public class MedicineResponse implements Serializable {
     private Long medicineId;
     private String medicineName;
     private Double quantity;
@@ -14,7 +17,17 @@ public class MedicineResponse {
     private String description;
     private int qty_Available;
     private String manufacturer;
-    private String  image;
+    private String image;
+    private Double calculatedPrice;
+
+
+    public Double getCalculatedPrice() {
+        return calculatedPrice;
+    }
+
+    public void setCalculatedPrice(Double calculatedPrice) {
+        this.calculatedPrice = calculatedPrice;
+    }
 
     public Long getMedicineId() {
         return medicineId;
@@ -88,12 +101,14 @@ public class MedicineResponse {
         this.manufacturer = manufacturer;
     }
 
-    public String getImage() {
+    public Bitmap getImage() {
         if (image != null) {
-            byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
-            String newDecodedImageUri = new String(decodedString, StandardCharsets.UTF_8);
+            byte[] decodedBytes = Base64.decode(image, Base64.DEFAULT);
+            String newDecodedImageUri = new String(decodedBytes, StandardCharsets.UTF_8);
             String base64Image = newDecodedImageUri.split(",")[1];
-            return base64Image;
+            byte[] decodedImageUri = Base64.decode(base64Image, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodedImageUri, 0, decodedImageUri.length);
+            return bitmap;
         }
         return null;
     }

@@ -31,7 +31,7 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
     public MedicinesAdapter(Context c, ArrayList<MedicineResponse> medicines) {
         this.c = c;
         this.medicines = medicines;
-}
+    }
 
     @NonNull
     @Override
@@ -46,27 +46,22 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
     public void onBindViewHolder(@NonNull MedicineHolder medicineHolder, final int i) {
 
         medicineHolder.getMedicineTitle().setText(medicines.get(i).getMedicineName());
-
-        medicineHolder.getMedicinePrice().setText(medicines.get(i).getPrice().toString() + " Rs");
+        medicineHolder.getMedicinePrice().setText(medicines.get(i).getCalculatedPrice().toString() + " Rs");
         medicineHolder.getMedicineOldprice().setText(medicines.get(i).getPrice().toString());
         medicineHolder.getMedicineOldprice().setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-
-
-       /* medicineHolder.getMedicineDicount().setText(medicines.get(i).getDiscount());*/
-
+        medicineHolder.getMedicineDicount().setText(String.valueOf(medicines.get(i).getDiscount()) + "% off");
 
 
         if (medicines.get(i).getImage() != null) {
-            byte[] decodedImageUri = Base64.decode(medicines.get(i).getImage(), Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedImageUri, 0, decodedImageUri.length);
-            medicineHolder.getMedicineImage().setImageBitmap(decodedByte);
+
+            medicineHolder.getMedicineImage().setImageBitmap(medicines.get(i).getImage());
         }
 
         medicineHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(c, ItemDetail.class);
-                intent.putExtra("MedID",medicines.get(i).getMedicineId());
+                intent.putExtra("Med", medicines.get(i));
                 c.startActivity(intent);
             }
         });

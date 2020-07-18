@@ -23,6 +23,7 @@
             app:cardUseCompatPadding="true">
 
             <ImageView
+                android:id="@+id/detail_image"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:gravity="center"
@@ -47,10 +48,13 @@
 
 
         <TextView
+            android:id="@+id/detail_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Title"
+            android:textAllCaps="true"
+            android:textStyle="bold"
             android:textColor="@color/red_color"
             android:textSize="30dp"></TextView>
 
@@ -70,6 +74,7 @@
                 android:textSize="14dp"></TextView>
 
             <TextView
+                android:id="@+id/detail_dicount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -78,6 +83,7 @@
                 android:textSize="14dp"></TextView>
 
             <TextView
+                android:id="@+id/detail_oldprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -87,6 +93,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/detail_newprice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -105,6 +112,7 @@
             android:textSize="20dp"></TextView>
 
         <TextView
+            android:id="@+id/detail_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
