@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Verify Phone No"
-        android:textColor="@color/perpal"
+        android:textColor="@color/black_color"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -44,11 +44,11 @@
         android:hint="Enter OTP"
         android:id="@+id/verification_code_entered_by_user"
         android:layout_height="wrap_content"
-        android:textColor="@color/perpal"
+        android:textColor="@color/black_color"
         android:layout_width="match_parent" />
 
     <Button
-        android:background="@color/blue"
+        android:background="@color/red_color"
         android:id="@+id/verify_btn"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

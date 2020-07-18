@@ -26,7 +26,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:tint="@color/blue"
+                android:tint="@color/red_color"
                 ></ImageView>
 
             <TextView

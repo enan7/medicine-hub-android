@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
     android:padding="10dp"
     tools:context=".Activity.ItemDetail">
 
@@ -52,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Title"
-            android:textColor="@color/perpal"
+            android:textColor="@color/red_color"
             android:textSize="30dp"></TextView>
 
         <LinearLayout
@@ -67,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Discount: "
-                android:textColor="@color/perpal"
+                android:textColor="@color/black_color"
                 android:textSize="14dp"></TextView>
 
             <TextView
@@ -75,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="percent "
-                android:textColor="@color/perpal"
+                android:textColor="@color/black_color"
                 android:textSize="14dp"></TextView>
 
             <TextView
@@ -83,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="old price "
-                android:textColor="@color/perpal"
+                android:textColor="@color/orange_color"
                 android:textSize="14dp"></TextView>
         </LinearLayout>
 
@@ -93,7 +92,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:text="Price "
-            android:textColor="@color/blue"
+            android:textColor="@color/red_color"
             android:textSize="20dp"></TextView>
 
         <TextView
@@ -102,7 +101,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:text="Description "
-            android:textColor="@color/perpal"
+            android:textColor="@color/black_color"
             android:textSize="20dp"></TextView>
 
         <TextView
@@ -111,7 +110,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:text="Description "
-            android:textColor="@color/perpal"
+            android:textColor="@color/black_color"
             android:textSize="14dp"></TextView>
 
          <Button
@@ -120,7 +119,7 @@
              android:text="Add To Cart"
              android:layout_marginTop="10dp"
              android:textSize="18sp"
-             android:background="@color/blue"
+             android:background="@color/red_color"
              android:textColor="@color/title_color">
              </Button>
 

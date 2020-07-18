@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient"
     tools:context=".Activity.Medicine">
 
 
@@ -13,7 +12,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/blue"
+            android:background="@color/red_color"
             android:theme="@style/AppTheme.PopupOverlay">
 
             <ImageView
@@ -51,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@color/perpal"
+                android:background="@color/red_color"
                 >
 
                 <TextView
@@ -75,7 +74,7 @@
                     android:textSize="14dp"
                     android:padding="5dp"
                     android:layout_centerInParent="true"
-                    android:background="@color/perpal"
+                    android:background="@color/red_color"
                     android:layout_toRightOf="@+id/search_product_name"
                     />
 

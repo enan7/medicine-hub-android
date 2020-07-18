@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/blue"
+            android:background="@color/red_color"
             android:theme="@style/AppTheme.PopupOverlay">
 
             <ImageView
@@ -40,7 +40,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:tint="#ffffff"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/red_color"
         app:srcCompat="@drawable/cart" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
