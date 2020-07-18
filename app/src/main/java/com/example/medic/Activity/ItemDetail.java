@@ -13,6 +13,6 @@ public class ItemDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
-      /*  Long medicineId = (getIntent().getExtras().getLong("MedID"));*/
+        Long medicineId = (getIntent().getExtras().getLong("MedID"));
     }
 }
