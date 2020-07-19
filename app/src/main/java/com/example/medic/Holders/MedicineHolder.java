@@ -12,7 +12,7 @@ import com.example.medic.R;
 public class MedicineHolder extends RecyclerView.ViewHolder {
 
     private ImageView medicineImage;
-    private TextView medicineTitle, medicinePrice, medicineDicount, medicineOldprice;
+    private TextView medicineTitle, medicinePrice, medicineDicount, medicineOldprice, medicineQuantity, medicineUnit;
 
     public MedicineHolder(@NonNull View medicineView) {
         super(medicineView);
@@ -22,6 +22,8 @@ public class MedicineHolder extends RecyclerView.ViewHolder {
         this.medicinePrice = medicineView.findViewById(R.id.item_newprice);
         this.medicineDicount = medicineView.findViewById(R.id.item_discount);
         this.medicineOldprice = medicineView.findViewById(R.id.item_oldprice);
+        this.medicineQuantity = medicineView.findViewById(R.id.item_qty);
+        this.medicineUnit = medicineView.findViewById(R.id.item_unit);
 
     }
 
@@ -66,5 +68,19 @@ public class MedicineHolder extends RecyclerView.ViewHolder {
         this.medicineOldprice = medicineOldprice;
     }
 
+    public TextView getMedicineQuantity() {
+        return medicineQuantity;
+    }
 
+    public void setMedicineQuantity(TextView medicineQuantity) {
+        this.medicineQuantity = medicineQuantity;
+    }
+
+    public TextView getMedicineUnit() {
+        return medicineUnit;
+    }
+
+    public void setMedicineUnit(TextView medicineUnit) {
+        this.medicineUnit = medicineUnit;
+    }
 }

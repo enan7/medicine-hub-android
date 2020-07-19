@@ -50,6 +50,14 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
         medicineHolder.getMedicineOldprice().setText(medicines.get(i).getPrice().toString());
         medicineHolder.getMedicineOldprice().setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         medicineHolder.getMedicineDicount().setText(String.valueOf(medicines.get(i).getDiscount()) + "% off");
+        medicineHolder.getMedicineQuantity().setText(" "+"("+(medicines.get(i).getQuantity().toString())+")");
+        medicineHolder.getMedicineUnit().setText(medicines.get(i).getUnit());
+
+        if (String.valueOf(medicines.get(i).getDiscount()) .equals("0") )
+        {
+            medicineHolder.getMedicineDicount().setVisibility(View.GONE);
+            medicineHolder.getMedicineOldprice().setVisibility(View.GONE);
+        }
 
 
         if (medicines.get(i).getImage() != null) {
