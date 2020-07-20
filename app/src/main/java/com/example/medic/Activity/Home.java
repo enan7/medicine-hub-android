@@ -53,6 +53,7 @@ public class Home extends AppCompatActivity
     private CategoryListResponse categoryListResponse;
     private CategoryAdapter categoryAdapter;
     RecyclerView categoryRecyclerView;
+    private LinearLayout searchButton;
     private ArrayList<CategoryListResponse> data;
 
 
@@ -61,6 +62,17 @@ public class Home extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Paper.init(Home.this);
+
+        searchButton = findViewById(R.id.search);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Medicine.class);
+                intent.putExtra("ClickID","Search");
+                startActivity(intent);
+            }
+        });
 /*
 
         categoryRecyclerView = findViewById(R.id.);

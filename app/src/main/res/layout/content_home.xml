@@ -31,7 +31,7 @@
                     app:cardCornerRadius="20dp">
 
             <LinearLayout
-                android:id="@+id/r5"
+                android:id="@+id/search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
