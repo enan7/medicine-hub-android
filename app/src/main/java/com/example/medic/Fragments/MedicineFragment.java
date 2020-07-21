@@ -1,20 +1,21 @@
-package com.example.medic.Activity;
+package com.example.medic.Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.medic.Activity.Medicine;
 import com.example.medic.Adapters.MedicinesAdapter;
 import com.example.medic.Api_Interfaces.MedicinesInterface;
 import com.example.medic.R;
@@ -28,7 +29,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Medicine extends AppCompatActivity {
+
+public class MedicineFragment extends Fragment {
 
     RecyclerView mRecyclerView;
 
@@ -41,30 +43,25 @@ public class Medicine extends AppCompatActivity {
     private EditText searchText;
     private Button searchButton;
 
+
+
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        getSupportActionBar().hide();
-        setContentView(R.layout.activity_medicine);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_medicine, container, false);
 
+        medicineSearch = (LinearLayout) view.findViewById(R.id.med_search);
+        searchText = (EditText) view.findViewById(R.id.search_product_name);
+        searchButton = (Button) view.findViewById(R.id.search_btn);
 
-        medicineSearch = findViewById(R.id.med_search);
-        searchText = findViewById(R.id.search_product_name);
-        searchButton = findViewById(R.id.search_btn);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.item_recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-
-        Long categoryId = (getIntent().getExtras().getLong("CatID"));
-        String clickid = (getIntent().getExtras().getString("ClickID"));
-
-      /*  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(null);
-*/
-        mRecyclerView = findViewById(R.id.item_recyclerview);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
+        Long categoryId = (getArguments().getLong("CatID"));
+        String clickid = (getArguments().getString("ClickID"));
 
         if (clickid .equals("Category"))
         {
@@ -73,17 +70,18 @@ public class Medicine extends AppCompatActivity {
         }
 
         else
-            {
-                searchButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String searchInput = searchText.getEditableText().toString();
-                        renderMedicineList(pageNumber, null, searchInput );
-                    }
-                });
+        {
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String searchInput = searchText.getEditableText().toString();
+                    renderMedicineList(pageNumber, null, searchInput );
+                }
+            });
 
-            }
+        }
 
+    return view;
     }
 
     private void renderMedicineList(int pageNumber, Long categoryId, String medicineName) {
@@ -101,7 +99,7 @@ public class Medicine extends AppCompatActivity {
                     // loadingBar.dismiss();
 
                     medicineListResponse = response.body();
-                    medicinesAdapter = new MedicinesAdapter(Medicine.this, (ArrayList<MedicineResponse>) medicineListResponse.getMedicines());
+                    medicinesAdapter = new MedicinesAdapter(getActivity(), (ArrayList<MedicineResponse>) medicineListResponse.getMedicines());
 
 
                     //  categoryAdapter = new CategoryAdapter(data);
@@ -126,30 +124,6 @@ public class Medicine extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.cart, menu);
-
-        MenuItem mCartIconMenuItem = menu.findItem(R.id.cart_count_menu_item);
-        View actionView = mCartIconMenuItem.getActionView();
-        /*if (actionView!=null)
-        *//*{
-            CartImageBtn = actionView.findViewById(R.id.cart_image_button);
-            CartCountTv = actionView.findViewById(R.id.count_tv_layout);
-        }
-
-
-        //Cart toolbar image view
-        CartImageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }*//*
-        });*/
-
-        return super.onCreateOptionsMenu(menu);
-    }
 
 
 }
