@@ -48,7 +48,7 @@ public class Medicine extends AppCompatActivity {
         setContentView(R.layout.activity_medicine);
 
 
-        medicineSearch = findViewById(R.id.med_search);
+    /*    medicineSearch = findViewById(R.id.med_search);
         searchText = findViewById(R.id.search_product_name);
         searchButton = findViewById(R.id.search_btn);
 
@@ -57,10 +57,10 @@ public class Medicine extends AppCompatActivity {
         Long categoryId = (getIntent().getExtras().getLong("CatID"));
         String clickid = (getIntent().getExtras().getString("ClickID"));
 
-      /*  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      *//*  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
-*/
+*//*
         mRecyclerView = findViewById(R.id.item_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -122,7 +122,7 @@ public class Medicine extends AppCompatActivity {
             });
         } catch (Exception e) {
             System.out.println(e);
-        }
+        }*/
 
     }
 

@@ -47,7 +47,7 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView CartImageBtn;
-    TextView CartCountTv;
+    static TextView CartCountTv;
     private RetrofitClient retrofitClient;
     private CategoryInterface categoryInterface;
     private CategoryListResponse categoryListResponse;
@@ -55,6 +55,8 @@ public class Home extends AppCompatActivity
     RecyclerView categoryRecyclerView;
     private LinearLayout searchButton;
     private ArrayList<CategoryListResponse> data;
+    private static int count = 0 ;
+
 
 
     @Override
@@ -68,7 +70,7 @@ public class Home extends AppCompatActivity
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, Medicine.class);
+                Intent intent = new Intent(Home.this, CustomiseToolbar.class);
                 intent.putExtra("ClickID","Search");
                 startActivity(intent);
             }
@@ -132,6 +134,17 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_item_three) {
 
         } else if (id == R.id.group_menu) {
+
+
+        }
+        else if (id == R.id.nav_item_seven) {
+
+                Intent intent = new Intent(Home.this, Medicine.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+
+
 
         } else if (id == R.id.logout_btn) {
 
@@ -220,6 +233,12 @@ public class Home extends AppCompatActivity
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    public void increaseCount() {
+        ++count;
+        CartCountTv.setText(String.valueOf(count));
+
     }
 
 

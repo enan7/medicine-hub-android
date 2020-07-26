@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.medic.Activity.Medicine;
 import com.example.medic.Adapters.MedicinesAdapter;
@@ -33,6 +35,7 @@ import retrofit2.Response;
 public class MedicineFragment extends Fragment {
 
     RecyclerView mRecyclerView;
+    RelativeLayout progressBar;
 
     private MedicinesAdapter medicinesAdapter;
     private RetrofitClient retrofitClient;
@@ -56,6 +59,7 @@ public class MedicineFragment extends Fragment {
         medicineSearch = (LinearLayout) view.findViewById(R.id.med_search);
         searchText = (EditText) view.findViewById(R.id.search_product_name);
         searchButton = (Button) view.findViewById(R.id.search_btn);
+        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.item_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -71,11 +75,15 @@ public class MedicineFragment extends Fragment {
 
         else
         {
+            progressBar.setVisibility(View.GONE);
+
             searchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String searchInput = searchText.getEditableText().toString();
                     renderMedicineList(pageNumber, null, searchInput );
+                    progressBar.setVisibility(View.VISIBLE);
+
                 }
             });
 
@@ -105,6 +113,7 @@ public class MedicineFragment extends Fragment {
                     //  categoryAdapter = new CategoryAdapter(data);
 
                     mRecyclerView.setAdapter(medicinesAdapter);
+                    progressBar.setVisibility(View.GONE);
 
 
                     //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();

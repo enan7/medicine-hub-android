@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.medic.Activity.CustomiseToolbar;
 import com.example.medic.Activity.Home;
 import com.example.medic.Activity.Medicine;
+import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Fragments.MedicineFragment;
 import com.example.medic.Holders.CategoryHolder;
 import com.example.medic.R;
