@@ -12,13 +12,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.medic.Activity.CustomiseToolbar;
 import com.example.medic.Activity.Home;
+import com.example.medic.Api_Interfaces.AddToCartInterface;
 import com.example.medic.R;
+import com.example.medic.Requests.AddToCartRequest;
+import com.example.medic.Responses.AddToCartResponse;
 import com.example.medic.Responses.MedicineResponse;
+import com.example.medic.RetrofitClient.RetrofitClient;
 
-import java.io.Serializable;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MedicineDetailFragment extends Fragment {
@@ -28,7 +34,9 @@ public class MedicineDetailFragment extends Fragment {
     private ImageView medicineImage;
     private LinearLayout priceDiscount;
     private Button AddToCart;
-
+    private Long medicineId;
+    private RetrofitClient retrofitClient;
+    private AddToCartInterface addToCartInterface;
 
 
     @Override
@@ -62,13 +70,59 @@ public class MedicineDetailFragment extends Fragment {
         medicineQuantity.setText(("("+medicines.getQuantity().toString()+")"));
         medicineUnit.setText(medicines.getUnit());
         medicineManufacturer.setText("By ("+(medicines.getManufacturer())+")");
+        medicineId = medicines.getMedicineId();
 
 
 
         AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doIncrease();
+                AddToCartRequest addToCartRequest = new AddToCartRequest();
+                addToCartRequest.setMedicineId(medicineId);
+                addToCartRequest.setQuantity(2);
+
+                try {
+                    retrofitClient = RetrofitClient.getInstance();
+                    addToCartInterface = retrofitClient.getRetrofit().create(AddToCartInterface.class);
+                    Call<AddToCartResponse> call = addToCartInterface.addToCart(retrofitClient.getJwtToken(),addToCartRequest);
+
+                    call.enqueue(new Callback<AddToCartResponse>() {
+                        @Override
+                        public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
+                            // loadingBar.dismiss();
+                            AddToCartResponse addToCartResponse = response.body();
+                            //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
+                            System.out.println(addToCartResponse.getResponseCode());
+
+
+                            if (addToCartResponse.getResponseCode().equals("00")) {
+                                Toast.makeText(getActivity(), "Item Added successfully!", Toast.LENGTH_SHORT).show();
+                                doIncrease();
+
+                                /*loadingBar.dismiss();*/
+                               /* Intent intent = new Intent(getApplicationContext(), Home.class);
+                                startActivity(intent);
+                                finish();*/
+                            }
+
+                            else {
+                                /*loadingBar.dismiss();*/
+                                Toast.makeText(getActivity(), addToCartResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<AddToCartResponse> call, Throwable t) {
+                            // loadingBar.dismiss();
+                            System.out.println("Failed");
+                        }
+                    });
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+
+
             }
         });
 
@@ -82,10 +136,18 @@ public class MedicineDetailFragment extends Fragment {
     }
 
     private void doIncrease() {
-        CustomiseToolbar toolbar = new CustomiseToolbar();
+        Home toolbar = new Home();
         toolbar.increaseCount();
-        Home toolbar1 = new Home();
-        toolbar1.increaseCount();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Home activity = (Home) getActivity();
+        if (activity != null) {
+            activity.showBackButton();
+            activity.hideDrawerButton();
+        }
 
     }
 }

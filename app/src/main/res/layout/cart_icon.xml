@@ -24,10 +24,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textview"
             android:gravity="center"
+            android:padding="2dp"
             android:layout_marginLeft="10dp"
             android:text="0"
             android:textColor="@color/title_color"
-            android:textSize="15sp"></TextView>
+            android:textSize="11sp"></TextView>
 
     </RelativeLayout>
 

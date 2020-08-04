@@ -6,18 +6,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.example.medic.Activity.Medicine;
+import com.example.medic.Activity.Home;
 import com.example.medic.Adapters.MedicinesAdapter;
 import com.example.medic.Api_Interfaces.MedicinesInterface;
 import com.example.medic.R;
@@ -44,10 +43,6 @@ public class MedicineFragment extends Fragment {
     private MedicineListResponse medicineListResponse;
     private LinearLayout medicineSearch;
     private EditText searchText;
-    private Button searchButton;
-
-
-
 
 
     @Override
@@ -58,7 +53,7 @@ public class MedicineFragment extends Fragment {
 
         medicineSearch = (LinearLayout) view.findViewById(R.id.med_search);
         searchText = (EditText) view.findViewById(R.id.search_product_name);
-        searchButton = (Button) view.findViewById(R.id.search_btn);
+
         progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.item_recyclerview);
@@ -67,29 +62,36 @@ public class MedicineFragment extends Fragment {
         Long categoryId = (getArguments().getLong("CatID"));
         String clickid = (getArguments().getString("ClickID"));
 
-        if (clickid .equals("Category"))
-        {
+        if (clickid.equals("Category")) {
             medicineSearch.setVisibility(View.GONE);
             renderMedicineList(pageNumber, categoryId, null);
-        }
+        } else {
 
-        else
-        {
-            progressBar.setVisibility(View.GONE);
+            searchText.addTextChangedListener(new TextWatcher() {
 
-            searchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    String searchInput = searchText.getEditableText().toString();
-                    renderMedicineList(pageNumber, null, searchInput );
-                    progressBar.setVisibility(View.VISIBLE);
+                public void afterTextChanged(Editable s) {
+                }
 
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if (s.length() != 0)
+                        progressBar.setVisibility(View.VISIBLE);
+
+                        renderMedicineList(pageNumber, null, s.toString());
                 }
             });
 
+
         }
 
-    return view;
+        return view;
     }
 
     private void renderMedicineList(int pageNumber, Long categoryId, String medicineName) {
@@ -133,6 +135,16 @@ public class MedicineFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Home activity = (Home) getActivity();
+        if (activity != null) {
+            activity.showBackButton();
+            activity.hideDrawerButton();
+        }
+
+    }
 
 
 }

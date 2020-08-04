@@ -1,7 +1,5 @@
 package com.example.medic.Responses;
 
-import com.example.medic.Activity.Medicine;
-
 import java.util.List;
 
 public class MedicineListResponse {

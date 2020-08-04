@@ -203,8 +203,10 @@ public class SignIn extends AppCompatActivity {
                         Toast.makeText(SignIn.this, "Login successfully!", Toast.LENGTH_SHORT).show();
 
                         retrofitClient.setJwtToken(loginUserResponse.getJwtToken());
-                        loadingBar.dismiss();
+
+                    loadingBar.dismiss();
                         Intent intent = new Intent(getApplicationContext(), Home.class);
+                        retrofitClient.setCartCount(loginUserResponse.getCartItems());
                         startActivity(intent);
                         finish();
                     }

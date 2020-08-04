@@ -1,39 +1,29 @@
 package com.example.medic.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medic.Activity.CustomiseToolbar;
-import com.example.medic.Activity.Home;
-import com.example.medic.Activity.Medicine;
-import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Fragments.MedicineFragment;
 import com.example.medic.Holders.CategoryHolder;
 import com.example.medic.R;
-import com.example.medic.Responses.CategoryListResponse;
 import com.example.medic.Responses.CategoryResponse;
 
-import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
+
+
 
     Context c;
     byte[] decodedString;
@@ -54,6 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.category_layout, null);
         return new CategoryHolder(view);
+
     }
 
 
@@ -76,10 +67,29 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
         categoryHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(c, CustomiseToolbar.class);
+
+
+
+                Bundle bundle=new Bundle();
+                bundle.putLong("CatID",categories.get(i).getId());
+                bundle.putString("ClickID","Category");
+
+                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                MedicineFragment medicineFragment = new MedicineFragment();
+                medicineFragment.setArguments(bundle);
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, medicineFragment)
+                        .addToBackStack(null)
+                        .commit();
+
+
+
+
+               /* Intent intent = new Intent(c, CustomiseToolbar.class);
                 intent.putExtra("CatID",categories.get(i).getId());
                 intent.putExtra("ClickID","Category");
-                c.startActivity(intent);
+                c.startActivity(intent);*/
 
 
 

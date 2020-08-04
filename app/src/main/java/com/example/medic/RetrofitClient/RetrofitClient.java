@@ -10,6 +10,7 @@ public class RetrofitClient {
     private Retrofit retrofit;
     private  Object response = null;
     private String jwtToken;
+    private int cartCount;
 
     public Retrofit getRetrofit() {
         return retrofit;
@@ -48,7 +49,11 @@ public class RetrofitClient {
     }
 
 
+    public int getCartCount() {
+        return cartCount;
+    }
 
-
-
+    public void setCartCount(int cartCount) {
+        this.cartCount = cartCount;
+    }
 }

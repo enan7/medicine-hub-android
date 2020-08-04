@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".Fragments.MedicineDetailFragment">
 
     <LinearLayout
@@ -40,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:gravity="center"
-                        android:padding="20dp"
+                        android:padding="5dp"
                         android:src="@drawable/medic_logo"></ImageView>
 
 
@@ -55,9 +56,16 @@
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textAllCaps="true"
-                            android:textColor="@color/red_color"
+                            android:textColor="@color/dark_blue"
                             android:textSize="25dp"
                             android:textStyle="bold"></TextView>
+
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/detail_qty"
@@ -69,7 +77,6 @@
                             android:textColor="@color/black_color"
                             android:textSize="14dp">
 
-
                         </TextView>
 
                         <TextView
@@ -80,6 +87,8 @@
                             android:text="Unit"
                             android:textColor="@color/black_color"
                             android:textSize="14dp"></TextView>
+
+
                     </LinearLayout>
 
 
@@ -138,7 +147,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Price "
-                            android:textColor="@color/red_color"
+                            android:textColor="@color/dark_blue"
                             android:textSize="20dp"></TextView>
 
                     </LinearLayout>
@@ -149,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginTop="10dp"
-                        android:background="@color/red_color"
+                        android:background="@color/dark_blue"
                         android:padding="5dp"
                         android:text="Add To Cart"
                         android:textColor="@color/title_color"

@@ -21,15 +21,6 @@
         android:theme="@android:style/Theme.NoTitleBar">
 
 
-        <activity android:name=".Activity.CustomiseToolbar"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity
-            android:name=".Activity.Medicine"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.VerifyPhoneNo"
             android:screenOrientation="portrait"
@@ -50,10 +41,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.SignUp"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.ItemDetail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

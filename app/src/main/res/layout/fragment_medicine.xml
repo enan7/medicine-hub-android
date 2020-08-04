@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.medic.Fragments.MedicineFragment"
+    android:background="@drawable/bg"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,45 +16,35 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
                 android:id="@+id/med_search"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@color/red_color"
+                android:padding="15dp"
+                android:background="@color/dark_blue"
                 >
 
                 <EditText
                     android:id="@+id/search_product_name"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Product Name"
+                    android:hint="Medicine Name"
                     android:textSize="14dp"
                     android:background="@android:color/white"
                     android:padding="5dp"
-                    android:layout_marginStart="17dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="17dp" />
+                   />
 
-                <Button
-                    android:id="@+id/search_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Search"
-                    android:textColor="@color/title_color"
-                    android:textSize="14dp"
-                    android:padding="5dp"
-                    android:layout_centerInParent="true"
-                    android:background="@color/red_color"
-                    android:layout_toRightOf="@+id/search_product_name"
-                    />
 
             </LinearLayout>
 

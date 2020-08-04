@@ -1,25 +1,17 @@
 package com.example.medic.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medic.Activity.CustomiseToolbar;
-import com.example.medic.Activity.ItemDetail;
-import com.example.medic.Activity.Medicine;
 import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Holders.MedicineHolder;
 import com.example.medic.R;
