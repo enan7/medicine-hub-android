@@ -10,6 +10,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,9 +170,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Select Quantity "
+                            android:text="Quantity "
                             android:textColor="@color/black_color"
-                            android:textSize="16dp"></TextView>
+                            android:textSize="18dp"></TextView>
 
 
                         <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
@@ -181,12 +183,21 @@
                             android:elevation="6dp"
                             app:backGroundColor="@color/grey"
                             app:textColor="@color/black_color"
+                            app:initialNumber="1"
+                            app:finalNumber="10"
                             app:textSize="6dp">
 
                         </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
                     </LinearLayout>
 
+                    <include
+                        layout="@layout/full_screen_progress_bar"
+                        android:id="@+id/progressbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        />
 
                     <Button
                         android:id="@+id/add_to_cart"
@@ -198,7 +209,11 @@
                         android:padding="5dp"
                         android:text="Add To Cart"
                         android:textColor="@color/title_color"
-                        android:textSize="14sp"></Button>
+                        android:textSize="14sp">
+                    </Button>
+
+
+
 
 
                     <TextView
@@ -214,6 +229,8 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
+
     </LinearLayout>
 
 </ScrollView>
