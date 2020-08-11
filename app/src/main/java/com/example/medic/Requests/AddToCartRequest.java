@@ -3,7 +3,7 @@ package com.example.medic.Requests;
 public class AddToCartRequest {
 
     private Long medicineId;
-    private int quantity;
+    private String quantity;
 
     public Long getMedicineId() {
         return medicineId;
@@ -14,10 +14,10 @@ public class AddToCartRequest {
     }
 
     public int getQuantity() {
-        return quantity;
+        return Integer.parseInt(quantity);
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 }

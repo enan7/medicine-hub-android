@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.medic.Activity.Home;
 import com.example.medic.Api_Interfaces.AddToCartInterface;
 import com.example.medic.R;
@@ -37,6 +38,7 @@ public class MedicineDetailFragment extends Fragment {
     private Long medicineId;
     private RetrofitClient retrofitClient;
     private AddToCartInterface addToCartInterface;
+    private ElegantNumberButton qtyButton;
 
 
     @Override
@@ -59,9 +61,10 @@ public class MedicineDetailFragment extends Fragment {
         medicineManufacturer = (TextView) view.findViewById(R.id.detail_manufacture);
         priceDiscount = (LinearLayout) view.findViewById(R.id.price_discount);
         AddToCart = (Button) view.findViewById(R.id.add_to_cart);
+        qtyButton = (ElegantNumberButton)view.findViewById(R.id.elegant_btn);
 
         medicineName.setText(medicines.getMedicineName());
-        medicinePrice.setText(medicines.getCalculatedPrice().toString()+" Rs");
+        medicinePrice.setText("Rs. "+medicines.getCalculatedPrice().toString());
         medicineDiscount.setText("Discount: "+(String.valueOf(medicines.getDiscount())+"%"));
         medicineDescription.setText("Description: "+(medicines.getDescription()));
         medicineImage.setImageBitmap(medicines.getImage());
@@ -79,7 +82,7 @@ public class MedicineDetailFragment extends Fragment {
             public void onClick(View v) {
                 AddToCartRequest addToCartRequest = new AddToCartRequest();
                 addToCartRequest.setMedicineId(medicineId);
-                addToCartRequest.setQuantity(2);
+                addToCartRequest.setQuantity(qtyButton.getNumber());
 
                 try {
                     retrofitClient = RetrofitClient.getInstance();

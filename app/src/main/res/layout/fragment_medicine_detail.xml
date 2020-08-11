@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".Fragments.MedicineDetailFragment">
+    android:background="@drawable/bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +27,7 @@
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -44,10 +43,35 @@
                         android:padding="5dp"
                         android:src="@drawable/medic_logo"></ImageView>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price: "
+                            android:textColor="@color/black_color"
+                            android:textSize="20dp"></TextView>-->
+
+                        <TextView
+                            android:id="@+id/detail_newprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price "
+                            android:textColor="@color/dark_blue"
+                            android:textSize="25dp"
+                            android:textStyle="bold"></TextView>
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -56,8 +80,8 @@
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textAllCaps="true"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="25dp"
+                            android:textColor="@color/black_color"
+                            android:textSize="20dp"
                             android:textStyle="bold"></TextView>
 
                     </LinearLayout>
@@ -79,26 +103,27 @@
 
                         </TextView>
 
-                        <TextView
-                            android:id="@+id/detail_unit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:text="Unit"
-                            android:textColor="@color/black_color"
-                            android:textSize="14dp"></TextView>
+
+                            <TextView
+                                android:id="@+id/detail_unit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:text="Unit"
+                                android:textColor="@color/black_color"
+                                android:textSize="14dp"></TextView>
+
+                            <TextView
+                                android:id="@+id/detail_manufacture"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text="manufacture"
+                                android:textColor="@color/black_color"
+                                android:textSize="14dp"></TextView>
 
 
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/detail_manufacture"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="manufacture"
-                        android:textColor="@color/black_color"
-                        android:textSize="14dp"></TextView>
+                        </LinearLayout>
 
 
                     <LinearLayout
@@ -130,33 +155,44 @@
                     </LinearLayout>
 
                     <LinearLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/Quantity"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Price: "
+                            android:layout_weight="1"
+                            android:text="Select Quantity "
                             android:textColor="@color/black_color"
-                            android:textSize="20dp"></TextView>
+                            android:textSize="16dp"></TextView>
 
-                        <TextView
-                            android:id="@+id/detail_newprice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Price "
-                            android:textColor="@color/dark_blue"
-                            android:textSize="20dp"></TextView>
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/elegant_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:elevation="6dp"
+                            app:backGroundColor="@color/grey"
+                            app:textColor="@color/black_color"
+                            app:textSize="6dp">
+
+                        </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
                     </LinearLayout>
 
+
                     <Button
                         android:id="@+id/add_to_cart"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         android:background="@color/dark_blue"
                         android:padding="5dp"

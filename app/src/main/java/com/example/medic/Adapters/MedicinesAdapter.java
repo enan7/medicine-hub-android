@@ -44,7 +44,7 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
     public void onBindViewHolder(@NonNull MedicineHolder medicineHolder, final int i) {
 
         medicineHolder.getMedicineTitle().setText(medicines.get(i).getMedicineName());
-        medicineHolder.getMedicinePrice().setText(medicines.get(i).getCalculatedPrice().toString() + " Rs");
+        medicineHolder.getMedicinePrice().setText("Rs. " + medicines.get(i).getCalculatedPrice().toString());
         medicineHolder.getMedicineOldprice().setText(medicines.get(i).getPrice().toString());
         medicineHolder.getMedicineOldprice().setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         medicineHolder.getMedicineDicount().setText(String.valueOf(medicines.get(i).getDiscount()) + "% off");
