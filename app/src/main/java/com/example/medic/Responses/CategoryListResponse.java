@@ -6,7 +6,7 @@ public class CategoryListResponse {
 
     private String responseCode;
     private String responseMessage;
-    private List <CategoryResponse> categories;
+    private List <CategoryDTO> categories;
 
     public String getResponseCode() {
         return responseCode;
@@ -24,11 +24,11 @@ public class CategoryListResponse {
         this.responseMessage = responseMessage;
     }
 
-    public List<CategoryResponse> getCategories() {
+    public List<CategoryDTO> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<CategoryResponse> categories) {
+    public void setCategories(List<CategoryDTO> categories) {
         this.categories = categories;
     }
 }

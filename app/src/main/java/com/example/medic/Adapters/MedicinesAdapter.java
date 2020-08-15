@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Holders.MedicineHolder;
 import com.example.medic.R;
-import com.example.medic.Responses.MedicineResponse;
+import com.example.medic.Responses.MedicineDTO;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,9 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
     Context c;
     byte[] decodedString;
     Bitmap decodedByte;
-    ArrayList<MedicineResponse> medicines;
+    ArrayList<MedicineDTO> medicines;
 
-    public MedicinesAdapter(Context c, ArrayList<MedicineResponse> medicines) {
+    public MedicinesAdapter(Context c, ArrayList<MedicineDTO> medicines) {
         this.c = c;
         this.medicines = medicines;
     }

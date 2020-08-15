@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,30 +7,6 @@
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_baseline_delete_forever_24">
-
-        </ImageView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_baseline_edit_24">
-
-        </ImageView>
-
-
-    </LinearLayout>
 
 
     <RelativeLayout
@@ -40,6 +16,13 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:scaleType="fitCenter">
+
+        <ImageView
+            android:id="@+id/cart_delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:layout_alignParentRight="true"></ImageView>
 
         <ImageView
             android:id="@+id/cart_item_image"
@@ -57,54 +40,56 @@
             android:layout_marginLeft="2dp"
             android:layout_toRightOf="@+id/item_image"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/cart_item_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:textAllCaps="true"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="15sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/cart_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="Title"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_blue"
+                android:textSize="15sp"
+                 />
 
-                <TextView
-                    android:id="@+id/cart_item_qty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Qty"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black_color"
-                    android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/cart_item_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Unit"
-                    android:textColor="@color/black_color"
-                    android:textSize="15sp" />
 
             </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cart_item_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Qty"
+                android:textAllCaps="true"
+                android:textColor="@color/black_color"
+                android:textSize="15sp"
+                />
+
+            <TextView
+                android:id="@+id/cart_item_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textColor="@color/black_color"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/cart_item_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="0%"
+                android:layout_marginTop="5dp"
                 android:textSize="15sp" />
 
             <TextView
@@ -112,13 +97,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:layout_marginTop="5dp"
                 android:text="Old Price"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/orange_color"
                 android:textSize="15sp" />
 
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/cart_elegant_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:elevation="6dp"
+                app:backGroundColor="@color/grey"
+                app:finalNumber="10"
+                app:initialNumber="1"
+                app:textColor="@color/black_color"
+                app:textSize="6dp">
+
+            </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+
+
 
         </LinearLayout>
+
+
 
 
         <TextView
@@ -130,13 +132,13 @@
             android:layout_marginLeft="10dp"
             android:padding="5dp"
             android:text="New Price"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/dark_blue"
-            android:textSize="20sp"
-            android:textStyle="bold"></TextView>
+            android:textSize="20sp"></TextView>
 
 
     </RelativeLayout>
 
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>

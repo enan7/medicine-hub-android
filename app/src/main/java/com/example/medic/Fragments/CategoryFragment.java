@@ -1,10 +1,8 @@
 package com.example.medic.Fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +18,7 @@ import com.example.medic.Adapters.CategoryAdapter;
 import com.example.medic.Api_Interfaces.CategoryInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.CategoryListResponse;
-import com.example.medic.Responses.CategoryResponse;
+import com.example.medic.Responses.CategoryDTO;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
@@ -96,7 +94,7 @@ public class CategoryFragment extends Fragment {
 
 
                     categoryListResponse = response.body();
-                    categoryAdapter = new CategoryAdapter(getActivity(), (ArrayList<CategoryResponse>) categoryListResponse.getCategories());
+                    categoryAdapter = new CategoryAdapter(getActivity(), (ArrayList<CategoryDTO>) categoryListResponse.getCategories());
 
 
                     categoryRecyclerView.setAdapter(categoryAdapter);

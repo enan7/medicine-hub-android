@@ -17,11 +17,11 @@ import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.medic.Activity.Home;
-import com.example.medic.Api_Interfaces.AddToCartInterface;
+import com.example.medic.Api_Interfaces.CartInterface;
 import com.example.medic.R;
 import com.example.medic.Requests.AddToCartRequest;
 import com.example.medic.Responses.AddToCartResponse;
-import com.example.medic.Responses.MedicineResponse;
+import com.example.medic.Responses.MedicineDTO;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
 import retrofit2.Call;
@@ -38,9 +38,10 @@ public class MedicineDetailFragment extends Fragment {
     private Button AddToCart;
     private Long medicineId;
     private RetrofitClient retrofitClient;
-    private AddToCartInterface addToCartInterface;
+    private CartInterface addToCartInterface;
     private ElegantNumberButton qtyButton;
     RelativeLayout progressBar;
+    LinearLayout medicineDetail;
 
 
     @Override
@@ -50,7 +51,7 @@ public class MedicineDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_medicine_detail, container, false);
 
         /*MedicineResponse medicines = (MedicineResponse) getIntent().getSerializableExtra("Med");*/
-        MedicineResponse medicines = (MedicineResponse) getArguments().getSerializable("Med");
+        MedicineDTO medicines = (MedicineDTO) getArguments().getSerializable("Med");
 
         medicineName = (TextView) view.findViewById(R.id.detail_title);
         medicineDescription = (TextView) view.findViewById(R.id.detail_description);
@@ -65,6 +66,7 @@ public class MedicineDetailFragment extends Fragment {
         AddToCart = (Button) view.findViewById(R.id.add_to_cart);
         qtyButton = (ElegantNumberButton)view.findViewById(R.id.elegant_btn);
         progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+        medicineDetail = (LinearLayout) view.findViewById(R.id.medicine_detail);
 
         medicineName.setText(medicines.getMedicineName());
         medicinePrice.setText("Rs. "+medicines.getCalculatedPrice().toString());
@@ -84,7 +86,7 @@ public class MedicineDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                AddToCart.setVisibility(View.GONE);
+                medicineDetail.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 AddToCartRequest addToCartRequest = new AddToCartRequest();
                 addToCartRequest.setMedicineId(medicineId);
@@ -92,7 +94,7 @@ public class MedicineDetailFragment extends Fragment {
 
                 try {
                     retrofitClient = RetrofitClient.getInstance();
-                    addToCartInterface = retrofitClient.getRetrofit().create(AddToCartInterface.class);
+                    addToCartInterface = retrofitClient.getRetrofit().create(CartInterface.class);
                     Call<AddToCartResponse> call = addToCartInterface.addToCart(retrofitClient.getJwtToken(),addToCartRequest);
 
                     call.enqueue(new Callback<AddToCartResponse>() {
@@ -106,7 +108,7 @@ public class MedicineDetailFragment extends Fragment {
 
                             if (addToCartResponse.getResponseCode().equals("00")) {
                                 progressBar.setVisibility(View.GONE);
-                                AddToCart.setVisibility(View.VISIBLE);
+                                medicineDetail.setVisibility(View.VISIBLE);
                                 Toast.makeText(getActivity(), "Item Added successfully!", Toast.LENGTH_SHORT).show();
                                 doIncrease();
 
@@ -119,7 +121,7 @@ public class MedicineDetailFragment extends Fragment {
                             else {
                                 /*loadingBar.dismiss();*/
                                 progressBar.setVisibility(View.GONE);
-                                AddToCart.setVisibility(View.VISIBLE);
+                                medicineDetail.setVisibility(View.VISIBLE);
                                 Toast.makeText(getActivity(), addToCartResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
                             }
 

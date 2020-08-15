@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.medic.Fragments.MedicineFragment;
 import com.example.medic.Holders.CategoryHolder;
 import com.example.medic.R;
-import com.example.medic.Responses.CategoryResponse;
+import com.example.medic.Responses.CategoryDTO;
 
 import java.util.ArrayList;
 
@@ -28,9 +28,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     Context c;
     byte[] decodedString;
     Bitmap decodedByte;
-    ArrayList<CategoryResponse> categories;
-
-    public CategoryAdapter(Context c, ArrayList<CategoryResponse> categories) {
+    ArrayList<CategoryDTO> categories;
+    public CategoryAdapter(Context c, ArrayList<CategoryDTO> categories) {
         this.c = c;
         this.categories = categories;
 

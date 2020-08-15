@@ -1,18 +1,16 @@
 package com.example.medic.Responses;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class CategoryResponse {
+public class CategoryDTO {
 
     private String categoryName;
     private String categoryIcon;
     private Long id;
-    private List<MedicineResponse> medicines;
+    private List<MedicineDTO> medicines;
 
     public String getCategoryName() {
         return categoryName;
@@ -45,11 +43,11 @@ public class CategoryResponse {
         this.id = id;
     }
 
-    public List<MedicineResponse> getMedicines() {
+    public List<MedicineDTO> getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(List<MedicineResponse> medicines) {
+    public void setMedicines(List<MedicineDTO> medicines) {
         this.medicines = medicines;
     }
 }

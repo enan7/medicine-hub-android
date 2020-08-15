@@ -11,7 +11,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,7 +20,7 @@ import com.example.medic.Adapters.MedicinesAdapter;
 import com.example.medic.Api_Interfaces.MedicinesInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.MedicineListResponse;
-import com.example.medic.Responses.MedicineResponse;
+import com.example.medic.Responses.MedicineDTO;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ public class MedicineFragment extends Fragment {
                     // loadingBar.dismiss();
 
                     medicineListResponse = response.body();
-                    medicinesAdapter = new MedicinesAdapter(getActivity(), (ArrayList<MedicineResponse>) medicineListResponse.getMedicines());
+                    medicinesAdapter = new MedicinesAdapter(getActivity(), (ArrayList<MedicineDTO>) medicineListResponse.getMedicines());
 
 
                     //  categoryAdapter = new CategoryAdapter(data);

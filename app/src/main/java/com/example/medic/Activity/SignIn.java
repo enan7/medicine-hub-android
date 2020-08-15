@@ -29,16 +29,16 @@ import retrofit2.Response;
 
 public class SignIn extends AppCompatActivity {
 
-    TextInputLayout  LoginPhone, LoginPassword;
+    TextInputLayout LoginPhone, LoginPassword;
     TextView regBtn, ForgetPassword;
-    Button  LoginBtn;
+    Button LoginBtn;
     private RetrofitClient retrofitClient;
     private UserInterface userInterface;
 
     private ProgressDialog loadingBar;
     CountryCodePicker ccp;
 
-    String UserPhoneKey,UserPasswordKey;
+    String UserPhoneKey, UserPasswordKey;
     final LoginUserRequest request = new LoginUserRequest();
 
     @Override
@@ -56,10 +56,7 @@ public class SignIn extends AppCompatActivity {
         Paper.init(this);
 
 
-
         loadingBar = new ProgressDialog(SignIn.this);
-
-        Paper.init(this);
 
 
         regBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +73,7 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(!validatePassword() | !validatePhoneNo())
-                {
+                if (!validatePassword() | !validatePhoneNo()) {
                     return;
                 }
 
@@ -88,12 +84,10 @@ public class SignIn extends AppCompatActivity {
 
         UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
         UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
-        if (UserPhoneKey != "" && UserPasswordKey != "")
-        {
+        if (UserPhoneKey != "" && UserPasswordKey != "") {
 
 
-            if (!TextUtils.isEmpty(UserPhoneKey)  &&  !TextUtils.isEmpty(UserPasswordKey))
-            {
+            if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)) {
                 request.setUserName(UserPhoneKey);
                 request.setPassword(UserPasswordKey);
                 AllowAccess(request);
@@ -152,7 +146,7 @@ public class SignIn extends AppCompatActivity {
 
 
         final String phoneNumber = LoginPhone.getEditText().getText().toString().trim();
-        final String fullPhoneNo = ccp.getFullNumber()+ phoneNumber ;
+        final String fullPhoneNo = ccp.getFullNumber() + phoneNumber;
         String password = LoginPassword.getEditText().getText().toString().trim();
 
         Paper.book().write(Prevalent.UserPhoneKey, fullPhoneNo);
@@ -172,11 +166,9 @@ public class SignIn extends AppCompatActivity {
     }*/
 
 
-
     }
 
-    private void AllowAccess(final LoginUserRequest request)
-    {
+    private void AllowAccess(final LoginUserRequest request) {
 
         loadingBar.setTitle("Already Logged in");
         loadingBar.setMessage("Please wait.....");
@@ -204,14 +196,12 @@ public class SignIn extends AppCompatActivity {
 
                         retrofitClient.setJwtToken(loginUserResponse.getJwtToken());
 
-                    loadingBar.dismiss();
+                        loadingBar.dismiss();
                         Intent intent = new Intent(getApplicationContext(), Home.class);
                         retrofitClient.setCartCount(loginUserResponse.getCartItems());
                         startActivity(intent);
                         finish();
-                    }
-
-                    else {
+                    } else {
                         loadingBar.dismiss();
                         Toast.makeText(SignIn.this, loginUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -224,7 +214,7 @@ public class SignIn extends AppCompatActivity {
                     System.out.println("Failed");
                 }
             });
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 

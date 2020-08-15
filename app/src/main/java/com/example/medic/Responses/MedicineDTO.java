@@ -7,7 +7,7 @@ import android.util.Base64;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
-public class MedicineResponse implements Serializable {
+public class MedicineDTO implements Serializable {
     private Long medicineId;
     private String medicineName;
     private Double quantity;

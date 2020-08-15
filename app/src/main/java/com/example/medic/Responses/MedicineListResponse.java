@@ -6,7 +6,7 @@ public class MedicineListResponse {
 
     private String responseCode;
     private String responseMessage;
-    private List<MedicineResponse> medicines;
+    private List<MedicineDTO> medicines;
 
     public String getResponseCode() {
         return responseCode;
@@ -24,11 +24,11 @@ public class MedicineListResponse {
         this.responseMessage = responseMessage;
     }
 
-    public List<MedicineResponse> getMedicines() {
+    public List<MedicineDTO> getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(List<MedicineResponse> medicines) {
+    public void setMedicines(List<MedicineDTO> medicines) {
         this.medicines = medicines;
     }
 

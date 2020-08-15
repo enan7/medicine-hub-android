@@ -1,49 +1,29 @@
 package com.example.medic.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.medic.Adapters.CategoryAdapter;
-import com.example.medic.Api_Interfaces.CategoryInterface;
-import com.example.medic.Api_Interfaces.UserInterface;
+import com.example.medic.Fragments.CartDetailFragment;
 import com.example.medic.Fragments.CategoryFragment;
-import com.example.medic.Holders.CategoryHolder;
+import com.example.medic.Fragments.MedicineDetailFragment;
+import com.example.medic.Fragments.MedicineFragment;
 import com.example.medic.R;
-import com.example.medic.Responses.CategoryListResponse;
-import com.example.medic.Responses.CategoryResponse;
-import com.example.medic.Responses.LoginUserResponse;
 import com.example.medic.RetrofitClient.RetrofitClient;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-
 import io.paperdb.Paper;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -115,6 +95,13 @@ public class Home extends AppCompatActivity
         CartImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                CartDetailFragment cartDetailFragment = new CartDetailFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, cartDetailFragment);
+                transaction.commit();
+
+
 
             }
         });
