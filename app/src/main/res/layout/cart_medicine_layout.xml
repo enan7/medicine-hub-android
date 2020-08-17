@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,11 +8,10 @@
     app:cardUseCompatPadding="true">
 
 
-
     <RelativeLayout
 
         android:id="@+id/cart_item"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:scaleType="fitCenter">
@@ -28,22 +27,18 @@
             android:id="@+id/cart_item_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/medic_logo" />
 
         <LinearLayout
             android:id="@+id/cart_item_detail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="2dp"
-            android:layout_toRightOf="@+id/item_image"
+            android:layout_toRightOf="@+id/cart_item_image"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+
 
             <TextView
                 android:id="@+id/cart_item_title"
@@ -52,72 +47,80 @@
                 android:text="Title"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_blue"
-                android:textSize="15sp"
-                 />
+                android:textSize="15sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cart_item_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Qty"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black_color"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/cart_item_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unit"
+                    android:textColor="@color/black_color"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cart_item_discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0%"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/cart_item_oldprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="Old Price"
+                    android:textColor="@color/orange_color"
+                    android:textSize="15sp" />
 
 
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/cart_item_qty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Qty"
-                android:textAllCaps="true"
-                android:textColor="@color/black_color"
-                android:textSize="15sp"
-                />
-
-            <TextView
-                android:id="@+id/cart_item_unit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unit"
-                android:textColor="@color/black_color"
-                android:textSize="15sp"
-                />
-
-        </LinearLayout>
-
-            <TextView
-                android:id="@+id/cart_item_discount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0%"
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/cart_item_oldprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="Old Price"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/orange_color"
-                android:textSize="15sp" />
+                >
 
-            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                android:id="@+id/cart_elegant_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:elevation="6dp"
-                app:backGroundColor="@color/grey"
-                app:finalNumber="10"
-                app:initialNumber="1"
-                app:textColor="@color/black_color"
-                app:textSize="6dp">
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/cart_elegant_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:elevation="6dp"
+                    app:backGroundColor="@color/grey"
+                    app:finalNumber="10"
+                    app:initialNumber="1"
+                    app:textColor="@color/black_color"
+                    app:textSize="6dp">
 
-            </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+                </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
 
-
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -141,4 +144,4 @@
     </RelativeLayout>
 
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

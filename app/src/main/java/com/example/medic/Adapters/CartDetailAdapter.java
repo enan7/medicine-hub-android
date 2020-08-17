@@ -2,6 +2,7 @@ package com.example.medic.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Holders.CartHolder;
-import com.example.medic.Holders.MedicineHolder;
 import com.example.medic.R;
 import com.example.medic.Responses.CartDetailDTO;
-import com.example.medic.Responses.MedicineDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,11 +44,13 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
     public void onBindViewHolder(@NonNull CartHolder cartHolder, final int i) {
 
         cartHolder.getMedicineName().setText(cart.get(i).getMedicineName());
-        cartHolder.getMedicineDiscount().setText("10");
-        cartHolder.getMedicineQty().setText(cart.get(i).getMedicineQuantity());
+        cartHolder.getMedicineDiscount().setText("10%");
+        cartHolder.getMedicineQty().setText(String.valueOf(cart.get(i).getMedicineQuantity()));
         cartHolder.getMedicineUnit().setText(cart.get(i).getMedicineUnit());
-        cartHolder.getOldPrice().setText("20");
+        cartHolder.getOldPrice().setText("20000");
+        cartHolder.getOldPrice().setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         cartHolder.getNewPrice().setText(String.valueOf(cart.get(i).getMedicinePrice()));
+        cartHolder.getQtyButton().setNumber(String.valueOf(cart.get(i).getItemQuantity()));
 
         if (cart.get(i).getMedicineIcon() != null) {
 
@@ -57,31 +58,30 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
         }
 
 
-//        cartHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                Bundle bundle=new Bundle();
-//                bundle.putSerializable("Med", (Serializable) cart.get(i));
-//
-//                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-//                MedicineDetailFragment medicineDetailFragment = new MedicineDetailFragment();
-//                medicineDetailFragment.setArguments(bundle);
-//                activity.getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, medicineDetailFragment)
-//                        .addToBackStack(null)
-//                        .commit();
-//
-//              /*  Intent intent = new Intent(c, CustomiseToolbar.class);
-//                intent.putExtra("Med", medicines.get(i));
-//                intent.putExtra("CatID","Medicine");
-//                c.startActivity(intent);*/
-//
-//
-//            }
-//        });
+        cartHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Med", (Serializable) cart.get(i));
+
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                MedicineDetailFragment medicineDetailFragment = new MedicineDetailFragment();
+                medicineDetailFragment.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, medicineDetailFragment)
+                        .addToBackStack(null)
+                        .commit();
+
+              /*  Intent intent = new Intent(c, CustomiseToolbar.class);
+                intent.putExtra("Med", medicines.get(i));
+               intent.putExtra("CatID","Medicine");
+               c.startActivity(intent);*/
+
+
+            }
+        });
 
     }
 
@@ -92,6 +92,6 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return cart.size();
     }
 }

@@ -1,12 +1,5 @@
 package com.example.medic.Activity;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,10 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.medic.Fragments.CartDetailFragment;
 import com.example.medic.Fragments.CategoryFragment;
-import com.example.medic.Fragments.MedicineDetailFragment;
-import com.example.medic.Fragments.MedicineFragment;
 import com.example.medic.R;
 import com.example.medic.RetrofitClient.RetrofitClient;
 import com.google.android.material.navigation.NavigationView;
@@ -70,6 +68,7 @@ public class Home extends AppCompatActivity
         CategoryFragment categoryFragment = new CategoryFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, categoryFragment);
+
         transaction.commit();
 
 
@@ -96,11 +95,13 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+
                 CartDetailFragment cartDetailFragment = new CartDetailFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, cartDetailFragment);
-                transaction.commit();
-
+                transaction
+                        .addToBackStack(null)
+                        .commit();
 
 
             }

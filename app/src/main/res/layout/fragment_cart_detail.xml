@@ -6,11 +6,17 @@
     android:orientation="vertical"
     tools:context=".Fragments.CartDetailFragment">
 
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="abcdsdsfs"
-        android:textSize="20dp"></TextView>
+        android:layout_height="match_parent">
+
+    <include
+        layout="@layout/full_screen_progress_bar"
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_item_recyclerview"
@@ -18,8 +24,11 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@+id/progressbar">
+        android:layout_below="@+id/progressbar"
+       >
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -43,9 +43,6 @@ public class CartDetailFragment extends Fragment {
     RecyclerView cartRecyclerView;
     RelativeLayout progressBar;
 
-/*
-    RelativeLayout progressBar;
-*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +58,7 @@ public class CartDetailFragment extends Fragment {
 
         cartRecyclerView = (RecyclerView) view.findViewById(R.id.cart_item_recyclerview);
 
-        cartRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        cartRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
         cartRecyclerView.setHasFixedSize(true);
         renderCartDetailList();
