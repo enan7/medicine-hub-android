@@ -13,7 +13,7 @@ import com.example.medic.R;
 public class CartHolder extends RecyclerView.ViewHolder {
 
     private ImageView medicineImage, deleteCart;
-    private TextView medicineName, medicineQty, medicineUnit, medicineDiscount, oldPrice, newPrice ;
+    private TextView medicineName, medicineQty, medicineUnit, newPrice ;
     private ElegantNumberButton qtyButton;
 
     public CartHolder(@NonNull View itemView) {
@@ -24,8 +24,6 @@ public class CartHolder extends RecyclerView.ViewHolder {
         this.medicineName = itemView.findViewById(R.id.cart_item_title);
         this.medicineQty = itemView.findViewById(R.id.cart_item_qty);
         this.medicineUnit = itemView.findViewById(R.id.cart_item_unit);
-        this.medicineDiscount = itemView.findViewById(R.id.cart_item_discount);
-        this.oldPrice = itemView.findViewById(R.id.cart_item_oldprice);
         this.newPrice = itemView.findViewById(R.id.cart_item_newprice);
         this.qtyButton = itemView.findViewById(R.id.cart_elegant_btn);
     }
@@ -70,21 +68,7 @@ public class CartHolder extends RecyclerView.ViewHolder {
         this.medicineUnit = medicineUnit;
     }
 
-    public TextView getMedicineDiscount() {
-        return medicineDiscount;
-    }
 
-    public void setMedicineDiscount(TextView medicineDiscount) {
-        this.medicineDiscount = medicineDiscount;
-    }
-
-    public TextView getOldPrice() {
-        return oldPrice;
-    }
-
-    public void setOldPrice(TextView oldPrice) {
-        this.oldPrice = oldPrice;
-    }
 
     public TextView getNewPrice() {
         return newPrice;
