@@ -16,33 +16,41 @@
             android:gravity="center">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 app:cardElevation="5dp"
+                android:layout_gravity="center"
                 app:cardUseCompatPadding="true"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="6dp">
 
                 <LinearLayout
                     android:id="@+id/search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center"
+                    android:padding="5dp"
                     android:background="@color/dark_blue"
                     >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:tint="@color/title_color"
+                        android:src="@drawable/ic_baseline_search_24"></ImageView>
 
                     <TextView
                         android:id="@+id/search_product_name"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Product Name"
+                        android:hint="Medicine Name"
                         android:textSize="14dp"
                         android:background="@android:color/white"
                         android:padding="5dp"
-                        android:layout_marginStart="17dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="17dp" />
-
+                        />
+<!--
                     <Button
                         android:id="@+id/search_btn"
                         android:layout_width="wrap_content"
@@ -54,7 +62,7 @@
                         android:layout_centerInParent="true"
                         android:background="@color/dark_blue"
                         android:layout_toRightOf="@+id/search_product_name"
-                        />
+                        />-->
 
                 </LinearLayout>
 

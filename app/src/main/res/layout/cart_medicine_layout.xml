@@ -20,6 +20,7 @@
             android:id="@+id/cart_delete_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tint="@color/black_color"
             android:src="@drawable/ic_baseline_delete_forever_24"
             android:layout_alignParentRight="true"></ImageView>
 
@@ -35,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/cart_item_image"
             android:orientation="vertical">
 
@@ -76,22 +77,24 @@
 
 
             <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_width="80dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="2dp"
+                android:orientation="horizontal"
                 >
+
+
 
                 <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                     android:id="@+id/cart_elegant_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:elevation="6dp"
-                    app:backGroundColor="@color/grey"
+                    app:backGroundColor="@color/dark_blue"
                     app:finalNumber="10"
                     app:initialNumber="1"
-                    app:textColor="@color/black_color"
+                    app:textColor="@color/title_color"
                     app:textSize="6dp">
 
                 </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
@@ -115,7 +118,7 @@
             android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/dark_blue"
-            android:textSize="20sp"></TextView>
+            android:textSize="18dp"></TextView>
 
 
     </RelativeLayout>

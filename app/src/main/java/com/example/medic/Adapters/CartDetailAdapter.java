@@ -3,7 +3,6 @@ package com.example.medic.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +55,7 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
         cartHolder.getMedicineQty().setText(String.valueOf(cart.get(i).getMedicineQuantity()));
         cartHolder.getMedicineUnit().setText(cart.get(i).getMedicineUnit());
 
-        cartHolder.getNewPrice().setText(String.valueOf(cart.get(i).getMedicinePrice()));
+        cartHolder.getNewPrice().setText("Rs. " + String.valueOf(cart.get(i).getMedicinePrice()));
         cartHolder.getQtyButton().setNumber(String.valueOf(cart.get(i).getItemQuantity()));
 
         if (cart.get(i).getMedicineIcon() != null) {
@@ -69,8 +68,6 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
             @Override
             public void onClick(View v) {
 
-                ImageView cartImage = (ImageView) myDialog.findViewById(R.id.cart_detail_imageView);
-                cartImage.setImageBitmap(cart.get(i).getMedicineIcon());
                 TextView crossButton = (TextView) myDialog.findViewById(R.id.close_popup);
                 crossButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -79,6 +76,20 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
                     }
                 });
 
+                ImageView cartImage = (ImageView) myDialog.findViewById(R.id.cart_detail_imageView);
+                cartImage.setImageBitmap(cart.get(i).getMedicineIcon());
+
+                TextView cartName = (TextView) myDialog.findViewById(R.id.cart_detail_name);
+                cartName.setText(cart.get(i).getMedicineName());
+
+                TextView cartItemQuantity = (TextView) myDialog.findViewById(R.id.cart_detail_quantity);
+                cartItemQuantity.setText(String.valueOf(cart.get(i).getMedicineQuantity()));
+
+                TextView cartUnit = (TextView) myDialog.findViewById(R.id.cart_detail_unit);
+                cartUnit.setText(cart.get(i).getMedicineUnit());
+
+                TextView cartPrice = (TextView) myDialog.findViewById(R.id.cart_detail_price);
+                cartPrice.setText(String.valueOf("Rs. " + cart.get(i).getMedicinePrice()));
 
 
                 myDialog.show();

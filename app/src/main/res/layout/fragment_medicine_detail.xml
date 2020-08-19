@@ -48,7 +48,7 @@
                 <ImageView
                     android:id="@+id/detail_image"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="200dp"
                     android:gravity="center"
                     android:padding="5dp"
                     android:src="@drawable/medic_logo"></ImageView>
@@ -160,6 +160,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="old price "
+                        android:gravity="right"
                         android:textColor="@color/orange_color"
                         android:textSize="14dp"></TextView>
                 </LinearLayout>
@@ -189,16 +190,33 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:elevation="6dp"
-                        app:backGroundColor="@color/grey"
+                        app:backGroundColor="@color/title_color"
                         app:finalNumber="10"
                         app:initialNumber="1"
-                        app:textColor="@color/black_color"
+                        app:textColor="@color/dark_blue"
                         app:textSize="6dp">
 
                     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
                 </LinearLayout>
 
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    >
+
+
+                <TextView
+                    android:id="@+id/detail_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Description"
+                    android:textColor="@color/black_color"
+                    android:textSize="14dp"></TextView>
+
+                </ScrollView>
 
                 <Button
                     android:id="@+id/add_to_cart"
@@ -211,16 +229,6 @@
                     android:text="Add To Cart"
                     android:textColor="@color/title_color"
                     android:textSize="14sp"></Button>
-
-
-                <TextView
-                    android:id="@+id/detail_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Description"
-                    android:textColor="@color/black_color"
-                    android:textSize="14dp"></TextView>
 
 
             </LinearLayout>

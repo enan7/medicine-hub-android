@@ -18,13 +18,60 @@
         android:layout_height="match_parent"
         />
 
+        <LinearLayout
+            android:id="@+id/totalPrice_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            android:weightSum="2"
+            android:background="@color/dark_blue"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/total_price_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Price ="
+                android:textSize="20dp"
+                android:textColor="@color/title_color"
+                android:layout_weight="1"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Price"
+                android:textColor="@color/title_color"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="20dp"
+                ></TextView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/checkout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check out"
+            android:background="@color/dark_blue"
+            android:textSize="20dp"
+            android:textColor="@color/title_color"
+            android:layout_alignParentBottom="true"
+            ></Button>
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_item_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@+id/progressbar"
+        android:layout_marginBottom="50dp"
+        android:layout_below="@+id/totalPrice_layout"
        >
 
     </androidx.recyclerview.widget.RecyclerView>

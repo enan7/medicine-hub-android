@@ -7,31 +7,47 @@
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:id="@+id/med_search"
+        android:gravity="center"
+        >
 
 
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             app:cardElevation="5dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:layout_gravity="center"
             app:cardUseCompatPadding="true"
-            app:cardCornerRadius="20dp">
+            app:cardCornerRadius="6dp"
+            >
 
             <LinearLayout
-                android:id="@+id/med_search"
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:padding="15dp"
+                android:padding="5dp"
                 android:background="@color/dark_blue"
                 >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:tint="@color/title_color"
+                    android:src="@drawable/ic_baseline_search_24"></ImageView>
+
 
                 <EditText
                     android:id="@+id/search_product_name"
@@ -41,7 +57,6 @@
                     android:textSize="14dp"
                     android:background="@android:color/white"
                     android:padding="5dp"
-                    android:layout_centerVertical="true"
                    />
 
 

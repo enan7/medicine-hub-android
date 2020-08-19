@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.medic.Activity.Home;
 import com.example.medic.Adapters.CartDetailAdapter;
@@ -42,6 +43,7 @@ public class CartDetailFragment extends Fragment {
     private CartDetailResponse cartDetailResponse;
     RecyclerView cartRecyclerView;
     RelativeLayout progressBar;
+    private TextView totalPrice;
 
 
     @Override
@@ -50,6 +52,8 @@ public class CartDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart_detail, container, false);
         progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+        totalPrice = (TextView) view.findViewById(R.id.total_price);
+        totalPrice.setVisibility(View.GONE);
 
 
 /*
@@ -91,10 +95,16 @@ public class CartDetailFragment extends Fragment {
 //                    cartDetailAdapter = new CategoryAdapter();
 //                    cartRecyclerView.setAdapter(adapter);
 
+
+
                     cartRecyclerView.setAdapter(cartDetailAdapter);
                     progressBar.setVisibility(View.GONE);
 
-                    cartDetailAdapter.notifyDataSetChanged();;
+                    totalPrice.setText("Rs. "+String.valueOf(cartDetailResponse.getTotalPrice()));
+                    totalPrice.setVisibility(View.VISIBLE);
+
+                    cartDetailAdapter.notifyDataSetChanged();
+
 
 /*
                     progressBar.setVisibility(View.GONE);
