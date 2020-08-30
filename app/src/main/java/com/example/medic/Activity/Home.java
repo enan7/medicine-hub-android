@@ -2,11 +2,14 @@ package com.example.medic.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +31,7 @@ public class Home extends AppCompatActivity
 
     ImageView CartImageBtn, BackButton;
     static TextView CartCountTv;
-    private static int count = 0;
+    private static int count;
     ActionBarDrawerToggle toggle;
 
 
@@ -95,14 +98,22 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+                if (String.valueOf(count).equals ("0")) {
+                    Toast toast = Toast.makeText(Home.this, "", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    View view = getLayoutInflater().inflate(R.layout.cart_empty_toast, (ViewGroup) findViewById(R.id.toastcustom));
+                    toast.setView(view);
+                    toast.show();
 
-                CartDetailFragment cartDetailFragment = new CartDetailFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, cartDetailFragment);
-                transaction
-                        .addToBackStack(null)
-                        .commit();
-
+                }
+                else {
+                    CartDetailFragment cartDetailFragment = new CartDetailFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, cartDetailFragment);
+                    transaction
+                            .addToBackStack(null)
+                            .commit();
+                }
 
             }
         });
@@ -171,6 +182,18 @@ public class Home extends AppCompatActivity
 
     public void hideDrawerButton() {
         toggle.setDrawerIndicatorEnabled(false);
+    }
+
+    public void emptyCart()
+    {
+        setCartCount(0);
+        count = 0;
+    }
+
+    public void deleteCartItem()
+    {
+        setCartCount(--count);
+
     }
 
 

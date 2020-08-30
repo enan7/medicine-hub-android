@@ -3,22 +3,41 @@ package com.example.medic.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medic.Activity.Home;
+import com.example.medic.Api_Interfaces.CartInterface;
+import com.example.medic.Fragments.CartDetailFragment;
+import com.example.medic.Fragments.DeleteCartDialogFragment;
+import com.example.medic.Fragments.DeleteCartItemDialogFragment;
+import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Holders.CartHolder;
 import com.example.medic.R;
+import com.example.medic.Responses.CartDeleteResponse;
 import com.example.medic.Responses.CartDetailDTO;
+import com.example.medic.Responses.CartItemDeleteResponse;
+import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
+
 
 
     Context c;
@@ -48,7 +67,28 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartHolder cartHolder, final int i) {
+    public void onBindViewHolder(@NonNull final CartHolder cartHolder, final int i) {
+
+        cartHolder.getDeleteCart().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Long itemId = cart.get(i).getItemId();
+
+                Bundle bundle = new Bundle();
+                bundle.putLong("ItemID", itemId);
+
+
+
+                DeleteCartItemDialogFragment deleteCartItemDialogFragment = new DeleteCartItemDialogFragment();
+                deleteCartItemDialogFragment.setArguments(bundle);
+                FragmentManager manager = ((AppCompatActivity)c).getSupportFragmentManager();
+                deleteCartItemDialogFragment.show(manager,"MyDialogFragment2");
+
+
+            }
+        });
 
         cartHolder.getMedicineName().setText(cart.get(i).getMedicineName());
 
@@ -107,4 +147,6 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
     public int getItemCount() {
         return cart.size();
     }
+
+
 }

@@ -1,30 +1,28 @@
 package com.example.medic.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.medic.Activity.CheckOutActivity;
+import com.example.medic.Activity.CurrentLocationActivity;
 import com.example.medic.Activity.Home;
 import com.example.medic.Adapters.CartDetailAdapter;
-import com.example.medic.Adapters.CategoryAdapter;
-import com.example.medic.Adapters.MedicinesAdapter;
 import com.example.medic.Api_Interfaces.CartInterface;
-import com.example.medic.Api_Interfaces.MedicinesInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.CartDetailDTO;
 import com.example.medic.Responses.CartDetailResponse;
-import com.example.medic.Responses.MedicineDTO;
-import com.example.medic.Responses.MedicineListResponse;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
@@ -43,7 +41,9 @@ public class CartDetailFragment extends Fragment {
     private CartDetailResponse cartDetailResponse;
     RecyclerView cartRecyclerView;
     RelativeLayout progressBar;
-    private TextView totalPrice;
+    private TextView totalPrice, deleteCart;
+    private Button checkOut;
+
 
 
     @Override
@@ -53,7 +53,32 @@ public class CartDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart_detail, container, false);
         progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
         totalPrice = (TextView) view.findViewById(R.id.total_price);
-        totalPrice.setVisibility(View.GONE);
+        checkOut = (Button)view.findViewById(R.id.checkout_btn);
+
+        deleteCart = (TextView) view.findViewById(R.id.delete_cart);
+
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CurrentLocationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        deleteCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                    FragmentManager manager = getFragmentManager();
+                    DeleteCartDialogFragment myDialogFragment = new DeleteCartDialogFragment();
+                    myDialogFragment.show(manager,"MyDialogFragment");
+
+
+            }
+        });
+
+
 
 
 /*
@@ -65,10 +90,17 @@ public class CartDetailFragment extends Fragment {
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
         cartRecyclerView.setHasFixedSize(true);
+
         renderCartDetailList();
 
         return view;
     }
+
+
+
+
+
+
 
     private void renderCartDetailList() {
 
@@ -100,8 +132,7 @@ public class CartDetailFragment extends Fragment {
                     cartRecyclerView.setAdapter(cartDetailAdapter);
                     progressBar.setVisibility(View.GONE);
 
-                    totalPrice.setText("Rs. "+String.valueOf(cartDetailResponse.getTotalPrice()));
-                    totalPrice.setVisibility(View.VISIBLE);
+                    totalPrice.setText("Total Price= Rs. "+String.valueOf(cartDetailResponse.getTotalPrice()));
 
                     cartDetailAdapter.notifyDataSetChanged();
 
@@ -118,7 +149,6 @@ public class CartDetailFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<CartDetailResponse> call, Throwable t) {
-                    // loadingBar.dismiss();
                     System.out.println("Failed");
                 }
             });
@@ -132,6 +162,8 @@ public class CartDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Home activity = (Home) getActivity();
+     /*   activity.setCartCount(0);*/
+
         if (activity != null) {
             activity.showBackButton();
             activity.hideDrawerButton();

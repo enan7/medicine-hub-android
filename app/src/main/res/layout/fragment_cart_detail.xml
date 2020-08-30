@@ -24,29 +24,30 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="1dp"
-            android:weightSum="2"
+            android:weightSum="3"
             android:background="@color/dark_blue"
             android:padding="10dp">
-
-            <TextView
-                android:id="@+id/total_price_heading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total Price ="
-                android:textSize="20dp"
-                android:textColor="@color/title_color"
-                android:layout_weight="1"
-                ></TextView>
 
             <TextView
                 android:id="@+id/total_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Price"
+                android:text="Total Price= 0.00"
+                android:textSize="18dp"
                 android:textColor="@color/title_color"
                 android:layout_weight="1"
+                ></TextView>
+
+            <TextView
+
+                android:id="@+id/delete_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete Cart"
+                android:textColor="@color/title_color"
+                android:layout_weight="2"
                 android:gravity="right"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 ></TextView>
 
         </LinearLayout>

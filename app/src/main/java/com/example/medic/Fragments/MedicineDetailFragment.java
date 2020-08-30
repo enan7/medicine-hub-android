@@ -1,5 +1,7 @@
 package com.example.medic.Fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,6 +83,7 @@ public class MedicineDetailFragment extends Fragment {
         medicineManufacturer.setText("By ("+(medicines.getManufacturer())+")");
         medicineId = medicines.getMedicineId();
 
+        hideSoftKeyboard(getActivity());
 
 
         AddToCart.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +113,9 @@ public class MedicineDetailFragment extends Fragment {
                             if (addToCartResponse.getResponseCode().equals("00")) {
                                 progressBar.setVisibility(View.GONE);
                                 medicineDetail.setVisibility(View.VISIBLE);
-                                Toast.makeText(getActivity(), "Item Added successfully!", Toast.LENGTH_SHORT).show();
                                 doIncrease();
+                                Toast.makeText(getActivity(), "Item Added successfully!", Toast.LENGTH_SHORT).show();
+
 
                                 /*loadingBar.dismiss();*/
                                /* Intent intent = new Intent(getApplicationContext(), Home.class);
@@ -164,5 +169,15 @@ public class MedicineDetailFragment extends Fragment {
             activity.hideDrawerButton();
         }
 
+    }
+
+    // Method to hide keyboard
+
+    public static void hideSoftKeyboard(Activity activity) {
+        if (activity.getCurrentFocus() == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

@@ -49,6 +49,7 @@ public class CategoryFragment extends Fragment {
         categoryRecyclerView = (RecyclerView) view.findViewById(R.id.cat_recyclerview);
         progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
 
+
         initViews();
 
 

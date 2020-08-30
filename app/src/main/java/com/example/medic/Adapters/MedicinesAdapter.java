@@ -79,11 +79,6 @@ public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
                         .addToBackStack(null)
                         .commit();
 
-              /*  Intent intent = new Intent(c, CustomiseToolbar.class);
-                intent.putExtra("Med", medicines.get(i));
-                intent.putExtra("CatID","Medicine");
-                c.startActivity(intent);*/
-
 
             }
         });
