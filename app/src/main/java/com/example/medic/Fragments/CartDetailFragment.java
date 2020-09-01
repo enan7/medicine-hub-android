@@ -60,8 +60,11 @@ public class CartDetailFragment extends Fragment {
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CurrentLocationActivity.class);
-                startActivity(intent);
+                AddressFragment addressFragment= new AddressFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, addressFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

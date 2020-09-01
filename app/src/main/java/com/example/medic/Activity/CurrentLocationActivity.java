@@ -70,7 +70,6 @@ public class CurrentLocationActivity extends AppCompatActivity {
 
                     getLocation();
 
-
                     geocoder = new Geocoder(CurrentLocationActivity.this, Locale.getDefault());
 
                     try {
@@ -87,6 +86,8 @@ public class CurrentLocationActivity extends AppCompatActivity {
                     String knownName = addresses.get(0).getFeatureName(); //
 
                     showAddressTxt.setText(address+city+state+country+postalCode+knownName);
+
+                  
                 }
             }
         });
@@ -124,6 +125,8 @@ public class CurrentLocationActivity extends AppCompatActivity {
 
                 latitude = String.valueOf(lat);
                 longitude = String.valueOf(longi);
+                late = lat;
+                longie = longi;
 
                 showLocationTxt.setText("Your Location:" + "\n" + "Latitude= " + latitude + "\n" + "Longitude= " + longitude);
             } else if (LocationPassive != null) {
