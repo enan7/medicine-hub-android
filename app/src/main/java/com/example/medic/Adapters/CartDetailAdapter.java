@@ -45,10 +45,13 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
     Bitmap decodedByte;
     ArrayList<CartDetailDTO> cart;
     Dialog myDialog;
-
-    public CartDetailAdapter(Context c, ArrayList<CartDetailDTO> cart) {
+    RecyclerView cartRecyclerView;
+    private CartDetailAdapter mAdapter;
+    public CartDetailAdapter(Context c, ArrayList<CartDetailDTO> cart,RecyclerView cartRecyclerView) {
         this.c = c;
         this.cart = cart;
+        this.cartRecyclerView = cartRecyclerView;
+        mAdapter = this;
     }
 
     @NonNull
@@ -81,7 +84,7 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
 
 
 
-                DeleteCartItemDialogFragment deleteCartItemDialogFragment = new DeleteCartItemDialogFragment();
+                DeleteCartItemDialogFragment deleteCartItemDialogFragment = new DeleteCartItemDialogFragment(cart,mAdapter,cartRecyclerView);
                 deleteCartItemDialogFragment.setArguments(bundle);
                 FragmentManager manager = ((AppCompatActivity)c).getSupportFragmentManager();
                 deleteCartItemDialogFragment.show(manager,"MyDialogFragment2");
@@ -95,7 +98,7 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
         cartHolder.getMedicineQty().setText(String.valueOf(cart.get(i).getMedicineQuantity()));
         cartHolder.getMedicineUnit().setText(cart.get(i).getMedicineUnit());
 
-        cartHolder.getNewPrice().setText("Rs. " + String.valueOf(cart.get(i).getMedicinePrice()));
+        cartHolder.getNewPrice().setText("Rs. " + cart.get(i).getItemPriceWithQuantityAndDiscount());
         cartHolder.getQtyButton().setNumber(String.valueOf(cart.get(i).getItemQuantity()));
 
         if (cart.get(i).getMedicineIcon() != null) {
@@ -128,8 +131,16 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
                 TextView cartUnit = (TextView) myDialog.findViewById(R.id.cart_detail_unit);
                 cartUnit.setText(cart.get(i).getMedicineUnit());
 
+                TextView cartoldprice = (TextView) myDialog.findViewById(R.id.cart_detail_oldprice);
+                cartoldprice.setText(String.valueOf(cart.get(i).getItemPriceWithoutQuantityAndDiscount()));
+
                 TextView cartPrice = (TextView) myDialog.findViewById(R.id.cart_detail_price);
-                cartPrice.setText(String.valueOf("Rs. " + cart.get(i).getMedicinePrice()));
+                cartPrice.setText("Rs. " + cart.get(i).getItemPriceWithSingleQuantityAndDiscount());
+
+                TextView cartDiscount = (TextView) myDialog.findViewById(R.id.cart_detail_discount);
+                cartDiscount.setText(cart.get(i).getDiscount()+"%");
+
+
 
 
                 myDialog.show();

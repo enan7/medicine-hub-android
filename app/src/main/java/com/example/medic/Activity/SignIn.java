@@ -175,8 +175,8 @@ public class SignIn extends AppCompatActivity {
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
 
-        request.setPassword(request.getPassword());
-        request.setUserName(request.getUserName());
+//        request.setPassword(request.getPassword());
+//        request.setUserName(request.getUserName());
         try {
             retrofitClient = RetrofitClient.getInstance();
             userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
@@ -210,7 +210,7 @@ public class SignIn extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginUserResponse> call, Throwable t) {
-                    // loadingBar.dismiss();
+                   loadingBar.dismiss();
                     System.out.println("Failed");
                 }
             });

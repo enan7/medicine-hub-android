@@ -10,12 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medic.Activity.Home;
+import com.example.medic.Adapters.CartDetailAdapter;
 import com.example.medic.Api_Interfaces.CartInterface;
 import com.example.medic.R;
+import com.example.medic.Responses.CartDetailDTO;
 import com.example.medic.Responses.CartItemDeleteResponse;
 import com.example.medic.RetrofitClient.RetrofitClient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +31,17 @@ public class DeleteCartItemDialogFragment extends DialogFragment {
     private CartItemDeleteResponse cartItemDeleteResponse;
     private RetrofitClient retrofitClient;
     private CartInterface cartInterface;
-
+    private List<CartDetailDTO> cartItems;
+    private CartDetailAdapter mAdapter;
+    private  RecyclerView cartRecyclerView;
+//    public DeleteCartItemDialogFragment(){
+//
+//    }
+    public DeleteCartItemDialogFragment(List<CartDetailDTO> cartItems, CartDetailAdapter mAdapter, RecyclerView cartRecyclerView){
+        this.cartItems = cartItems;
+        this.mAdapter = mAdapter;
+        this.cartRecyclerView = cartRecyclerView;
+    }
 
     @NonNull
     @Override
@@ -55,13 +70,13 @@ public class DeleteCartItemDialogFragment extends DialogFragment {
 //
 
 
-                    CartDetailFragment cartDetailFragment = new CartDetailFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, cartDetailFragment);
-                    transaction
-                            .addToBackStack(null)
-                            .commit();
-                    Toast.makeText(getActivity(), "Item Deleted Successfully", Toast.LENGTH_SHORT).show();
+//                    CartDetailFragment cartDetailFragment = new CartDetailFragment();
+//                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                    transaction.replace(R.id.fragment_container, cartDetailFragment);
+//                    transaction
+//                            .addToBackStack(null)
+//                            .commit();
+//                    Toast.makeText(getActivity(), "Item Deleted Successfully", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -80,7 +95,7 @@ public class DeleteCartItemDialogFragment extends DialogFragment {
         return alertDialog;
     }
 
-    private void DeleteCartItem(long itemId) {
+    private void DeleteCartItem(final long itemId) {
 
         try {
             retrofitClient = RetrofitClient.getInstance();
@@ -94,6 +109,21 @@ public class DeleteCartItemDialogFragment extends DialogFragment {
                     // loadingBar.dismiss();
 
                     cartItemDeleteResponse = response.body();
+
+                    if(cartItemDeleteResponse.getResponseCode().equals("00")){
+                        int index = 0;
+                        for(CartDetailDTO cartDetail:cartItems){
+
+                            if(cartDetail.getItemId() == itemId){
+                                cartItems.remove(cartDetail);
+                                cartRecyclerView.removeViewAt(index);
+                                mAdapter.notifyItemRemoved(index);
+                                mAdapter.notifyItemRangeChanged(index,cartItems.size());
+                                break;
+                            }
+                            index++;
+                        }
+                    }
 
 
                 }

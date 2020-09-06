@@ -9,7 +9,9 @@ import java.nio.charset.StandardCharsets;
 public class CartDetailDTO {
 
     private Long itemId;
-    private Double itemprice;
+    private Double itemPriceWithoutQuantityAndDiscount;
+    private Double itemPriceWithSingleQuantityAndDiscount;
+    private Double itemPriceWithQuantityAndDiscount;
     private int itemQuantity;
     private int medicineId;
     private String medicineName;
@@ -18,7 +20,40 @@ public class CartDetailDTO {
     private String manufacturer;
     private int medicineQuantity;
     private String medicineUnit;
-    private Double medicinePrice;
+    private int discount;
+
+    public Double getItemPriceWithoutQuantityAndDiscount() {
+        return itemPriceWithoutQuantityAndDiscount;
+    }
+
+    public void setItemPriceWithoutQuantityAndDiscount(Double itemPriceWithoutQuantityAndDiscount) {
+        this.itemPriceWithoutQuantityAndDiscount = itemPriceWithoutQuantityAndDiscount;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public Double getItemPriceWithSingleQuantityAndDiscount() {
+        return itemPriceWithSingleQuantityAndDiscount;
+    }
+
+    public void setItemPriceWithSingleQuantityAndDiscount(Double itemPriceWithSingleQuantityAndDiscount) {
+        this.itemPriceWithSingleQuantityAndDiscount = itemPriceWithSingleQuantityAndDiscount;
+    }
+
+    public Double getItemPriceWithQuantityAndDiscount() {
+        return itemPriceWithQuantityAndDiscount;
+    }
+
+    public void setItemPriceWithQuantityAndDiscount(Double itemPriceWithQuantityAndDiscount) {
+        this.itemPriceWithQuantityAndDiscount = itemPriceWithQuantityAndDiscount;
+    }
+
 
     public Long getItemId() {
         return itemId;
@@ -28,13 +63,7 @@ public class CartDetailDTO {
         this.itemId = itemId;
     }
 
-    public Double getItemprice() {
-        return itemprice;
-    }
 
-    public void setItemprice(Double itemprice) {
-        this.itemprice = itemprice;
-    }
 
     public int getItemQuantity() {
         return itemQuantity;
@@ -111,11 +140,5 @@ public class CartDetailDTO {
         this.medicineUnit = medicineUnit;
     }
 
-    public Double getMedicinePrice() {
-        return medicinePrice;
-    }
 
-    public void setMedicinePrice(Double medicinePrice) {
-        this.medicinePrice = medicinePrice;
-    }
 }

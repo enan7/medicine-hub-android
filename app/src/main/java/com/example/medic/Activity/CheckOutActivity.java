@@ -28,6 +28,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
     EditText location;
     TextView TV1, TV2;
+    List <Integer> indexesToRender = Arrays.asList(0,2,3,4);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class CheckOutActivity extends AppCompatActivity {
         TV2 = findViewById(R.id.Text_view2);
 
         // Initialize Places
-        Places.initialize(getApplicationContext(),"AIzaSyBn1zCF2UAprbI_LpQ8H6rl8sMzjvwRaXU");
+        Places.initialize(getApplicationContext(),"AIzaSyDtrw3T_npouB9oxnda3GhJn9liXeWNjsQ");
 
         //Set EditText non focusable
 
@@ -49,10 +50,12 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Initialize place field list
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS
-                ,Place.Field.LAT_LNG,Place.Field.NAME);
+                ,Place.Field.LAT_LNG,Place.Field.NAME,Place.Field.ADDRESS_COMPONENTS,Place.Field.ADDRESS);
                 //Create Intent
+
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY
-                        ,fieldList).build(CheckOutActivity.this);
+                        ,fieldList).setCountry("PK")
+                        .build(CheckOutActivity.this);
                 // Start Activity Result
                 startActivityForResult(intent,100);
             }
@@ -63,13 +66,27 @@ public class CheckOutActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 100 && requestCode == RESULT_OK)
+        if (requestCode == 100 )
         {
+            String address = "";
             // When success
             // initialize place
             Place place = Autocomplete.getPlaceFromIntent(data);
             //Set Address on Location
-            location.setText(place.getAddress());
+//            place.getLatLng().latitude;
+//            place.getLatLng().longitude;
+            if(!place.getName().equals(place.getAddressComponents().asList().get(0).getName())){
+            address+=place.getName();
+            address+=", ";
+            }
+
+            for(Integer index:indexesToRender){
+
+              address+=place.getAddressComponents().asList().get(index).getName();
+              address+=", ";
+            }
+            address = address.trim();
+            location.setText(address);
             //Set locality name
             TV1.setText(String.format("Locality Name : %s",place.getName()));
             //Set Latitude longitude

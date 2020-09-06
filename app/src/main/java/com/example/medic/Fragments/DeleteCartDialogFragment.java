@@ -16,7 +16,10 @@ import com.example.medic.Activity.Home;
 import com.example.medic.Api_Interfaces.CartInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.CartDeleteResponse;
+import com.example.medic.Responses.CartDetailDTO;
 import com.example.medic.RetrofitClient.RetrofitClient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,10 +30,6 @@ public class DeleteCartDialogFragment extends DialogFragment {
     private CartDeleteResponse cartDeleteResponse;
     private RetrofitClient retrofitClient;
     private CartInterface cartInterface;
-
-
-
-
 
     @NonNull
     @Override

@@ -1,5 +1,6 @@
 package com.example.medic.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -60,11 +61,16 @@ public class CartDetailFragment extends Fragment {
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddressFragment addressFragment= new AddressFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, addressFragment, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+
+                Intent i = new Intent(getActivity(), CheckOutActivity.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+
+//                AddressFragment addressFragment= new AddressFragment();
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, addressFragment, "findThisFragment")
+//                        .addToBackStack(null)
+//                        .commit();
             }
         });
 
@@ -121,7 +127,7 @@ public class CartDetailFragment extends Fragment {
                     // loadingBar.dismiss();
 
                     cartDetailResponse = response.body();
-                    cartDetailAdapter = new CartDetailAdapter(getActivity(), (ArrayList<CartDetailDTO>) cartDetailResponse.getCartItems());
+                    cartDetailAdapter = new CartDetailAdapter(getActivity(), (ArrayList<CartDetailDTO>) cartDetailResponse.getCartItems(),cartRecyclerView);
 
 //                    LinearLayoutManager llm = new LinearLayoutManager(getActivity());
 //                    cartRecyclerView.setLayoutManager(llm);
