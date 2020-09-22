@@ -4,8 +4,8 @@
     package="com.example.medic">
     <!-- adding internet permission -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <supports-screens
         android:anyDensity="true"
@@ -23,9 +23,10 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar"
         tools:replace="android:theme">
-        <activity android:name=".Activity.CurrentLocationActivity"
+        <activity
+            android:name=".Activity.CurrentLocationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.CheckOutActivity"
             android:screenOrientation="portrait"
@@ -52,6 +53,8 @@
             android:name=".Activity.SignUp"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
+
     </application>
 
 </manifest>

@@ -1,14 +1,6 @@
 package com.example.medic.Fragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +8,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.medic.Activity.CheckOutActivity;
-import com.example.medic.Activity.CurrentLocationActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.medic.Activity.Home;
 import com.example.medic.Adapters.CartDetailAdapter;
 import com.example.medic.Api_Interfaces.CartInterface;
@@ -62,15 +57,19 @@ public class CartDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getActivity(), CheckOutActivity.class);
+              /*  Intent i = new Intent(getActivity(), CheckOutActivity.class);
                 startActivity(i);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);*/
 
-//                AddressFragment addressFragment= new AddressFragment();
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, addressFragment, "findThisFragment")
-//                        .addToBackStack(null)
-//                        .commit();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("cartResponse", (cartDetailResponse));
+
+                AddressFragment addressFragment = new AddressFragment();
+                addressFragment.setArguments(bundle);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, addressFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

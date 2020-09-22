@@ -224,7 +224,9 @@ public class SignUp extends AppCompatActivity {
         request.setPhoneNumber(fullPhoneNo);
         request.setEmailAddress(Email);
         request.setRoleName("Customer");
+
         loadingBar.dismiss();
+
         Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
         intent.putExtra("request", request);
         startActivity(intent);

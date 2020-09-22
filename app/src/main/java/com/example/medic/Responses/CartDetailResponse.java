@@ -1,8 +1,9 @@
 package com.example.medic.Responses;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CartDetailResponse {
+public class CartDetailResponse implements Serializable {
 
 
     private String responseCode;
@@ -10,7 +11,25 @@ public class CartDetailResponse {
     private Long cartId;
     private Double totalPrice;
     private List<CartDetailDTO> cartItems;
+    private String phoneNumber;
+    private String userName;
 
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getResponseCode() {
         return responseCode;

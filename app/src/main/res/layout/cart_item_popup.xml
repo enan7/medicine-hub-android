@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
+    android:background="@color/title_color"
     android:padding="10dp">
 
     <TextView
@@ -116,20 +117,35 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/cart_detail_manufacturer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Manufacturer"
-            android:layout_marginBottom="5dp"
-            android:textSize="20dp"></TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp">
 
-        <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Manufacturer: "
+                   ></TextView>
+
+                <TextView
+                    android:id="@+id/cart_detail_manufacturer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Manufacturer"
+                    android:gravity="center"
+                    android:textColor="@color/black_color"
+                    ></TextView>
+
+            </LinearLayout>
+
+            <TextView
             android:id="@+id/cart_detail_description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Description"
-            android:textSize="20dp"></TextView>
+            android:textColor="@color/black_color"></TextView>
 
     </LinearLayout>
     </ScrollView>

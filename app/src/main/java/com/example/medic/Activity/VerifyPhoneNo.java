@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -38,15 +39,16 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
     EditText phoneNoEnteredByTheUser;
     ProgressBar progressBar;
     String verificationCodeBySystem;
-    private static RetrofitClient mInstance;
     private RetrofitClient retrofitClient;
     RegisterUserRequest request;
     private UserInterface userInterface;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_phone_no);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
          request = (RegisterUserRequest) getIntent().getSerializableExtra("request");
 
@@ -89,6 +91,7 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                 @Override
                 public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                     super.onCodeSent(s, forceResendingToken);
+                    //Get the code in global variable
                     verificationCodeBySystem = s;
                 }
 
@@ -115,6 +118,7 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
 
     }
 
+
     private void signInTheUserByCredentials(PhoneAuthCredential credential) {
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -125,6 +129,7 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
+
                             retrofitClient = RetrofitClient.getInstance();
                             userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
                             Call<RegisterUserResponse> call = userInterface.registerUser(request);
@@ -132,30 +137,36 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                             call.enqueue(new Callback<RegisterUserResponse>() {
                                 @Override
                                 public void onResponse(Call<RegisterUserResponse> call, Response<RegisterUserResponse> response) {
-                                   // loadingBar.dismiss();
+                                    // loadingBar.dismiss();
                                     RegisterUserResponse registerUserResponse = response.body();
-                                 //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
+                                    //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
                                     System.out.println(registerUserResponse.getResponseCode());
 
 
+                                    if(registerUserResponse.getResponseCode().equals("00")) {
 
-                                    if(registerUserResponse.getResponseCode().equals("00"))
-                                    {
-
+                                        Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(getApplicationContext(), SignIn.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);                  }
+                                        startActivity(intent);
+
+                                    }
+                                    else
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                                            startActivity(intent);
+                                            Toast.makeText(VerifyPhoneNo.this, registerUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
+                                        }
 
                                 }
 
                                 @Override
                                 public void onFailure(Call<RegisterUserResponse> call, Throwable t) {
-                                   // loadingBar.dismiss();
+                                    // loadingBar.dismiss();
                                     System.out.println("Failed");
                                 }
                             });
-//                            Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
+
 
                             //Perform Your required action here to either let the user sign In or do something required
 
@@ -166,6 +177,7 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                     }
                 });
     }
+
 
 
 

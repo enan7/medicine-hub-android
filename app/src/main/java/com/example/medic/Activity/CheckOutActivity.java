@@ -16,6 +16,7 @@ import com.example.medic.R;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
@@ -39,12 +40,25 @@ public class CheckOutActivity extends AppCompatActivity {
         TV1 = findViewById(R.id.Text_view);
         TV2 = findViewById(R.id.Text_view2);
 
-        // Initialize Places
-        Places.initialize(getApplicationContext(),"AIzaSyDtrw3T_npouB9oxnda3GhJn9liXeWNjsQ");
+        String apiKey = getString(R.string.api_key);
+
+        /**
+         * Initialize Places. For simplicity, the API key is hard-coded. In a production
+         * environment we recommend using a secure mechanism to manage API keys.
+         */
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), apiKey);
+        }
+
+// Create a new Places client instance.
+        PlacesClient placesClient = Places.createClient(this);
+
+
 
         //Set EditText non focusable
 
         location.setFocusable(false);
+
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

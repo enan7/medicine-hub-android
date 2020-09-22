@@ -3,38 +3,25 @@ package com.example.medic.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medic.Activity.Home;
-import com.example.medic.Api_Interfaces.CartInterface;
-import com.example.medic.Fragments.CartDetailFragment;
-import com.example.medic.Fragments.DeleteCartDialogFragment;
 import com.example.medic.Fragments.DeleteCartItemDialogFragment;
-import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Holders.CartHolder;
 import com.example.medic.R;
-import com.example.medic.Responses.CartDeleteResponse;
 import com.example.medic.Responses.CartDetailDTO;
-import com.example.medic.Responses.CartItemDeleteResponse;
-import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
 
@@ -131,17 +118,21 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
                 TextView cartUnit = (TextView) myDialog.findViewById(R.id.cart_detail_unit);
                 cartUnit.setText(cart.get(i).getMedicineUnit());
 
-                TextView cartoldprice = (TextView) myDialog.findViewById(R.id.cart_detail_oldprice);
-                cartoldprice.setText(String.valueOf(cart.get(i).getItemPriceWithoutQuantityAndDiscount()));
+                TextView cartOldPrice = (TextView) myDialog.findViewById(R.id.cart_detail_oldprice);
+                cartOldPrice.setText(String.valueOf(cart.get(i).getItemPriceWithoutQuantityAndDiscount()));
+                cartOldPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
                 TextView cartPrice = (TextView) myDialog.findViewById(R.id.cart_detail_price);
                 cartPrice.setText("Rs. " + cart.get(i).getItemPriceWithSingleQuantityAndDiscount());
 
                 TextView cartDiscount = (TextView) myDialog.findViewById(R.id.cart_detail_discount);
-                cartDiscount.setText(cart.get(i).getDiscount()+"%");
+                cartDiscount.setText(cart.get(i).getDiscount() + "%");
 
+                TextView cartManufacturer = (TextView) myDialog.findViewById(R.id.cart_detail_manufacturer);
+                cartManufacturer.setText(cart.get(i).getManufacturer());
 
-
+                TextView cartDescription = (TextView) myDialog.findViewById(R.id.cart_detail_description);
+                cartDescription.setText("Description: " + cart.get(i).getDescription());
 
                 myDialog.show();
             }
