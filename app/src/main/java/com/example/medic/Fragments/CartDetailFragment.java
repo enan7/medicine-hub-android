@@ -37,7 +37,8 @@ public class CartDetailFragment extends Fragment {
     private CartDetailResponse cartDetailResponse;
     RecyclerView cartRecyclerView;
     RelativeLayout progressBar;
-    private TextView totalPrice, deleteCart;
+    private static TextView totalPrice;
+    public  TextView      deleteCart;
     private Button checkOut;
 
 
@@ -140,8 +141,7 @@ public class CartDetailFragment extends Fragment {
                     cartRecyclerView.setAdapter(cartDetailAdapter);
                     progressBar.setVisibility(View.GONE);
 
-                    totalPrice.setText("Total Price= Rs. "+String.valueOf(cartDetailResponse.getTotalPrice()));
-
+                    setTotalPrice(cartDetailResponse.getTotalPrice());
                     cartDetailAdapter.notifyDataSetChanged();
 
 
@@ -180,4 +180,12 @@ public class CartDetailFragment extends Fragment {
     }
 
 
+    public static TextView getTotalPrice() {
+        return totalPrice;
+    }
+
+    public static void setTotalPrice(Double price) {
+        totalPrice.setText("Total Price= Rs. "+String.valueOf(price));
+
+    }
 }

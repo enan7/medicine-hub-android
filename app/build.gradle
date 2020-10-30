@@ -50,5 +50,10 @@ dependencies {
     implementation 'io.paperdb:paperdb:2.6'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
+    //App Intro
+    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+
+
 
 }

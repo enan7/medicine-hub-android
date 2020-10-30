@@ -1,10 +1,12 @@
 package com.example.medic.Api_Interfaces;
 
 import com.example.medic.Requests.AddToCartRequest;
+import com.example.medic.Requests.UpdateCartItemRequest;
 import com.example.medic.Responses.AddToCartResponse;
 import com.example.medic.Responses.CartDeleteResponse;
 import com.example.medic.Responses.CartDetailResponse;
 import com.example.medic.Responses.CartItemDeleteResponse;
+import com.example.medic.Responses.UpdateCartItemResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,6 +14,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface CartInterface {
@@ -27,6 +30,7 @@ public interface CartInterface {
 
     @DELETE("cart/deleteItem/")
     Call<CartItemDeleteResponse> deleteCartItem (@Header("Authorization")String authToken,  @Query("itemId") Long itemId);
-
+    @PUT("cart/updateItem")
+    Call<UpdateCartItemResponse> updateCartItem (@Header("Authorization")String authToken, @Body UpdateCartItemRequest request);
 
 }

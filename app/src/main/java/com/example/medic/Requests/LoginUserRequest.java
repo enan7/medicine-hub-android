@@ -6,6 +6,9 @@ public class LoginUserRequest {
 
 private String userName;
 private String password;
+private String fcmToken;
+
+
 
     public String getUserName() {
         return userName;
@@ -21,6 +24,14 @@ private String password;
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFcmToken() {
+        return fcmToken;
+    }
+
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 }
 

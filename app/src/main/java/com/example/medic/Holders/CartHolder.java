@@ -1,14 +1,30 @@
 package com.example.medic.Holders;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.medic.Activity.SignIn;
+import com.example.medic.Activity.SignUp;
+import com.example.medic.Activity.VerifyPhoneNo;
+import com.example.medic.Api_Interfaces.CartInterface;
+import com.example.medic.Api_Interfaces.UserInterface;
 import com.example.medic.R;
+import com.example.medic.Requests.UpdateCartItemRequest;
+import com.example.medic.Responses.RegisterUserResponse;
+import com.example.medic.Responses.UpdateCartItemResponse;
+import com.example.medic.RetrofitClient.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartHolder extends RecyclerView.ViewHolder {
 
@@ -26,6 +42,7 @@ public class CartHolder extends RecyclerView.ViewHolder {
         this.medicineUnit = itemView.findViewById(R.id.cart_item_unit);
         this.newPrice = itemView.findViewById(R.id.cart_item_newprice);
         this.qtyButton = itemView.findViewById(R.id.cart_elegant_btn);
+
     }
 
     public ImageView getMedicineImage() {
@@ -85,4 +102,5 @@ public class CartHolder extends RecyclerView.ViewHolder {
     public void setQtyButton(ElegantNumberButton qtyButton) {
         this.qtyButton = qtyButton;
     }
-}
+
+    }

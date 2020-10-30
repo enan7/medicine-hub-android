@@ -8,11 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.medic.Activity.Home;
 import com.example.medic.Api_Interfaces.OrderInterface;
 import com.example.medic.R;
 import com.example.medic.Requests.OrderAdddressDto;
@@ -38,19 +45,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 
 public class AddressFragment extends Fragment {
 
-    TextInputEditText receiverName, receiverPhone, nearbyLocation;
-    List<Integer> indexesToRender = Arrays.asList(0, 2, 3, 4,8);
+    TextInputEditText receiverName, receiverPhone, nearbyLocation, houseNumber;
+    List<Integer> indexesToRender = Arrays.asList(0, 2, 3, 4, 8);
     Button submitBtn;
     private RetrofitClient retrofitClient;
     private Double lattitude;
     private Double longitude;
     private String city;
     private String country;
-    private   final  int cityIndex  = 4;
-    private  final int countryIndex = 8;
+    private final int cityIndex = 4;
+    private final int countryIndex = 8;
+    RelativeLayout progressBar;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +83,10 @@ public class AddressFragment extends Fragment {
         receiverName = (TextInputEditText) view.findViewById(R.id.receiver_name);
         receiverPhone = (TextInputEditText) view.findViewById(R.id.receiver_phone);
         nearbyLocation = (TextInputEditText) view.findViewById(R.id.nearby_location);
+        houseNumber = (TextInputEditText) view.findViewById(R.id.house_number);
         submitBtn = (Button) view.findViewById(R.id.submit_address);
+        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+
 
         /*receiverName.setText(cartResponse.getUserName());*/
         receiverPhone.setText(cartResponse.getPhoneNumber());
@@ -81,23 +95,37 @@ public class AddressFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+                progressBar.setVisibility(View.VISIBLE);
+
+
+                if (!validatePhone() | !validateAddress() | !validateUserName() | !validateHouse()) {
+                    return;
+                }
+
                 String phone = receiverPhone.getText().toString().trim();
                 String address = nearbyLocation.getText().toString().trim();
                 String userName = receiverName.getText().toString().trim();
+                String house = houseNumber.getText().toString().trim();
 
                 OrderRequest orderRequest = new OrderRequest();
                 OrderAdddressDto orderAdddressDto = new OrderAdddressDto();
                 orderAdddressDto.setPhoneNumber(phone);
                 orderAdddressDto.setNearByLocation(address);
                 orderAdddressDto.setReceiverName(userName);
-               orderAdddressDto.setLattitude(lattitude);
-               orderAdddressDto.setLongitude(longitude);
+                orderAdddressDto.setHouseNumber(house);
+                orderAdddressDto.setLattitude(lattitude);
+                orderAdddressDto.setLongitude(longitude);
                 orderAdddressDto.setCity(city);
                 orderAdddressDto.setCountry(country);
                 orderRequest.setAddress(orderAdddressDto);
                 orderRequest.setCartId(cartResponse.getCartId());
 
                 placeOrder(orderRequest);
+
+                Home toolbar = new Home();
+                toolbar.emptyCart();
+
 
 
             }
@@ -127,6 +155,54 @@ public class AddressFragment extends Fragment {
         return view;
 
     }
+
+    private Boolean validatePhone() {
+        String val = receiverPhone.getText().toString();
+
+        if (val.isEmpty()) {
+            receiverPhone.setError("Field cannot be empty");
+            return false;
+        } else {
+            receiverPhone.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validateAddress() {
+        String val = nearbyLocation.getText().toString();
+
+        if (val.isEmpty()) {
+            nearbyLocation.setError("Field cannot be empty");
+            return false;
+        } else {
+            nearbyLocation.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validateUserName() {
+        String val = receiverName.getText().toString();
+
+        if (val.isEmpty()) {
+            receiverName.setError("Field cannot be empty");
+            return false;
+        } else {
+            receiverName.setError(null);
+            return true;
+        }
+    }
+    private Boolean validateHouse() {
+        String val = houseNumber.getText().toString();
+
+        if (val.isEmpty()) {
+            houseNumber.setError("Field cannot be empty");
+            return false;
+        } else {
+            houseNumber.setError(null);
+            return true;
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -192,16 +268,18 @@ public class AddressFragment extends Fragment {
                     // loadingBar.dismiss();
 
                     OrderResponse orderResponse = response.body();
-/*
-                    cartDetailAdapter = new CartDetailAdapter(getActivity(), (ArrayList<CartDetailDTO>) cartDetailResponse.getCartItems(),cartRecyclerView);
-*/
+                    progressBar.setVisibility(View.GONE);
+                    showDialog(orderResponse.getResponseMessage());
 
-//                    LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-//                    cartRecyclerView.setLayoutManager(llm);
-                    //  categoryAdapter = new CategoryAdapter(data);
+                    if (orderResponse.getResponseCode().equals("00")) {
+                        Toast.makeText(getActivity(), "Cart Submit successfully!", Toast.LENGTH_SHORT).show();
+                    }
 
-//                    cartDetailAdapter = new CategoryAdapter();
-//                    cartRecyclerView.setAdapter(adapter);
+                    else
+                    {
+                        Toast.makeText(getActivity(), orderResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
 
 
 
@@ -219,6 +297,21 @@ public class AddressFragment extends Fragment {
             System.out.println(e);
 
         }
+    }
+
+    private void showDialog (String textView) {
+
+        String dilogMessage = textView;
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.submit_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        TextView message = (TextView) dialogView.findViewById(R.id.order_conf);
+        message.setText(dilogMessage);
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
     }
 
 

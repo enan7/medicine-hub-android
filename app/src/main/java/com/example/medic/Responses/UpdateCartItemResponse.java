@@ -1,10 +1,26 @@
 package com.example.medic.Responses;
 
-public class OrderResponse {
-
+public class UpdateCartItemResponse {
+    private Double cartTotalPrice;
+    private Double itemPrice;
     private String responseCode;
     private String responseMessage;
 
+    public Double getCartTotalPrice() {
+        return cartTotalPrice;
+    }
+
+    public void setCartTotalPrice(Double cartTotalPrice) {
+        this.cartTotalPrice = cartTotalPrice;
+    }
+
+    public Double getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(Double itemPrice) {
+        this.itemPrice = itemPrice;
+    }
 
     public String getResponseCode() {
         return responseCode;
@@ -21,6 +37,4 @@ public class OrderResponse {
     public void setResponseMessage(String responseMessage) {
         this.responseMessage = responseMessage;
     }
-
-
 }

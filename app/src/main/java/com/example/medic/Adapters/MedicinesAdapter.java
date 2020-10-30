@@ -19,7 +19,7 @@ import com.example.medic.Responses.MedicineDTO;
 
 import java.util.ArrayList;
 
-public class MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
+public class    MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
 
     Context c;
     byte[] decodedString;

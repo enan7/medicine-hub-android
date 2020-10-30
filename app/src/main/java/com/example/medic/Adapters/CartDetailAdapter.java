@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,12 +18,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.medic.Api_Interfaces.CartInterface;
+import com.example.medic.Fragments.CartDetailFragment;
 import com.example.medic.Fragments.DeleteCartItemDialogFragment;
 import com.example.medic.Holders.CartHolder;
 import com.example.medic.R;
+import com.example.medic.Requests.UpdateCartItemRequest;
 import com.example.medic.Responses.CartDetailDTO;
+import com.example.medic.Responses.UpdateCartItemResponse;
+import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
 
@@ -34,11 +46,16 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
     Dialog myDialog;
     RecyclerView cartRecyclerView;
     private CartDetailAdapter mAdapter;
+    private RetrofitClient retrofitClient;
+    private CartInterface cartInterface;
+    RelativeLayout progressBar;
+
     public CartDetailAdapter(Context c, ArrayList<CartDetailDTO> cart,RecyclerView cartRecyclerView) {
         this.c = c;
         this.cart = cart;
         this.cartRecyclerView = cartRecyclerView;
         mAdapter = this;
+
     }
 
     @NonNull
@@ -51,6 +68,7 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
         myDialog.setContentView(R.layout.cart_item_popup);
 
 
+
         return new CartHolder(view);
 
 
@@ -58,6 +76,8 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final CartHolder cartHolder, final int i) {
+
+
 
         cartHolder.getDeleteCart().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +107,16 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
 
         cartHolder.getNewPrice().setText("Rs. " + cart.get(i).getItemPriceWithQuantityAndDiscount());
         cartHolder.getQtyButton().setNumber(String.valueOf(cart.get(i).getItemQuantity()));
-
+        cartHolder.getQtyButton().setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                UpdateCartItemRequest request = new UpdateCartItemRequest();
+                String index = view.getNumber();
+                request.setItemId(cart.get(i).getItemId());
+                request.setQuantity(newValue);
+                updateCartItem(request,cartHolder);
+            }
+        });
         if (cart.get(i).getMedicineIcon() != null) {
 
             cartHolder.getMedicineImage().setImageBitmap(cart.get(i).getMedicineIcon());
@@ -150,5 +179,34 @@ public class CartDetailAdapter extends RecyclerView.Adapter<CartHolder> {
         return cart.size();
     }
 
+    void updateCartItem(UpdateCartItemRequest request, final CartHolder holder) {
+
+        retrofitClient = RetrofitClient.getInstance();
+        cartInterface = retrofitClient.getRetrofit().create(CartInterface.class);
+        Call<UpdateCartItemResponse> call = cartInterface.updateCartItem(retrofitClient.getJwtToken(),request);
+
+        call.enqueue(new Callback<UpdateCartItemResponse>() {
+            @Override
+            public void onResponse(Call<UpdateCartItemResponse> call, Response<UpdateCartItemResponse> response) {
+                // loadingBar.dismiss();
+                UpdateCartItemResponse updateCartItemResponse = response.body();
+                //   Toast.makeText(SignUp.this,registerUserResponse.getResponseMessage(),Toast.LENGTH_LONG).show();
+                System.out.println(updateCartItemResponse.getResponseCode());
+
+
+                if(updateCartItemResponse.getResponseCode().equals("00")) {
+                    holder.getNewPrice().setText("Rs. " + updateCartItemResponse.getItemPrice());
+                    CartDetailFragment.setTotalPrice(updateCartItemResponse.getCartTotalPrice());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UpdateCartItemResponse> call, Throwable t) {
+                // loadingBar.dismiss();
+                System.out.println("Failed");
+            }
+        });
+    }
 
 }

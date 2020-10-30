@@ -1,7 +1,5 @@
 package com.example.medic.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +9,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.medic.Api_Interfaces.UserInterface;
 import com.example.medic.Prevalent.Prevalent;
 import com.example.medic.R;
 import com.example.medic.Requests.LoginUserRequest;
-import com.example.medic.Requests.RegisterUserRequest;
 import com.example.medic.Responses.LoginUserResponse;
-import com.example.medic.Responses.RegisterUserResponse;
 import com.example.medic.RetrofitClient.RetrofitClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.hbb20.CountryCodePicker;
 
 import io.paperdb.Paper;
@@ -36,6 +39,8 @@ public class SignIn extends AppCompatActivity {
     private UserInterface userInterface;
 
     private ProgressDialog loadingBar;
+    private String fcm_token;
+
     CountryCodePicker ccp;
 
     String UserPhoneKey, UserPasswordKey;
@@ -90,7 +95,10 @@ public class SignIn extends AppCompatActivity {
             if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)) {
                 request.setUserName(UserPhoneKey);
                 request.setPassword(UserPasswordKey);
-                AllowAccess(request);
+
+                inititalizeFcmToken(request);
+
+
 
 
             }
@@ -155,7 +163,7 @@ public class SignIn extends AppCompatActivity {
         request.setPassword(password);
         request.setUserName(fullPhoneNo);
 
-        AllowAccess(request);
+        inititalizeFcmToken(request);
 //                            Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
 
         //Perform Your required action here to either let the user sign In or do something required
@@ -178,6 +186,7 @@ public class SignIn extends AppCompatActivity {
 //        request.setPassword(request.getPassword());
 //        request.setUserName(request.getUserName());
         try {
+            //inititalizeFcmToken(request);
             retrofitClient = RetrofitClient.getInstance();
             userInterface = retrofitClient.getRetrofit().create(UserInterface.class);
             Call<LoginUserResponse> call = userInterface.loginUser(request);
@@ -195,6 +204,7 @@ public class SignIn extends AppCompatActivity {
                         Toast.makeText(SignIn.this, "Login successfully!", Toast.LENGTH_SHORT).show();
 
                         retrofitClient.setJwtToken(loginUserResponse.getJwtToken());
+
 
                         loadingBar.dismiss();
                         Intent intent = new Intent(getApplicationContext(), Home.class);
@@ -221,4 +231,25 @@ public class SignIn extends AppCompatActivity {
 
     }
 
+
+    private void inititalizeFcmToken(final LoginUserRequest request){
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            //Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID fcm_token
+                        fcm_token = task.getResult().getToken();
+                        request.setFcmToken(fcm_token);
+                        AllowAccess(request);
+
+
+                    }
+                });
+
+    }
 }
