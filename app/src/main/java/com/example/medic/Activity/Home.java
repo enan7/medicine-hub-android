@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.medic.Fragments.CartDetailFragment;
 import com.example.medic.Fragments.CategoryFragment;
+import com.example.medic.Fragments.OrderListFragment;
 import com.example.medic.R;
 import com.example.medic.RetrofitClient.RetrofitClient;
 import com.google.android.material.navigation.NavigationView;
@@ -128,7 +129,12 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.nav_item_one) {
 
-        } else if (id == R.id.nav_item_two) {
+        } else if (id == R.id.orderList) {
+
+            OrderListFragment orderListFragment = new OrderListFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, orderListFragment,"OrderList frg");
+            transaction.commit();
 
         } else if (id == R.id.nav_item_three) {
 

@@ -82,7 +82,6 @@ public class MedicineFragment extends Fragment {
                 public void onTextChanged(CharSequence s, int start,
                                           int before, int count) {
                     if (s.length() != 0)
-                        progressBar.setVisibility(View.VISIBLE);
 
                         renderMedicineList(pageNumber, null, s.toString());
                 }
@@ -100,6 +99,9 @@ public class MedicineFragment extends Fragment {
         try {
             retrofitClient = RetrofitClient.getInstance();
             medicineInterface = retrofitClient.getRetrofit().create(MedicinesInterface.class);
+
+            progressBar.setVisibility(View.VISIBLE);
+
             Call<MedicineListResponse> call = medicineInterface.getMedicineList(retrofitClient.getJwtToken(), pageNumber, categoryId, medicineName);
 
             call.enqueue(new Callback<MedicineListResponse>() {

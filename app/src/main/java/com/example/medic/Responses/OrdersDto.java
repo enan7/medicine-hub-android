@@ -6,7 +6,7 @@ public class OrdersDto {
     private Long orderId;
     private String status;
     private Double totalPrice;
-    private LocalDateTime createdOn;
+    private String createdOn;
     private String referenceNumber;
     private String userName;
     private String phoneNumber;
@@ -39,12 +39,14 @@ public class OrdersDto {
         this.totalPrice = totalPrice;
     }
 
-    public LocalDateTime getCreatedOn() {
+
+
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(LocalDateTime localDateTime) {
-        this.createdOn = localDateTime;
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
     }
 
     public String getReferenceNumber() {
