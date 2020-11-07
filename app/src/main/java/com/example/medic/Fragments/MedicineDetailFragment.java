@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +44,7 @@ public class MedicineDetailFragment extends Fragment {
     private RetrofitClient retrofitClient;
     private CartInterface addToCartInterface;
     private ElegantNumberButton qtyButton;
-    RelativeLayout progressBar;
-    LinearLayout medicineDetail;
+    ProgressBar progressBar;
 
 
     @Override
@@ -68,8 +68,7 @@ public class MedicineDetailFragment extends Fragment {
         priceDiscount = (LinearLayout) view.findViewById(R.id.price_discount);
         AddToCart = (Button) view.findViewById(R.id.add_to_cart);
         qtyButton = (ElegantNumberButton)view.findViewById(R.id.elegant_btn);
-        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
-        medicineDetail = (LinearLayout) view.findViewById(R.id.medicine_detail);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         medicineName.setText(medicines.getMedicineName());
         medicinePrice.setText("Rs. "+medicines.getCalculatedPrice().toString());
@@ -90,7 +89,6 @@ public class MedicineDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                medicineDetail.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 AddToCartRequest addToCartRequest = new AddToCartRequest();
                 addToCartRequest.setMedicineId(medicineId);
@@ -112,7 +110,6 @@ public class MedicineDetailFragment extends Fragment {
 
                             if (addToCartResponse.getResponseCode().equals("00")) {
                                 progressBar.setVisibility(View.GONE);
-                                medicineDetail.setVisibility(View.VISIBLE);
                                 doIncrease();
                                 Toast.makeText(getActivity(), "Item Added successfully!", Toast.LENGTH_SHORT).show();
 
@@ -126,7 +123,6 @@ public class MedicineDetailFragment extends Fragment {
                             else {
                                 /*loadingBar.dismiss();*/
                                 progressBar.setVisibility(View.GONE);
-                                medicineDetail.setVisibility(View.VISIBLE);
                                 Toast.makeText(getActivity(), addToCartResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
                             }
 

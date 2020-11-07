@@ -1,6 +1,8 @@
 package com.example.medic.Fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -11,13 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.medic.Activity.Home;
 import com.example.medic.Api_Interfaces.OrderInterface;
@@ -60,7 +65,7 @@ public class AddressFragment extends Fragment {
     private String country;
     private final int cityIndex = 4;
     private final int countryIndex = 8;
-    RelativeLayout progressBar;
+    ProgressBar progressBar;
 
 
     @Override
@@ -85,7 +90,7 @@ public class AddressFragment extends Fragment {
         nearbyLocation = (TextInputEditText) view.findViewById(R.id.nearby_location);
         houseNumber = (TextInputEditText) view.findViewById(R.id.house_number);
         submitBtn = (Button) view.findViewById(R.id.submit_address);
-        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
 
         /*receiverName.setText(cartResponse.getUserName());*/
@@ -123,8 +128,7 @@ public class AddressFragment extends Fragment {
 
                 placeOrder(orderRequest);
 
-                Home toolbar = new Home();
-                toolbar.emptyCart();
+
 
 
 
@@ -212,6 +216,8 @@ public class AddressFragment extends Fragment {
             // When success
             // initialize place
             Place place = Autocomplete.getPlaceFromIntent(data);
+
+
             //Set Address on Location
             this.lattitude = place.getLatLng().latitude;
             this.longitude =  place.getLatLng().longitude;
@@ -269,15 +275,24 @@ public class AddressFragment extends Fragment {
 
                     OrderResponse orderResponse = response.body();
                     progressBar.setVisibility(View.GONE);
-                    showDialog(orderResponse.getResponseMessage());
 
                     if (orderResponse.getResponseCode().equals("00")) {
+/*
                         Toast.makeText(getActivity(), "Cart Submit successfully!", Toast.LENGTH_SHORT).show();
+*/
+
+                        Home toolbar = new Home();
+                        toolbar.emptyCart();
+
+                        showDialog("Submitted" ,orderResponse.getResponseMessage());
+
                     }
 
                     else
                     {
                         Toast.makeText(getActivity(), orderResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
+                        showDialog("Alert!" ,orderResponse.getResponseMessage());
+
                     }
 
 
@@ -299,19 +314,56 @@ public class AddressFragment extends Fragment {
         }
     }
 
-    private void showDialog (String textView) {
+    private void showDialog (final String Heading, String Description) {
 
-        String dilogMessage = textView;
+        String orderHeading = Heading;
+        String orderDescription = Description;
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.submit_dialog, null);
-        dialogBuilder.setView(dialogView);
 
-        TextView message = (TextView) dialogView.findViewById(R.id.order_conf);
-        message.setText(dilogMessage);
-        AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
+        final Dialog dialog = new Dialog(getActivity());
+
+        dialog.getWindow().getDecorView().setBackgroundColor(Color.TRANSPARENT);
+        dialog.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
+
+
+        dialog.setContentView(R.layout.dialog_custom);
+
+        // set the custom dialog components - text, image and button
+
+        TextView heading = (TextView) dialog.findViewById(R.id.dig_heading);
+        TextView description = (TextView) dialog.findViewById(R.id.dig_description);
+        Button yesButton = (Button) dialog.findViewById(R.id.btn_1);
+        Button noButton = (Button) dialog.findViewById(R.id.btn_2);
+
+        yesButton.setText("Ok");
+
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                CategoryFragment categoryFragment = new CategoryFragment();
+
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                manager.beginTransaction()
+                        .add(R.id.fragment_container, categoryFragment,"Category Frag")
+                        .commit();
+
+
+                dialog.dismiss();
+            }
+        });
+
+        noButton.setVisibility(View.GONE);
+
+        heading.setText(orderHeading);
+        description.setText(orderDescription);
+
+        dialog.setCanceledOnTouchOutside(false);
+
+        dialog.show();
+
     }
 
 

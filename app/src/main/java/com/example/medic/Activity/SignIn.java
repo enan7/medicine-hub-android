@@ -87,9 +87,9 @@ public class SignIn extends AppCompatActivity {
         });
 
 
-        UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
-        UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
-        if (UserPhoneKey != "" && UserPasswordKey != "") {
+        /*UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
+        UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);*/
+       /* if (UserPhoneKey != "" && UserPasswordKey != "") {
 
 
             if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)) {
@@ -102,7 +102,7 @@ public class SignIn extends AppCompatActivity {
 
 
             }
-        }
+        }*/
     }
 
     private Boolean validatePhoneNo() {
@@ -147,7 +147,7 @@ public class SignIn extends AppCompatActivity {
 
 
         loadingBar.setTitle("Login");
-        loadingBar.setIcon(R.drawable.medic_logo);
+        loadingBar.setIcon(R.drawable.logo);
         loadingBar.setMessage("Please wait for a while...");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
@@ -176,12 +176,35 @@ public class SignIn extends AppCompatActivity {
 
     }
 
+
+    private void inititalizeFcmToken(final LoginUserRequest request){
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            //Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID fcm_token
+                        fcm_token = task.getResult().getToken();
+                        request.setFcmToken(fcm_token);
+                        AllowAccess(request);
+
+
+                    }
+                });
+
+    }
+    
+
     private void AllowAccess(final LoginUserRequest request) {
 
-        loadingBar.setTitle("Already Logged in");
+       /* loadingBar.setTitle("Logged in");
         loadingBar.setMessage("Please wait.....");
         loadingBar.setCanceledOnTouchOutside(false);
-        loadingBar.show();
+        loadingBar.show();*/
 
 //        request.setPassword(request.getPassword());
 //        request.setUserName(request.getUserName());
@@ -232,24 +255,5 @@ public class SignIn extends AppCompatActivity {
     }
 
 
-    private void inititalizeFcmToken(final LoginUserRequest request){
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            //Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
 
-                        // Get new Instance ID fcm_token
-                        fcm_token = task.getResult().getToken();
-                        request.setFcmToken(fcm_token);
-                        AllowAccess(request);
-
-
-                    }
-                });
-
-    }
 }

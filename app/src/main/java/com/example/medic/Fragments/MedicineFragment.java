@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.example.medic.Activity.Home;
@@ -33,7 +34,7 @@ import retrofit2.Response;
 public class MedicineFragment extends Fragment {
 
     RecyclerView mRecyclerView;
-    RelativeLayout progressBar;
+    ProgressBar progressBar;
 
     private MedicinesAdapter medicinesAdapter;
     private RetrofitClient retrofitClient;
@@ -53,7 +54,7 @@ public class MedicineFragment extends Fragment {
         medicineSearch = (LinearLayout) view.findViewById(R.id.med_search);
         searchText = (EditText) view.findViewById(R.id.search_product_name);
 
-        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.item_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

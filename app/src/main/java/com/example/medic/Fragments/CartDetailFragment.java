@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ public class CartDetailFragment extends Fragment {
     private CartInterface cartInterface;
     private CartDetailResponse cartDetailResponse;
     RecyclerView cartRecyclerView;
-    RelativeLayout progressBar;
+    ProgressBar progressBar;
     private static TextView totalPrice;
     public  TextView      deleteCart;
     private Button checkOut;
@@ -48,7 +49,7 @@ public class CartDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart_detail, container, false);
-        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
         totalPrice = (TextView) view.findViewById(R.id.total_price);
         checkOut = (Button)view.findViewById(R.id.checkout_btn);
 

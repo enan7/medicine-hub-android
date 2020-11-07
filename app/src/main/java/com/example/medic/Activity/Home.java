@@ -70,8 +70,7 @@ public class Home extends AppCompatActivity
 
         CategoryFragment categoryFragment = new CategoryFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, categoryFragment);
-
+        transaction.replace(R.id.fragment_container, categoryFragment,"Category frg");
         transaction.commit();
 
 

@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "1029761704015",
-    "firebase_url": "https://medic-36801.firebaseio.com",
-    "project_id": "medic-36801",
-    "storage_bucket": "medic-36801.appspot.com"
+    "project_number": "35373543933",
+    "firebase_url": "https://medicine-hub-a2bf6.firebaseio.com",
+    "project_id": "medicine-hub-a2bf6",
+    "storage_bucket": "medicine-hub-a2bf6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1029761704015:android:f3f5cbe04ed6cae9c7ca3a",
+        "mobilesdk_app_id": "1:35373543933:android:9653e7d1bbd3cfdb766994",
         "android_client_info": {
           "package_name": "com.example.medic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1029761704015-bet1ku24i4885kd16gvep2j2gd3sbkl8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.medic",
-            "certificate_hash": "84e6ae692a463a487d1b19104a4d1ec595cbc0a9"
-          }
-        },
-        {
-          "client_id": "1029761704015-msrebms955aj2kgo4iv2o8ud1epncb2u.apps.googleusercontent.com",
+          "client_id": "35373543933-cma411t70em8ppi5q1p3cleq73a8cser.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCqGYJNNrPjHzhsjhj2NWClZep9X2oT66k"
+          "current_key": "AIzaSyA6RxTchU4Q92_a52oJoXU5BC3mPZefO6o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1029761704015-msrebms955aj2kgo4iv2o8ud1epncb2u.apps.googleusercontent.com",
+              "client_id": "35373543933-cma411t70em8ppi5q1p3cleq73a8cser.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

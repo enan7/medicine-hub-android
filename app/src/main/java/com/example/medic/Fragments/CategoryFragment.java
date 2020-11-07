@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.example.medic.Activity.Home;
@@ -35,7 +36,7 @@ public class CategoryFragment extends Fragment {
     private CategoryListResponse categoryListResponse;
     private CategoryAdapter categoryAdapter;
     RecyclerView categoryRecyclerView;
-    RelativeLayout progressBar;
+    ProgressBar progressBar;
     private CategoryInterface categoryInterface;
 
 
@@ -47,7 +48,7 @@ public class CategoryFragment extends Fragment {
 
         searchButton = (LinearLayout) view.findViewById(R.id.search);
         categoryRecyclerView = (RecyclerView) view.findViewById(R.id.cat_recyclerview);
-        progressBar = (RelativeLayout) view.findViewById(R.id.progressbar);
+        progressBar = view.findViewById(R.id.progressbar);
 
 
         initViews();

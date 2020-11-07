@@ -54,6 +54,9 @@ dependencies {
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
+
+
 
 
 }
