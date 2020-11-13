@@ -134,6 +134,7 @@ public class Home extends AppCompatActivity
             OrderListFragment orderListFragment = new OrderListFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, orderListFragment,"OrderList frg");
+            transaction.addToBackStack(null);
             transaction.commit();
 
         } else if (id == R.id.nav_item_three) {

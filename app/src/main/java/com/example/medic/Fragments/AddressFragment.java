@@ -215,6 +215,7 @@ public class AddressFragment extends Fragment {
             String address = "";
             // When success
             // initialize place
+            try{
             Place place = Autocomplete.getPlaceFromIntent(data);
 
 
@@ -232,14 +233,17 @@ public class AddressFragment extends Fragment {
                 address += ", ";
             }
             Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-            try {
-                List<Address> addressList = geocoder.getFromLocation(
-                        lattitude, longitude, 1);
-                Address addressInstance = addressList.get(0);
-                city  = addressInstance.getLocality();
-                country  = addressInstance.getCountryName();
 
-            } catch (IOException e) {
+                if(null!=geocoder) {
+                    List<Address> addressList = geocoder.getFromLocation(
+                            lattitude, longitude, 1);
+                    if(null!=addressList) {
+                        Address addressInstance = addressList.get(0);
+                        city = addressInstance.getLocality();
+                        country = addressInstance.getCountryName();
+                    }
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -262,7 +266,6 @@ public class AddressFragment extends Fragment {
     private void placeOrder(OrderRequest request) {
 
         try {
-
             retrofitClient = RetrofitClient.getInstance();
             OrderInterface orderInterface = retrofitClient.getRetrofit().create(OrderInterface.class);
             Call<OrderResponse> call = orderInterface.placeOrder(retrofitClient.getJwtToken(), request);
@@ -322,7 +325,7 @@ public class AddressFragment extends Fragment {
 
         final Dialog dialog = new Dialog(getActivity());
 
-        dialog.getWindow().getDecorView().setBackgroundColor(Color.TRANSPARENT);
+        dialog.getWindow().getDecorView().setBackgroundColor(Color.WHITE);
         dialog.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
 
 

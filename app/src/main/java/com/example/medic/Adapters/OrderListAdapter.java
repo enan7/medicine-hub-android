@@ -39,7 +39,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder> {
 
         statusholder.getRefNumber().setText(orders.get(i).getReferenceNumber());
         statusholder.getCreatedAt().setText(orders.get(i).getCreatedOn());
-        statusholder.getTotalItems().setText(String.valueOf(orders.get(i).getTotalItems()));
+        statusholder.getTotalItems().setText((String.valueOf(orders.get(i).getTotalItems())));
         statusholder.getTotalPrice().setText(orders.get(i).getTotalPrice().toString());
         statusholder.getStatus().setText(orders.get(i).getStatus());
 

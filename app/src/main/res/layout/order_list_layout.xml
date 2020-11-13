@@ -8,47 +8,143 @@
     android:layout_gravity="center"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="10dp"
+        android:scaleType="fitCenter">
 
-        <TextView
-            android:id="@+id/status_ref_Number"
+        <RelativeLayout
+            android:id="@+id/ref_layout"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ref_No"
+            >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ref No:"
+            android:textStyle="bold"
+            android:gravity="left"
             android:textAllCaps="true"
             android:textColor="@color/dark_blue"
             android:textSize="15sp"></TextView>
 
+            <TextView
+                android:id="@+id/status_ref_Number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ref_No"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_blue"
+                android:textSize="15sp"></TextView>
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/created_layout"
+        android:layout_below="@+id/ref_layout"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black_color"
+            android:text="Created at:" />
 
         <TextView
             android:id="@+id/status_created_at"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black_color"
+            android:gravity="right"
             android:text="Created at" />
 
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/created_layout"
+        >
         <TextView
-            android:id="@+id/status_total_items"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black_color"
             android:text="Total items" />
 
         <TextView
-            android:id="@+id/status_total_price"
-            android:layout_width="wrap_content"
+            android:id="@+id/status_total_items"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/black_color"
+            android:text="Total items" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/item_layout"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black_color"
             android:text="Total Price" />
 
         <TextView
-            android:id="@+id/status_status"
-            android:layout_width="wrap_content"
+            android:id="@+id/status_total_price"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/black_color"
+            android:text="Total Price" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_layout"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black_color"
             android:text="status" />
 
+        <TextView
+            android:id="@+id/status_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/black_color"
+            android:text="status" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
+
+    </RelativeLayout>
 
 
 </androidx.cardview.widget.CardView>
