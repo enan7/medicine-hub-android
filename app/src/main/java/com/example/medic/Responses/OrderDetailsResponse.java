@@ -33,6 +33,7 @@ public class OrderDetailsResponse {
     public void setOrder(OrdersDto order) {
         this.order = order;
     }
+
     public List<OrderedItemsDto> getOrderedItems() {
         return orderedItems;
     }

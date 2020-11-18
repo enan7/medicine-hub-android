@@ -16,6 +16,7 @@ import com.example.medic.Adapters.OrderListAdapter;
 import com.example.medic.Api_Interfaces.OrderInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.GetOrderByUserResponse;
+import com.example.medic.Responses.MedicineDTO;
 import com.example.medic.Responses.OrdersDto;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
@@ -41,6 +42,8 @@ public class OrderListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
+
+
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 

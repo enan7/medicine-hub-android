@@ -3,6 +3,7 @@ package com.example.medic.Api_Interfaces;
 import com.example.medic.Requests.OrderRequest;
 import com.example.medic.Requests.RegisterUserRequest;
 import com.example.medic.Responses.GetOrderByUserResponse;
+import com.example.medic.Responses.OrderDetailsResponse;
 import com.example.medic.Responses.OrderResponse;
 import com.example.medic.Responses.RegisterUserResponse;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
@@ -21,6 +22,9 @@ public interface OrderInterface {
 
     @GET("order/getOrdersByUser")
     Call<GetOrderByUserResponse> getOrdersByUser (@Header("Authorization")String authToken, @Query("pageNumber") int pageNumber);
+
+    @GET("order/getOrderDetails")
+    Call<OrderDetailsResponse> getOrdersDetail (@Header("Authorization")String authToken, @Query("orderId") long orderId);
 
 
 }
