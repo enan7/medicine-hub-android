@@ -1,25 +1,21 @@
 package com.example.medic.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.medic.Adapters.OrderDetailAdapter;
-import com.example.medic.Adapters.OrderListAdapter;
 import com.example.medic.Api_Interfaces.OrderInterface;
 import com.example.medic.R;
-import com.example.medic.Responses.GetOrderByUserResponse;
 import com.example.medic.Responses.OrderDetailsResponse;
 import com.example.medic.Responses.OrderedItemsDto;
-import com.example.medic.Responses.OrdersDto;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
@@ -52,6 +48,7 @@ public class OrderDetailFragment extends Fragment {
         long orderId = (Long) getArguments().getLong("OrderId");
 
         refNumber = view.findViewById(R.id.ref_number);
+        receiverTelephone = view.findViewById(R.id.rec_telnumber);
         receiverName = view.findViewById(R.id.rec_name);
         receiverAddress = view.findViewById(R.id.rec_address);
         receiverNearby = view.findViewById(R.id.rec_nearby);
@@ -88,8 +85,8 @@ public class OrderDetailFragment extends Fragment {
 
                     refNumber.setText(orderDetailsResponse.getOrder().getReferenceNumber());
                     receiverName.setText(orderDetailsResponse.getOrderAddress().getReceiverName());
-                 //   receiverTelephone.setText(orderDetailsResponse.getOrderAddress().getPhoneNumber());
-                     receiverAddress.setText(orderDetailsResponse.getOrderAddress().getHouseNumber());
+                    receiverTelephone.setText(orderDetailsResponse.getOrderAddress().getPhoneNumber());
+                    receiverAddress.setText(orderDetailsResponse.getOrderAddress().getHouseNumber());
                     receiverNearby.setText(orderDetailsResponse.getOrderAddress().getNearByLocation());
 
                     mRecyclerView.setAdapter(orderDetailAdapter);

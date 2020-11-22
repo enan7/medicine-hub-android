@@ -17,6 +17,7 @@ import com.example.medic.R;
 import com.example.medic.Responses.OrdersDto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder> {
 
@@ -68,6 +69,10 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder> {
             }
         });
 
+    }
+
+    public List<OrdersDto> getrOrderList(){
+        return this.orders;
     }
 
 

@@ -232,6 +232,8 @@ public class AddressFragment extends Fragment {
                 address += place.getAddressComponents().asList().get(index).getName();
                 address += ", ";
             }
+//            address=address.replace("(","");
+//            address=address.replace(")","");
             Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
 
                 if(null!=geocoder) {
