@@ -25,5 +25,11 @@
 
     </style>
 
+    <style name="AppTheme.NavigationView">
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="android:textColorPrimary">@color/title_color</item>
+
+    </style>
+
 
 </resources>

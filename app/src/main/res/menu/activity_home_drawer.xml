@@ -4,33 +4,44 @@
     tools:showIn="navigation_view">
 
 
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_item_one"
-            android:icon="@drawable/medic_logo"
-            android:title="Item 1" />
-        <item android:id="@+id/orderList"
-            android:icon="@drawable/medic_logo"
-            android:title="Order" />
-        <item android:id="@+id/share"
-            android:icon="@drawable/medic_logo"
-            android:title="Share" />
-    </group>
+    <!-- <group android:checkableBehavior="single">-->
 
-    <group android:id="@+id/group_menu">
-        <item android:id="@+id/nav_item_four"
-            android:title="Item 4" />
-        <item android:id="@+id/nav_item_five"
-            android:title="Item 5" />
-    </group>
+    <!--  <item android:id="@+id/nav_item_one"
+          android:icon="@drawable/medic_logo"
+          android:title="Item 1" />-->
 
-    <item android:title="Title 1">
+    <item
+        android:id="@+id/orderList"
+        android:icon="@drawable/ic_outline_insert_drive_file_24"
+        android:title="Orders" />
+
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_outline_share_24"
+        android:title="Share" />
+
+    <item
+        android:id="@+id/contact"
+        android:icon="@drawable/ic_outline_share_24"
+        android:title="Contact Us" />
+
+    <item
+        android:id="@+id/logout_btn"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+
+    <!--  </group>-->
+
+    <!-- <group android:id="@+id/group_menu">-->
+    <!-- <item android:id="@+id/nav_item_four"
+         android:title="Item 4" />
+     <item android:id="@+id/nav_item_five"
+         android:title="Item 5" />-->
+    <!-- </group>-->
+
+    <!--<item android:title="Title 1">
         <menu>
-            <item android:id="@+id/nav_item_seven"
-                android:icon="@drawable/medic_logo"
-                android:title="Item 6" />
-            <item android:id="@+id/logout_btn"
-                android:icon="@drawable/medic_logo"
-                android:title="Logout" />
+
         </menu>
-    </item>
+    </item>-->
 </menu>

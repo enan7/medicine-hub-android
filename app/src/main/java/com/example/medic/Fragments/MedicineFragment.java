@@ -2,6 +2,7 @@ package com.example.medic.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,10 @@ public class MedicineFragment extends Fragment {
     private MedicineListResponse medicineListResponse;
     private LinearLayout medicineSearch;
     private EditText searchText;
+    private LinearLayoutManager layoutManager;
+    private int scrollState;
+    private int scrollOnY;
+    private Long categoryId;
 
 
     @Override
@@ -57,9 +62,34 @@ public class MedicineFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.item_recyclerview);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+
+                //  super.onScrollStateChanged(recyclerView, newState);
+                scrollState = newState;
+                if(scrollState == 0) {
+                    if(scrollOnY>0) {
+//
+                        pageNumber = ++pageNumber;
+                        renderMedicineList(pageNumber, categoryId, null);
+                    }
+//
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                scrollOnY=dy;
+            }
+
+        });
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Long categoryId = (getArguments().getLong("CatID"));
+        categoryId = (getArguments().getLong("CatID"));
         String clickid = (getArguments().getString("ClickID"));
 
         if (clickid.equals("Category")) {

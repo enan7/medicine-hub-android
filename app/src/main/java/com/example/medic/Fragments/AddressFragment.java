@@ -10,16 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -41,7 +36,6 @@ import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -49,8 +43,6 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 public class AddressFragment extends Fragment {
@@ -342,23 +334,36 @@ public class AddressFragment extends Fragment {
 
         yesButton.setText("Ok");
 
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (Heading == "Alert!") {
+            yesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                CategoryFragment categoryFragment = new CategoryFragment();
+                    dialog.dismiss();
+                }
+            });
+        } else {
 
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                manager.beginTransaction()
-                        .add(R.id.fragment_container, categoryFragment,"Category Frag")
-                        .commit();
+            yesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                dialog.dismiss();
-            }
-        });
+                    CategoryFragment categoryFragment = new CategoryFragment();
+
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    manager.beginTransaction()
+                            .add(R.id.fragment_container, categoryFragment, "Category Frag")
+                            .commit();
+
+
+                    dialog.dismiss();
+                }
+            });
+
+        }
 
         noButton.setVisibility(View.GONE);
 

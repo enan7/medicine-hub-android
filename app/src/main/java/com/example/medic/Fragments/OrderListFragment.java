@@ -1,25 +1,21 @@
 package com.example.medic.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ProgressBar;
-
 import com.example.medic.Activity.Home;
 import com.example.medic.Adapters.OrderListAdapter;
 import com.example.medic.Api_Interfaces.OrderInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.GetOrderByUserResponse;
-import com.example.medic.Responses.MedicineDTO;
 import com.example.medic.Responses.OrdersDto;
 import com.example.medic.RetrofitClient.RetrofitClient;
 

@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "35373543933",
-    "firebase_url": "https://medicine-hub-a2bf6.firebaseio.com",
-    "project_id": "medicine-hub-a2bf6",
-    "storage_bucket": "medicine-hub-a2bf6.appspot.com"
+    "project_number": "367394822575",
+    "firebase_url": "https://medicine-hub-android.firebaseio.com",
+    "project_id": "medicine-hub-android",
+    "storage_bucket": "medicine-hub-android.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:35373543933:android:bdd0ed3c736c5e5e766994",
+        "mobilesdk_app_id": "1:367394822575:android:bc1ea92abd45f9b91b375a",
         "android_client_info": {
           "package_name": "com.example.medic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "35373543933-cma411t70em8ppi5q1p3cleq73a8cser.apps.googleusercontent.com",
+          "client_id": "367394822575-9cedgv9a6nhftsc690rpneb7kvvakov1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA6RxTchU4Q92_a52oJoXU5BC3mPZefO6o"
+          "current_key": "AIzaSyAb9HZ4PqY8q4L6twhb8SIEMPonHqovlzo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "35373543933-cma411t70em8ppi5q1p3cleq73a8cser.apps.googleusercontent.com",
+              "client_id": "367394822575-9cedgv9a6nhftsc690rpneb7kvvakov1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

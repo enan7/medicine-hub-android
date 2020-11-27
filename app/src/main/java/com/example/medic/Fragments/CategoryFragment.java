@@ -78,7 +78,7 @@ public class CategoryFragment extends Fragment {
     private void initViews() {
 
         categoryRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 3, GridLayoutManager.VERTICAL, false);
         categoryRecyclerView.setLayoutManager(layoutManager);
         getCategoryList();
     }

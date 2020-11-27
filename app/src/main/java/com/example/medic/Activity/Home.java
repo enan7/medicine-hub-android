@@ -1,6 +1,8 @@
 package com.example.medic.Activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -20,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.medic.Fragments.CartDetailFragment;
 import com.example.medic.Fragments.CategoryFragment;
+import com.example.medic.Fragments.ContactUsFragment;
 import com.example.medic.Fragments.OrderListFragment;
 import com.example.medic.R;
 import com.example.medic.RetrofitClient.RetrofitClient;
@@ -127,9 +130,9 @@ public class Home extends AppCompatActivity
         //Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_item_one) {
+      /*  if (id == R.id.nav_item_one) {
 
-        } else if (id == R.id.orderList) {
+        } else*/ if (id == R.id.orderList) {
 
             OrderListFragment orderListFragment = new OrderListFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -138,14 +141,26 @@ public class Home extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.share) {
+
             shareApp();
-        } else if (id == R.id.group_menu) {
+
+        }
+
+     else if (id == R.id.contact) {
+
+            ContactUsFragment contactUsFragment = new ContactUsFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, contactUsFragment,"Contact frg");
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+    }/*else if (id == R.id.group_menu) {
 
 
-        } else if (id == R.id.nav_item_seven) {
+        }*//* else if (id == R.id.nav_item_seven) {
 
 
-        } else if (id == R.id.logout_btn) {
+        }*/ else if (id == R.id.logout_btn) {
 
             Paper.book().destroy();
 
