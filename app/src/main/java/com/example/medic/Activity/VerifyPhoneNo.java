@@ -35,7 +35,7 @@ import retrofit2.Response;
 
 public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
 
-    Button verify_btn;
+    Button verify_btn, resend_otp;
     EditText phoneNoEnteredByTheUser;
     ProgressBar progressBar;
     String verificationCodeBySystem;
@@ -48,15 +48,27 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_phone_no);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //  mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-         request = (RegisterUserRequest) getIntent().getSerializableExtra("request");
+        request = (RegisterUserRequest) getIntent().getSerializableExtra("request");
 
         sendVerificationCodeToUser(request.getPhoneNumber());
 
         verify_btn = findViewById(R.id.verify_btn);
+        resend_otp = findViewById(R.id.resend_btn);
         phoneNoEnteredByTheUser = findViewById(R.id.verification_code_entered_by_user);
         progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
+
+        resend_otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+
+                sendVerificationCodeToUser(request.getPhoneNumber());
+
+            }
+        });
 
 
         verify_btn.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +113,8 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                     String code = phoneAuthCredential.getSmsCode();
                     if (code != null) {
                         progressBar.setVisibility(View.VISIBLE);
+                        phoneNoEnteredByTheUser.setText(code);
+                        verify_btn.setVisibility(View.GONE);
                         verifyCode(code);
                     }
                 }
@@ -143,20 +157,19 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                                     System.out.println(registerUserResponse.getResponseCode());
 
 
-                                    if(registerUserResponse.getResponseCode().equals("00")) {
+                                    if (registerUserResponse.getResponseCode().equals("00")) {
 
                                         Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                         startActivity(intent);
 
+                                    } else {
+                                        Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                                        intent.putExtra("registrationRequest", request);
+                                        startActivity(intent);
+                                        Toast.makeText(VerifyPhoneNo.this, registerUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
                                     }
-                                    else
-                                        {
-                                            Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                                            startActivity(intent);
-                                            Toast.makeText(VerifyPhoneNo.this, registerUserResponse.getResponseMessage(), Toast.LENGTH_SHORT).show();
-                                        }
 
                                 }
 
@@ -177,8 +190,6 @@ public class VerifyPhoneNo extends AppCompatActivity implements Serializable {
                     }
                 });
     }
-
-
 
 
 }

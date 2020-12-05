@@ -133,10 +133,10 @@ public class SignIn extends AppCompatActivity {
         if (val.isEmpty()) {
             LoginPassword.setError("Field cannot be empty");
             return false;
-        } else if (!val.matches(passwordVal)) {
+        } /*else if (!val.matches(passwordVal)) {
             LoginPassword.setError("Password is too weak");
             return false;
-        } else {
+        }*/ else {
             LoginPassword.setError(null);
             LoginPassword.setErrorEnabled(false);
             return true;

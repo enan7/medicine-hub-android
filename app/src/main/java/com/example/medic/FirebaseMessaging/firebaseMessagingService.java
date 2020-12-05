@@ -148,7 +148,7 @@ public class firebaseMessagingService extends FirebaseMessagingService {
                 new NotificationCompat.Builder(this, channelId);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            notificationBuilder.setSmallIcon(R.drawable.ic_stat_logo);
+            notificationBuilder.setSmallIcon(R.drawable.logo);
             notificationBuilder.setColor(getResources().getColor(R.color.dark_blue));
             notificationBuilder.setContentTitle(title)
                     .setContentText(messageBody)
@@ -156,7 +156,7 @@ public class firebaseMessagingService extends FirebaseMessagingService {
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent);
         } else {
-            notificationBuilder.setSmallIcon(R.drawable.ic_stat_logo);
+            notificationBuilder.setSmallIcon(R.drawable.logo);
             notificationBuilder.setContentTitle(title)
                     .setContentText(messageBody)
                     .setAutoCancel(true)

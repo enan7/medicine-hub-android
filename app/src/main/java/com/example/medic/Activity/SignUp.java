@@ -52,8 +52,11 @@ public class SignUp extends AppCompatActivity {
 
 
 
-
-
+        RegisterUserRequest request = (RegisterUserRequest) getIntent().getSerializableExtra("registrationRequest");
+        //This code will work if user came back from verify otp screen so his previous entered data will be populated
+        if(null!=request){
+            populateUserData(request);
+        }
 
 
 
@@ -173,10 +176,10 @@ public class SignUp extends AppCompatActivity {
         if (val.isEmpty()) {
             regPassword.setError("Field cannot be empty");
             return false;
-        } else if (!val.matches(passwordVal)) {
+        } /*else if (!val.matches(passwordVal)) {
             regPassword.setError("Password is too weak");
             return false;
-        } else {
+        }*/ else {
             regPassword.setError(null);
             regPassword.setErrorEnabled(false);
             return true;
@@ -190,10 +193,10 @@ public class SignUp extends AppCompatActivity {
             if (val.isEmpty()) {
                 regConfirmPassword.setError("Field cannot be empty");
                 return false;
-            } else if (!val.equals(val1)) {
+            } /*else if (!val.equals(val1)) {
                 regConfirmPassword.setError("Password Does't match");
                 return false;
-            } else {
+            }*/ else {
                 regConfirmPassword.setError(null);
                 regConfirmPassword.setErrorEnabled(false);
                 return true;
@@ -236,7 +239,12 @@ public class SignUp extends AppCompatActivity {
 
 
     }
-
+    private void populateUserData(RegisterUserRequest request){
+        regFirstName.getEditText().setText(request.getFirstName());
+        regLastName.getEditText().setText(request.getLastName());
+        regEmail.getEditText().setText(request.getEmailAddress());
+        regPhoneNo.getEditText().setText(request.getPhoneNumber());
+    }
 }
 
 

@@ -56,6 +56,15 @@
         android:layout_width="match_parent"
         android:text="Verify" />
 
+        <Button
+            android:background="@color/dark_blue"
+            android:id="@+id/resend_btn"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/title_color"
+            android:layout_width="match_parent"
+            android:text="Resend OTP" />
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_gravity="center"

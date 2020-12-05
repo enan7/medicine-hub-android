@@ -100,6 +100,7 @@ public class OrderListFragment extends Fragment {
                     progressBar.setVisibility(View.GONE);
 
                     getOrderByUserResponse = response.body();
+
                     if(null!=getOrderByUserResponse && null!=getOrderByUserResponse.getOrders()) {
                         if(getOrderByUserResponse.getOrders().size()!=0)
                         orderList.addAll(getOrderByUserResponse.getOrders());
