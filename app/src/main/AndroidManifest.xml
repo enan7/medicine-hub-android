@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
 
     <supports-screens
         android:anyDensity="true"
@@ -40,13 +42,13 @@
 
         </activity>
 
-        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+       <!-- <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
 
             android:resource="@drawable/logo" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/dark_blue" />
+            android:resource="@color/dark_blue" />-->
 
         <activity
             android:name=".Activity.SplashScreenActivity"
@@ -81,14 +83,31 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".FirebaseMessaging.firebaseMessagingService"
-            android:exported="false">
+            android:name=".FirebaseMessaging.firebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="test_sound_channel"/>
+
+
+
+        <receiver
+            android:name=".FirebaseMessaging.NotificationReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
+
+
+
 
 </manifest>

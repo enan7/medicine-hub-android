@@ -35,15 +35,37 @@ import java.util.TimeZone;
  */
 public class firebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String TAG = "MyFirebaseMsgService";
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+/*
+        super.onMessageReceived(remoteMessage);
+*/
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
+                .setContentTitle(remoteMessage.getNotification().getTitle())
+                .setContentText(remoteMessage.getNotification().getBody())
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setStyle(new NotificationCompat.BigTextStyle())
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, notificationBuilder.build());
+    }
+}
+
+  /*  private static final String TAG = "MyFirebaseMsgService";
 
     public static int NOTIFICATION_ID = 101;
 
-    /**
+    *//**
      * Called when message is received.
      *
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
-     */
+     *//*
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -93,14 +115,14 @@ public class firebaseMessagingService extends FirebaseMessagingService {
                     //display the notification time in the display format
                     time = displayFormat.format(date);
                 }
-                catch(ParseException pe) {
-
+                catch(Exception pe) {
+                    pe.printStackTrace();
                 }
 
                 sendNotification(time, message);
 
 
-              /*  if(notificationType.compareTo(Util.near_home_preference) == 0)
+              *//*  if(notificationType.compareTo(Util.near_home_preference) == 0)
                 {
                     String near_me_pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(Util.near_home_preference,"");
                     if(!near_me_pref.isEmpty() && near_me_pref.compareTo("0")!=0)
@@ -116,7 +138,7 @@ public class firebaseMessagingService extends FirebaseMessagingService {
                     {
                         sendNotification(time, message);
                     }
-                }*/
+                }*//*
             }
             catch (Exception e)
             {
@@ -128,22 +150,22 @@ public class firebaseMessagingService extends FirebaseMessagingService {
     // [END receive_message]
 
 
-    /**
+    *//**
      * Create and show a simple notification containing the received FCM message.
      *
      * @param messageBody FCM message body received.
-     */
+     *//*
     private void sendNotification(String messageBody, String title) {
         if(title=="")
             return;
         Intent intent = new Intent(this, Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 *//* Request code *//*, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        String channelId = "driverUpdate";
+        String channelId = "default";
         //Uri defaultSoundUri = Uri.parse("android.resource://" + getPackageName() + "/" +R.raw.notification_sound);
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId);
 
@@ -177,5 +199,6 @@ public class firebaseMessagingService extends FirebaseMessagingService {
         }
 
         notificationManager.notify(NOTIFICATION_ID++, notificationBuilder.build());
-    }
-}
+    }*/
+/*
+}*/

@@ -4,6 +4,13 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 
 android {
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        ignoreWarnings true //false
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
