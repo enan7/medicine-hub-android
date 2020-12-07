@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1029761704015:android:37b51e4df4802568c7ca3a",
+        "mobilesdk_app_id": "1:1029761704015:android:eae8402e2cc75715c7ca3a",
         "android_client_info": {
           "package_name": "com.example.medic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1029761704015-ruui43fesdf51013tdsm15i0pl2063ko.apps.googleusercontent.com",
+          "client_id": "1029761704015-u1ar2q05ssmn3i1kvabbiok8835f8eq5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.medic",
-            "certificate_hash": "f76574f680d1302adee8bc3a82e310e48aeac127"
+            "certificate_hash": "42f80cb2fc45b5617d0b664c86bbca38831264e4"
           }
         },
         {

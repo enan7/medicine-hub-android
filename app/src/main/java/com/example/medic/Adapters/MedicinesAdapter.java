@@ -16,8 +16,10 @@ import com.example.medic.Fragments.MedicineDetailFragment;
 import com.example.medic.Holders.MedicineHolder;
 import com.example.medic.R;
 import com.example.medic.Responses.MedicineDTO;
+import com.example.medic.Responses.OrdersDto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class    MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
 
@@ -85,6 +87,10 @@ public class    MedicinesAdapter extends RecyclerView.Adapter<MedicineHolder> {
 
 
 
+    }
+
+    public List<MedicineDTO> getMedicineList(){
+        return this.medicines;
     }
 
     @Override

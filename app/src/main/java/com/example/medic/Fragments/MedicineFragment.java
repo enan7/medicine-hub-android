@@ -19,10 +19,12 @@ import android.widget.RelativeLayout;
 
 import com.example.medic.Activity.Home;
 import com.example.medic.Adapters.MedicinesAdapter;
+import com.example.medic.Adapters.OrderListAdapter;
 import com.example.medic.Api_Interfaces.MedicinesInterface;
 import com.example.medic.R;
 import com.example.medic.Responses.MedicineListResponse;
 import com.example.medic.Responses.MedicineDTO;
+import com.example.medic.Responses.OrdersDto;
 import com.example.medic.RetrofitClient.RetrofitClient;
 
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class MedicineFragment extends Fragment {
     private int pageNumber = 0;
     private MedicinesInterface medicineInterface;
     private MedicineListResponse medicineListResponse;
+    private ArrayList<MedicineDTO> medicineList = new ArrayList<>();
     private LinearLayout medicineSearch;
     private EditText searchText;
     private LinearLayoutManager layoutManager;
@@ -123,7 +126,7 @@ public class MedicineFragment extends Fragment {
         return view;
     }
 
-    private void renderMedicineList(int pageNumber, Long categoryId, String medicineName) {
+    private void renderMedicineList(final int pageNumber, Long categoryId, String medicineName) {
 
 
         try {
@@ -141,7 +144,30 @@ public class MedicineFragment extends Fragment {
                     // loadingBar.dismiss();
 
                     medicineListResponse = response.body();
-                    medicinesAdapter = new MedicinesAdapter(getActivity(), (ArrayList<MedicineDTO>) medicineListResponse.getMedicines());
+
+                   /* if (pageNumber == 0 && medicineListResponse == null) {
+                        listEmptyTag.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
+                    } else {
+                        listEmptyTag.setVisibility(View.GONE);*/
+
+                        if (null != medicineListResponse && null != medicineListResponse.getMedicines()) {
+                            if (medicineListResponse.getMedicines().size() != 0) {
+                                medicineList.addAll(medicineListResponse.getMedicines());
+                            }
+                            if (null == medicinesAdapter) {
+                                medicinesAdapter = new MedicinesAdapter(getActivity(), medicineList);
+                                mRecyclerView.setAdapter(medicinesAdapter);
+
+                            } else {
+                                medicinesAdapter.getMedicineList().addAll(medicineListResponse.getMedicines());
+                                medicinesAdapter.notifyItemInserted(medicinesAdapter.getMedicineList().size() + 1);
+                                //mRecyclerView.refreshDrawableState();
+                            }
+                        }
+                   /* }*/
+
+                   // medicinesAdapter = new MedicinesAdapter(getActivity(), (ArrayList<MedicineDTO>) medicineListResponse.getMedicines());
 
 
                     //  categoryAdapter = new CategoryAdapter(data);

@@ -5,6 +5,14 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 android {
 
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\walee\\Desktop\\medicApk\\key')
+            storePassword 'wal1596357'
+            keyPassword 'wal1596357'
+            keyAlias 'key0'
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false

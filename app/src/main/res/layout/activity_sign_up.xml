@@ -107,24 +107,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginBottom="10dp"
-            android:weightSum="4">
+            android:weightSum="3">
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/ccp"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:textColor="@color/dark_blue"
                 android:gravity="center"
-                android:textSize="10sp"
+                app:ccp_textSize="14sp"
                 app:ccp_autoDetectCountry="true"
                 app:ccp_showNameCode="true"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reg_phoneNo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:hint="Phone No"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -134,8 +134,6 @@
                     android:textSize="14sp"
                     android:textColor="@color/dark_blue"
                     android:inputType="number"/>
-
-
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

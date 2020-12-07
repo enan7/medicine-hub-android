@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,7 @@ public class OrderListFragment extends Fragment {
     private GetOrderByUserResponse getOrderByUserResponse;
     private ArrayList<OrdersDto> orderList = new ArrayList<>();
     private LinearLayoutManager layoutManager;
+    private TextView listEmptyTag;
     private int scrollState;
     private int scrollOnY;
     @Override
@@ -47,6 +49,7 @@ public class OrderListFragment extends Fragment {
 
         statusAdapter=null;
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+        listEmptyTag = view.findViewById(R.id.empty_tag);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.order_recyclerview);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -101,17 +104,25 @@ public class OrderListFragment extends Fragment {
 
                     getOrderByUserResponse = response.body();
 
-                    if(null!=getOrderByUserResponse && null!=getOrderByUserResponse.getOrders()) {
-                        if(getOrderByUserResponse.getOrders().size()!=0)
-                        orderList.addAll(getOrderByUserResponse.getOrders());
-                        if(null == statusAdapter) {
-                            statusAdapter = new OrderListAdapter(getActivity(), orderList);
-                            mRecyclerView.setAdapter(statusAdapter);
+                    if (pageNumber == 0 && getOrderByUserResponse == null) {
+                        listEmptyTag.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
+                    } else {
+                        listEmptyTag.setVisibility(View.GONE);
 
-                        } else{
-                            statusAdapter.getrOrderList().addAll(getOrderByUserResponse.getOrders());
-                            statusAdapter.notifyItemInserted(statusAdapter.getrOrderList().size()+1);
-                            //mRecyclerView.refreshDrawableState();
+                        if (null != getOrderByUserResponse && null != getOrderByUserResponse.getOrders()) {
+                            if (getOrderByUserResponse.getOrders().size() != 0) {
+                                orderList.addAll(getOrderByUserResponse.getOrders());
+                            }
+                            if (null == statusAdapter) {
+                                statusAdapter = new OrderListAdapter(getActivity(), orderList);
+                                mRecyclerView.setAdapter(statusAdapter);
+
+                            } else {
+                                statusAdapter.getrOrderList().addAll(getOrderByUserResponse.getOrders());
+                                statusAdapter.notifyItemInserted(statusAdapter.getrOrderList().size() + 1);
+                                //mRecyclerView.refreshDrawableState();
+                            }
                         }
                     }
 

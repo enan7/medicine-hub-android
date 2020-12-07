@@ -18,9 +18,13 @@
         app:mpb_useIntrinsicPadding="false" />
 
     <TextView
+        android:id="@+id/empty_tag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Order list is empty"></TextView>
+        android:gravity="center"
+        android:textSize="19sp"
+        android:visibility="gone"
+        android:text="Order List is Empty"></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/order_recyclerview"
