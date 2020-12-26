@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.medic.Activity.Home;
 import com.example.medic.R;
 
 
@@ -61,6 +62,16 @@ public class ContactUsFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Home activity = (Home) getActivity();
+        if (activity != null) {
+            activity.showBackButton();
+            activity.hideDrawerButton();
+        }
+
+    }
 
   /*  @Override
     public void onResume() {

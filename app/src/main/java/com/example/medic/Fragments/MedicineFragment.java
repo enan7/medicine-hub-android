@@ -47,7 +47,7 @@ public class MedicineFragment extends Fragment {
     private ArrayList<MedicineDTO> medicineList = new ArrayList<>();
     private LinearLayout medicineSearch;
     private EditText searchText;
-    private LinearLayoutManager layoutManager;
+   // private LinearLayoutManager layoutManager;
     private int scrollState;
     private int scrollOnY;
     private Long categoryId;
@@ -74,11 +74,10 @@ public class MedicineFragment extends Fragment {
                 scrollState = newState;
                 if(scrollState == 0) {
                     if(scrollOnY>0) {
-//
+
                         pageNumber = ++pageNumber;
                         renderMedicineList(pageNumber, categoryId, null);
                     }
-//
                 }
             }
 
